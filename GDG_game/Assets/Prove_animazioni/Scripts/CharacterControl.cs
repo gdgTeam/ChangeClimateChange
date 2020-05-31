@@ -18,8 +18,7 @@ namespace roundbeargames_tutorial
         PickDown,
         BalanceWalk,
         Spiderman,
-        Die,
-        MoveBackward
+        Die
 
     }
 
@@ -56,6 +55,10 @@ namespace roundbeargames_tutorial
         public bool gru;
         public bool Spiderman;
 
+        public Transform targetTransform;
+        public LayerMask mouseAimMask;
+        private Camera mainCamera;
+
         public Rigidbody RIGID_BODY
         {
             get
@@ -70,6 +73,7 @@ namespace roundbeargames_tutorial
         private void Start()
         {
             scale = this.transform.localScale;
+            mainCamera = Camera.main;
 
         }
 
@@ -88,7 +92,7 @@ namespace roundbeargames_tutorial
             if (MoveDown == true)
             {
              
-             SkinnedMeshAnimator.SetBool(TransitionParameter.Movedown.ToString(), true);
+            SkinnedMeshAnimator.SetBool(TransitionParameter.Movedown.ToString(), true);
             this.RIGID_BODY.useGravity = true;
             this.GetComponent<BoxCollider>().enabled = true;
 
@@ -138,6 +142,15 @@ namespace roundbeargames_tutorial
             if (Spiderman == false)
             {
                 SkinnedMeshAnimator.SetBool(TransitionParameter.Spiderman.ToString(), false);
+            }
+
+            //Aim control
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, mouseAimMask))
+            {
+                targetTransform.position = hit.point;
             }
         }
 
@@ -256,6 +269,18 @@ namespace roundbeargames_tutorial
         {
             GameObject obj = Instantiate(ColliderEdgePrefab, pos, Quaternion.identity);
             return obj;
+        }
+
+        private void OnAnimatorIK()
+        {
+            //mira al target con IK
+            SkinnedMeshAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
+            SkinnedMeshAnimator.SetIKPosition(AvatarIKGoal.RightHand, targetTransform.position);
+
+            //look at target
+            SkinnedMeshAnimator.SetLookAtWeight(1);
+            SkinnedMeshAnimator.SetLookAtPosition(targetTransform.position);
+            
         }
     }
 }

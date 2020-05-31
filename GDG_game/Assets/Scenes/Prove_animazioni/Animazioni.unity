@@ -1799,6 +1799,10 @@ MonoBehaviour:
   Corazza: {fileID: 0}
   gru: 0
   Spiderman: 0
+  targetTransform: {fileID: 0}
+  mouseAimMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!120 &684535457
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -3945,6 +3949,10 @@ MonoBehaviour:
   Corazza: {fileID: 1980041204}
   gru: 0
   Spiderman: 0
+  targetTransform: {fileID: 1320579011}
+  mouseAimMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!95 &1265148323 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 12b9db96d44838547bb3bd9ee6090ace,
@@ -4101,7 +4109,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265148321}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cac5d54a91772445fb63a558d2505071, type: 3}
   m_Name: 
@@ -5265,6 +5273,10 @@ MonoBehaviour:
   Corazza: {fileID: 0}
   gru: 0
   Spiderman: 0
+  targetTransform: {fileID: 0}
+  mouseAimMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1519361888
 MonoBehaviour:
   m_ObjectHideFlags: 0
