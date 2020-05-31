@@ -58,6 +58,8 @@ namespace roundbeargames_tutorial
         public Transform targetTransform;
         public LayerMask mouseAimMask;
         private Camera mainCamera;
+        public GameObject bulletPrefab;
+        public Transform muzzleTransform;
 
         public Rigidbody RIGID_BODY
         {
@@ -151,6 +153,11 @@ namespace roundbeargames_tutorial
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, mouseAimMask))
             {
                 targetTransform.position = hit.point;
+            }
+
+            if (Input.GetButtonDown("Fire1"))
+            {
+                fire();
             }
         }
 
@@ -281,6 +288,14 @@ namespace roundbeargames_tutorial
             SkinnedMeshAnimator.SetLookAtWeight(1);
             SkinnedMeshAnimator.SetLookAtPosition(targetTransform.position);
             
+        }
+
+        private void fire()
+        {
+            var go = Instantiate(bulletPrefab);
+            go.transform.position = muzzleTransform.position;
+            var bullet = go.GetComponent<Bullet>();
+            bullet.fire(go.transform.position, muzzleTransform.eulerAngles, gameObject.layer);
         }
     }
 }

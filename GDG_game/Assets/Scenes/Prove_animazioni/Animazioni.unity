@@ -1648,6 +1648,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &657822615 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -2199329924220840170, guid: 12b9db96d44838547bb3bd9ee6090ace,
+    type: 3}
+  m_PrefabInstance: {fileID: 1265148320}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &679008844
 GameObject:
   m_ObjectHideFlags: 0
@@ -1803,6 +1809,8 @@ MonoBehaviour:
   mouseAimMask:
     serializedVersion: 2
     m_Bits: 0
+  bulletPrefab: {fileID: 0}
+  muzzleTransform: {fileID: 0}
 --- !u!120 &684535457
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -2110,6 +2118,36 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &709933638
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 709933639}
+  m_Layer: 0
+  m_Name: Muzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &709933639
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709933638}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 657822615}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &724271214
 GameObject:
   m_ObjectHideFlags: 0
@@ -3953,6 +3991,9 @@ MonoBehaviour:
   mouseAimMask:
     serializedVersion: 2
     m_Bits: 512
+  bulletPrefab: {fileID: 4425481277665156445, guid: 7177fccad6ba04ff1a56f4fd928932fc,
+    type: 3}
+  muzzleTransform: {fileID: 709933639}
 --- !u!95 &1265148323 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 12b9db96d44838547bb3bd9ee6090ace,
@@ -5277,6 +5318,8 @@ MonoBehaviour:
   mouseAimMask:
     serializedVersion: 2
     m_Bits: 0
+  bulletPrefab: {fileID: 0}
+  muzzleTransform: {fileID: 0}
 --- !u!114 &1519361888
 MonoBehaviour:
   m_ObjectHideFlags: 0
