@@ -31,19 +31,23 @@ namespace roundbeargames_tutorial {
 
         private void FixedUpdate()
         {
-            float direction = Mathf.Sign(targetTransform.position.z - transform.position.z);
-            if (direction > 0)
+            if(Input.mousePosition.x < Screen.width / 3)
             {
-                VirtualInputManager.Instance.LookRight = true;
-                VirtualInputManager.Instance.LookLeft = false;
+                Debug.Log("non posso andare avanti");
             }
-            else
-            {
-                VirtualInputManager.Instance.LookLeft = true;
-                VirtualInputManager.Instance.LookRight = false;
+            //float direction = Mathf.Sign(targetTransform.position.z - transform.position.z);
+            //if (direction > 0)
+            //{
+            //    VirtualInputManager.Instance.LookRight = true;
+            //    VirtualInputManager.Instance.LookLeft = false;
+            //}
+            //else
+            //{
+            //    VirtualInputManager.Instance.LookLeft = true;
+            //    VirtualInputManager.Instance.LookRight = false;
 
-            }
-            rg.MoveRotation(Quaternion.Euler(new Vector3(0, 90 - (90 * Mathf.Sign(targetTransform.position.z - transform.position.z)), 0)));
+            //}
+            //rg.MoveRotation(Quaternion.Euler(new Vector3(0, 90 - (90 * Mathf.Sign(targetTransform.position.z - transform.position.z)), 0)));
         }
 
     }

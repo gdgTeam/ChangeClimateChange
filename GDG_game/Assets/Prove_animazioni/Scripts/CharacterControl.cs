@@ -18,7 +18,7 @@ namespace roundbeargames_tutorial
         PickDown,
         BalanceWalk,
         Spiderman,
-        Die
+        Die,
         MoveBackward
 
     }
