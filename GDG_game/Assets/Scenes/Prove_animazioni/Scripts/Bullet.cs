@@ -20,19 +20,19 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         RaycastHit hit;
-        if(Physics.Raycast(transform.position, transform.forward, out hit, velocity * Time.deltaTime, ~(1<<firedByLayer)))
+        if(Physics.Raycast(transform.position, transform.right, out hit, velocity * Time.deltaTime, ~(1<<firedByLayer)))
         {
             transform.position = hit.point;
-            Vector3 reflected = Vector3.Reflect(transform.forward, hit.normal);
-            Vector3 direction = transform.forward;
-            Vector3 vop = Vector3.ProjectOnPlane(reflected, Vector3.forward);
-            transform.forward = vop;
-            transform.rotation = Quaternion.LookRotation(vop, Vector3.forward);
+            Vector3 reflected = Vector3.Reflect(transform.right, hit.normal);
+            Vector3 direction = transform.right;
+            Vector3 vop = Vector3.ProjectOnPlane(reflected, Vector3.right);
+            transform.right = vop;
+            transform.rotation = Quaternion.LookRotation(vop, Vector3.right);
             Hit(transform.position, direction, reflected, hit.collider);
         }
         else
         {
-            transform.Translate(Vector3.forward * velocity * Time.deltaTime);
+            transform.Translate(Vector3.right * velocity * Time.deltaTime);
         }
 
         if(Time.time > lifeTimer + life)
@@ -52,9 +52,9 @@ public class Bullet : MonoBehaviour
         lifeTimer = Time.time;
         transform.position = position;
         transform.eulerAngles = euler;
-        transform.position = new Vector3(0, transform.position.y, transform.position.z);
-        Vector3 vop = Vector3.ProjectOnPlane(transform.forward, Vector3.forward);
-        transform.forward = vop;
-        transform.rotation = Quaternion.LookRotation(vop, Vector3.forward);
+        transform.position = new Vector3(2, transform.position.y, transform.position.z);
+        Vector3 vop = Vector3.ProjectOnPlane(transform.right, Vector3.right);
+        transform.right = vop;
+        transform.rotation = Quaternion.LookRotation(vop, Vector3.right);
     }
 }
