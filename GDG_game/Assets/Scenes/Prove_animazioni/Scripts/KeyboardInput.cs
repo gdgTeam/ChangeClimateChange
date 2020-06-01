@@ -94,13 +94,13 @@ namespace roundbeargames_tutorial
                 VirtualInputManager.Instance.Shielding = true;
                 StartCoroutine("Shield");
             }
-            if (Input.GetMouseButtonDown(0) )
+            if (Input.GetMouseButtonDown(1) )
             {
               
                 VirtualInputManager.Instance.Spiderman = true;
                 
             }
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(1))
             {
 
                 VirtualInputManager.Instance.Spiderman = false;

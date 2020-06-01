@@ -60,6 +60,10 @@ namespace roundbeargames_tutorial
         private Camera mainCamera;
         public GameObject bulletPrefab;
         public Transform muzzleTransform;
+        public Texture2D mouseStandard;
+        public Texture2D mouseGrappable;
+        public CursorMode cursorMode;
+        public Vector2 hotspot = Vector2.zero;
 
         public Rigidbody RIGID_BODY
         {
@@ -76,6 +80,7 @@ namespace roundbeargames_tutorial
         {
             scale = this.transform.localScale;
             mainCamera = Camera.main;
+            Cursor.SetCursor(mouseStandard, hotspot, cursorMode);
 
         }
 
@@ -146,6 +151,7 @@ namespace roundbeargames_tutorial
                 SkinnedMeshAnimator.SetBool(TransitionParameter.Spiderman.ToString(), false);
             }
 
+
             //Aim control
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -153,12 +159,24 @@ namespace roundbeargames_tutorial
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, mouseAimMask))
             {
                 targetTransform.position = hit.point;
+                if(hit.collider.gameObject.tag == "Grappable")
+                {
+                    //cambia colore dell'oggetto
+                    Cursor.SetCursor(mouseGrappable, hotspot, cursorMode);
+                    GetComponent<DistanceJoint3D>().ConnectedRigidbody = hit.collider.gameObject.GetComponent<Rigidbody>().transform;
+                }
+                else
+                {
+                    Cursor.SetCursor(mouseStandard, hotspot, cursorMode);
+                    //GetComponent<DistanceJoint3D>().ConnectedRigidbody = null;
+                }
             }
 
             if (Input.GetButtonDown("Fire1"))
             {
                 fire();
             }
+
         }
 
         private void Awake()
