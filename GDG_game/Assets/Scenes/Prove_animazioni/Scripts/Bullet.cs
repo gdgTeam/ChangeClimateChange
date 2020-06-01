@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         RaycastHit hit;
-        if(Physics.Raycast(transform.position, transform.forward, out hit, velocity * Time.deltaTime, ~(1<<firedByLayer))
+        if(Physics.Raycast(transform.position, transform.forward, out hit, velocity * Time.deltaTime, ~(1<<firedByLayer)))
         {
             transform.position = hit.point;
             Vector3 reflected = Vector3.Reflect(transform.forward, hit.normal);
