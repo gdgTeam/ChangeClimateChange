@@ -112,7 +112,7 @@ namespace roundbeargames_tutorial
                 if (Physics.Raycast(o.transform.position, control.transform.forward, out hit, BlockDistance))
                 {
                     
-                    if (!Self && !Ledge.IsLedge(hit.collider.gameObject)  &&!Stair.IsStair(hit.collider.gameObject) && (hit.collider.gameObject.tag != "GoAhead")&& (hit.collider.gameObject.tag != "trigger"))
+                    if (!Self && !Ledge.IsLedge(hit.collider.gameObject)  &&!Stair.IsStair(hit.collider.gameObject) && (hit.collider.gameObject.tag != "GoAhead") && (hit.collider.gameObject.tag != "Fire") && (hit.collider.gameObject.tag != "trigger"))
                     {
                         Debug.Log(hit.collider.gameObject);
                         return true;

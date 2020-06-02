@@ -75,6 +75,8 @@ namespace roundbeargames_tutorial
 
         private void Update()
         {
+            //Corazza.transform.rotation = Quaternion.Euler(0.0f, 0.0f, this.gameObject.transform.rotation.z * -1.0f * Time.deltaTime);
+
             if (ledgeChecker.IsGrabbingLedge == true)
             {
                 grabCharact = true;
@@ -139,6 +141,7 @@ namespace roundbeargames_tutorial
             {
                 SkinnedMeshAnimator.SetBool(TransitionParameter.Spiderman.ToString(), false);
             }
+
         }
 
         private void Awake()
@@ -255,7 +258,9 @@ namespace roundbeargames_tutorial
         }
         private void FixedUpdate()
         {
-            if(RIGID_BODY.velocity.y<0f)
+            Corazza.transform.rotation = Quaternion.Euler(0.0f, 0.0f, this.gameObject.transform.rotation.z * -1.0f * Time.deltaTime);
+
+            if (RIGID_BODY.velocity.y<0f)
             {
                 RIGID_BODY.velocity -= Vector3.up * GravityMultiplier;
             }
