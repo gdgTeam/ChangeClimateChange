@@ -176,9 +176,20 @@ namespace roundbeargames_tutorial
              }
              if(col.gameObject.tag == "Fire")
              {
+                Debug.Log("ColliderFire");
                 CheckCorazza();
              }
         }
+
+        private void OnTriggerStay(Collider col)
+        {
+            if (col.gameObject.tag == "Fire")
+            {
+                Debug.Log("StayFire");
+                CheckCorazza();
+            }
+        }
+
          public void TurnOnRagdoll()
          {
              RIGID_BODY.useGravity = false;
