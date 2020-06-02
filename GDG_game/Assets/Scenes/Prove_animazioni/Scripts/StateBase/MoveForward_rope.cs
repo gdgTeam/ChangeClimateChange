@@ -9,6 +9,7 @@ namespace roundbeargames_tutorial
     {
         public CharacterControl control;
         public float swingForce;
+        Vector3 perpendicularDirection;
 
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
@@ -18,26 +19,31 @@ namespace roundbeargames_tutorial
         public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
             control = characterState.GetCharacterControl(animator);
-            Vector3 perpendicularDirection;
+            
             // Get normalized direction vector from player to the hook point
             var playerToHookDirection = (control.transform.GetComponent<DistanceJoint3D>().ConnectedRigidbody.position - control.transform.position).normalized;
             if (Input.GetKey(KeyCode.D))
             {
-                Debug.Log("right");
+                
                 perpendicularDirection = new Vector3(0, -playerToHookDirection.z, playerToHookDirection.y);
                 var leftPerpPos = control.transform.position - perpendicularDirection * -2f;
                 Debug.DrawLine(control.transform.position, leftPerpPos, Color.green, 0f);
-                var force = perpendicularDirection * swingForce;
-                control.transform.GetComponent<Rigidbody>().AddForce(force, ForceMode.Force);
+                animator.SetBool(TransitionParameter.front.ToString(), true);
+                animator.SetBool(TransitionParameter.back.ToString(), false);
+
             }
             else if (Input.GetKey(KeyCode.A))
             {
                 perpendicularDirection = new Vector3(0, playerToHookDirection.z, -playerToHookDirection.y);
                 var rightPerpPos = control.transform.position - perpendicularDirection * -2f;
                 Debug.DrawLine(control.transform.position, rightPerpPos, Color.green, 0f);
-                var force = perpendicularDirection * swingForce;
-                control.transform.GetComponent<Rigidbody>().AddForce(force, ForceMode.Force);
+                animator.SetBool(TransitionParameter.front.ToString(), false);
+                animator.SetBool(TransitionParameter.back.ToString(), true);
+
+
             }
+            var force = perpendicularDirection * swingForce;
+            control.transform.GetComponent<Rigidbody>().AddForce(force, ForceMode.Force);
 
         }
 

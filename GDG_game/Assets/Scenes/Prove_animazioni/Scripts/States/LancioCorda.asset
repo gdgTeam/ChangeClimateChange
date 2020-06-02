@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: MoveForward_rope
-  m_EditorClassIdentifier: Assembly-CSharp:roundbeargames_tutorial:MoveForwanrd_rope
+  m_Script: {fileID: 11500000, guid: dea53259e7811964497ed6b1e41aa6be, type: 3}
+  m_Name: LancioCorda
+  m_EditorClassIdentifier: 
   control: {fileID: 0}
-  swingForce: 15

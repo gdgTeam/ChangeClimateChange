@@ -18,7 +18,9 @@ namespace roundbeargames_tutorial
         PickDown,
         BalanceWalk,
         Spiderman,
-        Die
+        Die,
+        front,
+        back
 
     }
 
@@ -54,7 +56,8 @@ namespace roundbeargames_tutorial
         public GameObject Corazza;
         public bool gru;
         public bool Spiderman;
-
+        public bool isSwinging;
+        public GameObject spine;
         public Transform targetTransform;
         public LayerMask mouseAimMask;
         private Camera mainCamera;
@@ -64,6 +67,8 @@ namespace roundbeargames_tutorial
         public Texture2D mouseGrappable;
         public CursorMode cursorMode;
         public Vector2 hotspot = Vector2.zero;
+        public bool Pointed = false;
+        public bool Ragdoll = false;
 
         public Rigidbody RIGID_BODY
         {
@@ -78,14 +83,16 @@ namespace roundbeargames_tutorial
         }
         private void Start()
         {
+            
             scale = this.transform.localScale;
             mainCamera = Camera.main;
             Cursor.SetCursor(mouseStandard, hotspot, cursorMode);
-
+            
         }
 
         private void Update()
         {
+
             if (ledgeChecker.IsGrabbingLedge == true)
             {
                 grabCharact = true;
@@ -116,7 +123,7 @@ namespace roundbeargames_tutorial
             }
             if (stairChecker.StairVal == false)
             {
-                Debug.Log("false");
+
 
                 WalkUpStair = false;
 
@@ -150,6 +157,15 @@ namespace roundbeargames_tutorial
             {
                 SkinnedMeshAnimator.SetBool(TransitionParameter.Spiderman.ToString(), false);
             }
+           if(Ragdoll == true)
+            {
+                TurnOnRagdoll();
+            }
+          /*  if (Ragdoll == false)
+            {
+               TurnOFFRagdoll();
+            }*/
+
 
 
             //Aim control
@@ -159,14 +175,16 @@ namespace roundbeargames_tutorial
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, mouseAimMask))
             {
                 targetTransform.position = hit.point;
-                if(hit.collider.gameObject.tag == "Grappable")
+                if (hit.collider.gameObject.tag == "Grappable" && isSwinging == false)
                 {
+                    Pointed = true;
                     //cambia colore dell'oggetto
                     Cursor.SetCursor(mouseGrappable, hotspot, cursorMode);
                     GetComponent<DistanceJoint3D>().ConnectedRigidbody = hit.collider.gameObject.GetComponent<Rigidbody>().transform;
                 }
                 else
                 {
+                    Pointed = false;
                     Cursor.SetCursor(mouseStandard, hotspot, cursorMode);
                     //GetComponent<DistanceJoint3D>().ConnectedRigidbody = null;
                 }
@@ -181,7 +199,7 @@ namespace roundbeargames_tutorial
 
         private void Awake()
         {
-            //SetRagdollParts();
+            SetRagdollParts();
             SetCollidersSpheres();   
         
         }
@@ -199,19 +217,13 @@ namespace roundbeargames_tutorial
 
              }
          }
-
+      
 
 
         private void OnTriggerEnter(Collider col)
          {
 
-             /*{
-                 return;
-             }*/
-             if (col.gameObject.tag== "Pericolo")
-             {
-                 TurnOnRagdoll();
-             }
+           
              if(col.gameObject.tag == "Fire")
              {
                 CheckCorazza();
@@ -226,10 +238,21 @@ namespace roundbeargames_tutorial
              SkinnedMeshAnimator.avatar = null;
              foreach( Collider c in RagdollParts)
              {
+
+                c.enabled = true;
                  c.isTrigger = false;
                  c.attachedRigidbody.velocity = Vector3.zero;
              }
          }
+       /* public void TurnOFFRagdoll()
+        {
+
+           
+                foreach (Collider col in RagdollParts)
+                {
+                    col.enabled = false;
+                }
+        }*/
 
         public void CheckCorazza()
         {

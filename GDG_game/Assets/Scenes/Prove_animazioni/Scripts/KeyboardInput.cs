@@ -8,7 +8,13 @@ namespace roundbeargames_tutorial
     {
         private bool protectShield = true;
         private bool protectPlant = false;
+        private CharacterControl control;
 
+        private void Start()
+        {
+            control = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterControl>();
+
+        }
         void Update()
         {
             if (Input.GetKey(KeyCode.D))
@@ -94,7 +100,7 @@ namespace roundbeargames_tutorial
                 VirtualInputManager.Instance.Shielding = true;
                 StartCoroutine("Shield");
             }
-            if (Input.GetMouseButtonDown(1) )
+            if (Input.GetMouseButtonDown(1) && control.Pointed==true  )
             {
               
                 VirtualInputManager.Instance.Spiderman = true;

@@ -119,18 +119,18 @@ namespace roundbeargames_tutorial
                     }
                    
 
-                    // foreach (Collider c in control.RagdollParts)
-                    // {
-                    /*if (c.gameObject == hit.collider.gameObject)
+                     foreach (Collider c in control.RagdollParts)
+                     {
+                   if (c.gameObject == hit.collider.gameObject)
                     {
                         Self = true;
                         break;
-                    }*/
+                    }
                 }
                    
                     
 
-               //}
+               }
             }
 
             return false;
