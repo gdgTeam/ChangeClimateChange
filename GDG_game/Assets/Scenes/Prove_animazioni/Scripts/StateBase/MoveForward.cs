@@ -43,6 +43,7 @@ namespace roundbeargames_tutorial
             {
                 control.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
                 control.SkinnedMeshAnimator.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                control.girato = false;
                 if (!CheckFront(control))
                 {
                     control.transform.Translate(Vector3.forward * Speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
@@ -53,6 +54,7 @@ namespace roundbeargames_tutorial
             {
                 control.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
                 control.SkinnedMeshAnimator.transform.rotation= Quaternion.Euler(0f, 180f, 0f);
+                control.girato = true;
                 if (!CheckFront(control))
                 {
                     control.transform.Translate(Vector3.forward * Speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
@@ -114,23 +116,23 @@ namespace roundbeargames_tutorial
                     
                     if (!Self && !Ledge.IsLedge(hit.collider.gameObject)  &&!Stair.IsStair(hit.collider.gameObject) && (hit.collider.gameObject.tag != "GoAhead")&& (hit.collider.gameObject.tag != "trigger"))
                     {
-                        Debug.Log(hit.collider.gameObject);
+
                         return true;
                     }
                    
 
-                    // foreach (Collider c in control.RagdollParts)
-                    // {
-                    /*if (c.gameObject == hit.collider.gameObject)
+                   /*  foreach (Collider c in control.RagdollParts)
+                     {
+                   if (c.gameObject == hit.collider.gameObject)
                     {
                         Self = true;
                         break;
-                    }*/
-                }
+                    }
+                }*/
                    
                     
 
-               //}
+               }
             }
 
             return false;

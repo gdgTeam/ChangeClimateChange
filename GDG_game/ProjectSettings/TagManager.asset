@@ -13,6 +13,7 @@ TagManager:
   - Enemy
   - GoAhead
   - PushableTree
+  - Grappable
   layers:
   - Default
   - TransparentFX

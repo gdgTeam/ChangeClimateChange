@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         RaycastHit hit;
-        if(Physics.Raycast(transform.position, transform.forward, out hit, velocity * Time.deltaTime, ~(1<<firedByLayer)))
+        if(Physics.Raycast(transform.position, transform.right, out hit, velocity * Time.deltaTime, ~(1<<firedByLayer)))
         {
             transform.position = hit.point;
             Vector3 reflected = Vector3.Reflect(transform.forward, hit.normal);
@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour
         }
         else
         {
-            transform.Translate(Vector3.forward * velocity * Time.deltaTime);
+            transform.Translate(-Vector3.forward * velocity * Time.deltaTime);
         }
 
         if(Time.time > lifeTimer + life)
@@ -51,9 +51,12 @@ public class Bullet : MonoBehaviour
     {
         lifeTimer = Time.time;
         transform.position = position;
-        transform.eulerAngles = euler;
-        transform.position = new Vector3(0, transform.position.y, transform.position.z);
-        Vector3 vop = Vector3.ProjectOnPlane(transform.forward, Vector3.forward);
+        transform.eulerAngles = new Vector3(euler.x, -euler.y, -euler.z);
+        //transform.eulerAngles = new Vector3(euler.x-80, euler.y, euler.z);
+        Debug.Log(transform.eulerAngles);
+        //cambiare il valore di x a seconda della profondità del personaggio
+        transform.position = new Vector3(2, transform.position.y, transform.position.z);
+        Vector3 vop = Vector3.ProjectOnPlane(transform.forward, Vector3.right);
         transform.forward = vop;
         transform.rotation = Quaternion.LookRotation(vop, Vector3.forward);
     }
