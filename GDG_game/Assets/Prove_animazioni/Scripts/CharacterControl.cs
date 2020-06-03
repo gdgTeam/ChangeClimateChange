@@ -35,7 +35,7 @@ namespace roundbeargames_tutorial
         public bool Picking;
         public bool PickingDown;
         public bool PickPlant;
-        public bool LookRight;
+        public bool LookRight = true;
         public bool LookLeft;
         public bool plant = false;
         public bool Shielding;
@@ -175,19 +175,23 @@ namespace roundbeargames_tutorial
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, mouseAimMask))
             {
-                targetTransform.position = hit.point;
-                if (hit.collider.gameObject.tag == "Grappable" && isSwinging == false)
+                if (hit.point.z > this.transform.position.z)
                 {
-                    Pointed = true;
-                    //cambia colore dell'oggetto
-                    Cursor.SetCursor(mouseGrappable, hotspot, cursorMode);
-                    GetComponent<DistanceJoint3D>().ConnectedRigidbody = hit.collider.gameObject.GetComponent<Rigidbody>().transform;
-                }
-                else
-                {
-                    Pointed = false;
-                    Cursor.SetCursor(mouseStandard, hotspot, cursorMode);
-                    //GetComponent<DistanceJoint3D>().ConnectedRigidbody = null;
+                    targetTransform.position = hit.point;
+
+                    if (hit.collider.gameObject.tag == "Grappable" && isSwinging == false)
+                    {
+                        Pointed = true;
+                        //cambia colore dell'oggetto
+                        Cursor.SetCursor(mouseGrappable, hotspot, cursorMode);
+                        GetComponent<DistanceJoint3D>().ConnectedRigidbody = hit.collider.gameObject.GetComponent<Rigidbody>().transform;
+                    }
+                    else
+                    {
+                        Pointed = false;
+                        Cursor.SetCursor(mouseStandard, hotspot, cursorMode);
+                        //GetComponent<DistanceJoint3D>().ConnectedRigidbody = null;
+                    }
                 }
             }
 

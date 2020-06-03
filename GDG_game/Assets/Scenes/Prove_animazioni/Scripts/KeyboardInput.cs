@@ -21,11 +21,14 @@ namespace roundbeargames_tutorial
             {
                 VirtualInputManager.Instance.MoveRight = true;
                 VirtualInputManager.Instance.Move = true;
+                VirtualInputManager.Instance.LookRight = true;
+                VirtualInputManager.Instance.LookLeft = false;
             }
             else
             {
                 VirtualInputManager.Instance.MoveRight = false;
                 VirtualInputManager.Instance.Move = false;
+                //VirtualInputManager.Instance.LookRight = false;
             }
             if (Input.GetKey(KeyCode.W))
             {
@@ -48,12 +51,14 @@ namespace roundbeargames_tutorial
             {
                 VirtualInputManager.Instance.MoveLeft = true;
                 VirtualInputManager.Instance.Move = true;
+                VirtualInputManager.Instance.LookLeft = true;
+                VirtualInputManager.Instance.LookRight = false;
             }
             else
             {
                 VirtualInputManager.Instance.MoveLeft = false;
                 VirtualInputManager.Instance.Move = false;
-
+                //VirtualInputManager.Instance.LookLeft = false;
             }
 
             if (Input.GetKey(KeyCode.Space))
