@@ -71,6 +71,9 @@ namespace roundbeargames_tutorial
         public bool Ragdoll = false;
         public bool girato;
         public GameObject liana;
+        [SerializeField] private AudioSource soundCorazza;
+
+        
         public Rigidbody RIGID_BODY
         {
             get
@@ -88,6 +91,8 @@ namespace roundbeargames_tutorial
             scale = this.transform.localScale;
             mainCamera = Camera.main;
             Cursor.SetCursor(mouseStandard, hotspot, cursorMode);
+            soundCorazza = GetComponent<AudioSource>();
+
             
         }
 
@@ -135,6 +140,11 @@ namespace roundbeargames_tutorial
                 protectShield = false;
                 MeshRenderer meshCorazza = Corazza.transform.GetComponent<MeshRenderer>();
                 meshCorazza.enabled = true;
+                soundCorazza.Play();
+
+
+
+
             }
             if (!Shielding && !protectShield)
             {
