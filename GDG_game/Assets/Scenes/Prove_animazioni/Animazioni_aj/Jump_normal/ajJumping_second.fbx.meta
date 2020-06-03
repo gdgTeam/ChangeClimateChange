@@ -60,7 +60,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.0074257427
-        functionName: Jump
+        functionName: 
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
