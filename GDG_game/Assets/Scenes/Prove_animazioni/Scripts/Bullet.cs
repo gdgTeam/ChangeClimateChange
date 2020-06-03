@@ -23,16 +23,16 @@ public class Bullet : MonoBehaviour
         if(Physics.Raycast(transform.position, transform.right, out hit, velocity * Time.deltaTime, ~(1<<firedByLayer)))
         {
             transform.position = hit.point;
-            Vector3 reflected = Vector3.Reflect(transform.right, hit.normal);
-            Vector3 direction = transform.right;
-            Vector3 vop = Vector3.ProjectOnPlane(reflected, Vector3.right);
-            transform.right = vop;
-            transform.rotation = Quaternion.LookRotation(vop, Vector3.right);
+            Vector3 reflected = Vector3.Reflect(transform.forward, hit.normal);
+            Vector3 direction = transform.forward;
+            Vector3 vop = Vector3.ProjectOnPlane(reflected, Vector3.forward);
+            transform.forward = vop;
+            transform.rotation = Quaternion.LookRotation(vop, Vector3.forward);
             Hit(transform.position, direction, reflected, hit.collider);
         }
         else
         {
-            transform.Translate(Vector3.right * velocity * Time.deltaTime);
+            transform.Translate(-Vector3.forward * velocity * Time.deltaTime);
         }
 
         if(Time.time > lifeTimer + life)
@@ -51,10 +51,13 @@ public class Bullet : MonoBehaviour
     {
         lifeTimer = Time.time;
         transform.position = position;
-        transform.eulerAngles = euler;
+        transform.eulerAngles = new Vector3(euler.x, -euler.y, -euler.z);
+        //transform.eulerAngles = new Vector3(euler.x-80, euler.y, euler.z);
+        Debug.Log(transform.eulerAngles);
+        //cambiare il valore di x a seconda della profondità del personaggio
         transform.position = new Vector3(2, transform.position.y, transform.position.z);
-        Vector3 vop = Vector3.ProjectOnPlane(transform.right, Vector3.right);
-        transform.right = vop;
-        transform.rotation = Quaternion.LookRotation(vop, Vector3.right);
+        Vector3 vop = Vector3.ProjectOnPlane(transform.forward, Vector3.right);
+        transform.forward = vop;
+        transform.rotation = Quaternion.LookRotation(vop, Vector3.forward);
     }
 }

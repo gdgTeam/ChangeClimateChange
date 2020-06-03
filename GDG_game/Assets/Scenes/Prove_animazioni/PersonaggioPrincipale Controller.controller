@@ -1503,7 +1503,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Base Layer
     m_StateMachine: {fileID: 6502864493444855906}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 76f2fbd00511347aeb474002003aadba, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -2665,7 +2665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ListAbilityData:
   - {fileID: 11400000, guid: 670a907b06b0647528c5872a283dc8be, type: 2}
-  - {fileID: 11400000, guid: e8509c0019876724a8407683341c78ef, type: 2}
+  - {fileID: 11400000, guid: 0c80b2eda2ccb4d8b80934b6dfa4296c, type: 2}
 --- !u!1101 &7524102188569712389
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
