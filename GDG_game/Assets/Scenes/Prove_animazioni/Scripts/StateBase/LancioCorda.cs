@@ -9,7 +9,7 @@ namespace roundbeargames_tutorial
     {
         public CharacterControl control;
         private LineRenderer rope;
-
+        //public GameObject pianta;
 
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
@@ -18,7 +18,9 @@ namespace roundbeargames_tutorial
            
             control.isSwinging = true;
             rope = control.transform.GetComponent<LineRenderer>();
-            
+            control.liana.transform.position = control.transform.position;
+            control.liana.GetComponent<MeshRenderer>().enabled = true;
+            control.liana.GetComponent<Animator>().enabled = true;
 
            
 
@@ -27,7 +29,7 @@ namespace roundbeargames_tutorial
         public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
             rope.SetPosition(0, control.spine.transform.position);
-            
+           
             if (!control.Spiderman)
             {
                 animator.SetBool(TransitionParameter.Spiderman.ToString(), false);
@@ -36,11 +38,12 @@ namespace roundbeargames_tutorial
 
         public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
+           
             rope.enabled = true;
             control.transform.GetComponent<DistanceJoint3D>().enabled = true;
             rope.SetPosition(0, control.spine.transform.position);
             rope.SetPosition(1, control.transform.GetComponent<DistanceJoint3D>().ConnectedRigidbody.transform.position);
-            control.transform.GetComponent<DistanceJoint3D>().enabled = true;
+            
         }
     }
 }

@@ -23,7 +23,17 @@ public class DistanceJoint3D : MonoBehaviour
     {
         
         if (DetermineDistanceOnStart && ConnectedRigidbody != null)
-            Distance = Vector3.Distance(Rigidbody.position, ConnectedRigidbody.position)-1f;
+            if(Vector3.Distance(Rigidbody.position, ConnectedRigidbody.position)>4.5f)
+            {
+                Debug.Log("magg4.5: "+ Vector3.Distance(Rigidbody.position, ConnectedRigidbody.position));
+                Distance = Vector3.Distance(Rigidbody.position, ConnectedRigidbody.position)-1f;
+            }
+        else
+            {
+                Debug.Log("min4.5: " + Vector3.Distance(Rigidbody.position, ConnectedRigidbody.position));
+                Distance = 5;
+            }
+           
     }
 
     void FixedUpdate()

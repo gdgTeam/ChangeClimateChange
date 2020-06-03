@@ -69,7 +69,8 @@ namespace roundbeargames_tutorial
         public Vector2 hotspot = Vector2.zero;
         public bool Pointed = false;
         public bool Ragdoll = false;
-
+        public bool girato;
+        public GameObject liana;
         public Rigidbody RIGID_BODY
         {
             get

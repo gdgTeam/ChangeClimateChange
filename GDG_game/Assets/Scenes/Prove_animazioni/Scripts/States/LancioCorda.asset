@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: LancioCorda
   m_EditorClassIdentifier: 
   control: {fileID: 0}
+  pianta: {fileID: -927199367670048503, guid: 5f3c71b93b682744fb252a5821a6019b, type: 3}

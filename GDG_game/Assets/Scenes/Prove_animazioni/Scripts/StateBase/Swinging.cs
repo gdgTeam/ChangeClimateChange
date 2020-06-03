@@ -9,26 +9,39 @@ namespace roundbeargames_tutorial
     {
         public CharacterControl control;
         private LineRenderer rope;
+       
       
 
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
-            animator.SetLayerWeight(0, 0);
-            animator.SetLayerWeight(1, 1);
             control = characterState.GetCharacterControl(animator);
-            control.transform.GetComponent<DistanceJoint3D>().enabled = true;
             control.isSwinging = true;
             rope = control.transform.GetComponent<LineRenderer>();
             rope.enabled = true;
             rope.SetPosition(0, control.spine.transform.position);
             rope.SetPosition(1, control.transform.GetComponent<DistanceJoint3D>().ConnectedRigidbody.transform.position);
+            
+            control.liana.transform.position = control.transform.GetComponent<DistanceJoint3D>().ConnectedRigidbody.transform.position;
+            if (control.transform.GetComponent<DistanceJoint3D>().enabled == false)
+            {
+                
+                control.transform.GetComponent<DistanceJoint3D>().enabled = true;
+                control.liana.GetComponent<MeshRenderer>().enabled = true;
+                control.liana.GetComponent<Animator>().enabled = true;
+
+            }
+           
+            animator.SetLayerWeight(0, 0);
+            animator.SetLayerWeight(1, 1);
+           
+            
 
         }
 
         public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
             rope.SetPosition(0, control.spine.transform.position);
-
+           
             if (!control.Spiderman)
             {
                 animator.SetBool(TransitionParameter.Spiderman.ToString(), false);
@@ -37,8 +50,12 @@ namespace roundbeargames_tutorial
 
         public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
+            control = characterState.GetCharacterControl(animator);
             control.transform.GetComponent<DistanceJoint3D>().enabled = false;
             rope.enabled = false;
+           
+            control.liana.GetComponent<MeshRenderer>().enabled = false;
+            control.liana.GetComponent<Animator>().enabled = false;
             control.isSwinging = false;
             control.transform.GetComponent<DistanceJoint3D>().ConnectedRigidbody = null;
             animator.SetLayerWeight(0, 1);

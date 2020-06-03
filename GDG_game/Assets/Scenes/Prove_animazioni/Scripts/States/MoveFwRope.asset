@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: MoveFwRope
   m_EditorClassIdentifier: Assembly-CSharp:roundbeargames_tutorial:MoveForwanrd_rope
   control: {fileID: 0}
-  swingForce: 2
+  swingForce: 7

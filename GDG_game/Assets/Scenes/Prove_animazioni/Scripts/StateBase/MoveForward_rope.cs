@@ -28,17 +28,32 @@ namespace roundbeargames_tutorial
                 perpendicularDirection = new Vector3(0, -playerToHookDirection.z, playerToHookDirection.y);
                 var leftPerpPos = control.transform.position - perpendicularDirection * -2f;
                 Debug.DrawLine(control.transform.position, leftPerpPos, Color.green, 0f);
-                animator.SetBool(TransitionParameter.front.ToString(), true);
-                animator.SetBool(TransitionParameter.back.ToString(), false);
-
+                if (control.girato == false)
+                {
+                    animator.SetBool(TransitionParameter.front.ToString(), true);
+                    animator.SetBool(TransitionParameter.back.ToString(), false);
+                }
+                else if (control.girato == true)
+                {
+                    animator.SetBool(TransitionParameter.front.ToString(), false);
+                    animator.SetBool(TransitionParameter.back.ToString(), true);
+                }
             }
             else if (Input.GetKey(KeyCode.A))
             {
                 perpendicularDirection = new Vector3(0, playerToHookDirection.z, -playerToHookDirection.y);
                 var rightPerpPos = control.transform.position - perpendicularDirection * -2f;
                 Debug.DrawLine(control.transform.position, rightPerpPos, Color.green, 0f);
-                animator.SetBool(TransitionParameter.front.ToString(), false);
-                animator.SetBool(TransitionParameter.back.ToString(), true);
+                if (control.girato == false)
+                {
+                    animator.SetBool(TransitionParameter.front.ToString(), false);
+                    animator.SetBool(TransitionParameter.back.ToString(), true);
+                }
+                else if (control.girato == true)
+                {
+                    animator.SetBool(TransitionParameter.front.ToString(), true);
+                    animator.SetBool(TransitionParameter.back.ToString(), false);
+                }
 
 
             }
