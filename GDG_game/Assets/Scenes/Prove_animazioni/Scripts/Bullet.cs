@@ -52,8 +52,6 @@ public class Bullet : MonoBehaviour
         lifeTimer = Time.time;
         transform.position = position;
         transform.eulerAngles = new Vector3(euler.x, -euler.y, -euler.z);
-        //transform.eulerAngles = new Vector3(euler.x-80, euler.y, euler.z);
-        Debug.Log(transform.eulerAngles);
         //cambiare il valore di x a seconda della profondità del personaggio
         transform.position = new Vector3(2, transform.position.y, transform.position.z);
         Vector3 vop = Vector3.ProjectOnPlane(transform.forward, Vector3.right);
