@@ -9299,7 +9299,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6d99956c74780924bac9594844ced2e9, type: 3}
   - {fileID: 8300000, guid: 1473b8d9033b9134cbe90360c29c17f4, type: 3}
   clipsJ:
-  - {fileID: 8300000, guid: 23763f1d27a6b0f42b1c0f0d1d17869d, type: 3}
+  - {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
+  clipsD:
+  - {fileID: 8300000, guid: 08692d57a21927948bcadb2610153c2e, type: 3}
 --- !u!1 &8404232991513066945
 GameObject:
   m_ObjectHideFlags: 0
