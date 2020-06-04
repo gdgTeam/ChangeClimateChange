@@ -62,11 +62,27 @@ namespace roundbeargames_tutorial
             }
             if(control.WalkUpStair)
             {
-                float angle = -45f;
+                animator.SetBool(TransitionParameter.WalkDownStairs.ToString(), false);
+                /*float angle =0;
                 Vector3 newVector = Quaternion.AngleAxis(angle, Vector3.forward)*Vector3.forward;
-                newVector.Normalize();
+                var rightPerpPos = control.transform.position -newVector;
+                Debug.DrawLine(control.transform.position, rightPerpPos, Color.green, 0f);
+                newVector.Normalize();*/
+                Vector3 direction = new Vector3(0f, 1f, 1f).normalized;
                 animator.SetBool(TransitionParameter.WalkUpStairs.ToString(), true);
-                control.transform.Translate( newVector* 4f * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
+                Debug.DrawLine(control.transform.position, direction, Color.green, 0f);
+                control.transform.Translate( direction* 4f * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
+            }
+            if (control.WalkDownStair)
+            {
+                Vector3 direction = new Vector3(0f, 0f, -1f).normalized;
+                animator.SetBool(TransitionParameter.WalkUpStairs.ToString(), false);
+                /* float angle = -45f;
+                 Vector3 newVector = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.forward;
+                 newVector.Normalize();*/
+                Debug.DrawLine(control.transform.position, direction, Color.green, 0f);
+                animator.SetBool(TransitionParameter.WalkDownStairs.ToString(), true);
+                control.transform.Translate(direction * 4f * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
             }
             else if (!(control.WalkUpStair))
             {

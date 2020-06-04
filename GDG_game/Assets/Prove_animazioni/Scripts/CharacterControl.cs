@@ -15,6 +15,7 @@ namespace roundbeargames_tutorial
         PickUp,
         Movedown,
         WalkUpStairs,
+        WalkDownStairs,
         PickDown,
         BalanceWalk,
         Spiderman,
@@ -51,6 +52,7 @@ namespace roundbeargames_tutorial
         public float PullMultiplier;
         public bool grabCharact;
         public bool WalkUpStair;
+        public bool WalkDownStair;
         private Rigidbody rigid;
         public StairChecker stairChecker;
         public GameObject Corazza;
@@ -98,6 +100,7 @@ namespace roundbeargames_tutorial
 
         private void Update()
         {
+            Debug.Log(WalkUpStair);
 
             if (ledgeChecker.IsGrabbingLedge == true)
             {
@@ -121,13 +124,23 @@ namespace roundbeargames_tutorial
             {
                 SkinnedMeshAnimator.SetBool(TransitionParameter.Movedown.ToString(), false);
             }
-            if (stairChecker.StairVal == true)
+            if (stairChecker.StairVal == true )
             {
-                Debug.Log("true");
-                WalkUpStair = true;
+                if( stairChecker.lastStair.VersoAvanti == true && girato== false)
+                {
+                    WalkDownStair = false;
+                    WalkUpStair = true;
+                }
+               
+
+                else if (stairChecker.lastStair.VersoAvanti == true && girato== true)
+                {
+                    WalkUpStair = false;
+                    WalkDownStair = true;
+                }
 
             }
-            if (stairChecker.StairVal == false)
+            if (stairChecker.StairVal == false )
             {
 
 
@@ -185,23 +198,19 @@ namespace roundbeargames_tutorial
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, mouseAimMask))
             {
-                if (hit.point.z > this.transform.position.z)
+                targetTransform.position = new Vector3(this.transform.position.x, hit.point.y ,hit.point.z);
+                if (hit.collider.gameObject.tag == "Grappable" && isSwinging == false)
                 {
-                    targetTransform.position = hit.point;
-
-                    if (hit.collider.gameObject.tag == "Grappable" && isSwinging == false)
-                    {
-                        Pointed = true;
-                        //cambia colore dell'oggetto
-                        Cursor.SetCursor(mouseGrappable, hotspot, cursorMode);
-                        GetComponent<DistanceJoint3D>().ConnectedRigidbody = hit.collider.gameObject.GetComponent<Rigidbody>().transform;
-                    }
-                    else
-                    {
-                        Pointed = false;
-                        Cursor.SetCursor(mouseStandard, hotspot, cursorMode);
-                        //GetComponent<DistanceJoint3D>().ConnectedRigidbody = null;
-                    }
+                    Pointed = true;
+                    //cambia colore dell'oggetto
+                    Cursor.SetCursor(mouseGrappable, hotspot, cursorMode);
+                    GetComponent<DistanceJoint3D>().ConnectedRigidbody = hit.collider.gameObject.GetComponent<Rigidbody>().transform;
+                }
+                else
+                {
+                    Pointed = false;
+                    Cursor.SetCursor(mouseStandard, hotspot, cursorMode);
+                    //GetComponent<DistanceJoint3D>().ConnectedRigidbody = null;
                 }
             }
 

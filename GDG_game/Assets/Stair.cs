@@ -6,7 +6,7 @@ namespace roundbeargames_tutorial
 {
     public class Stair : MonoBehaviour
     {
-
+        public bool VersoAvanti;
         public bool ON;
 
         public static bool IsStair(GameObject obj)
