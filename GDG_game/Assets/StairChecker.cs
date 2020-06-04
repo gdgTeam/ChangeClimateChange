@@ -26,7 +26,7 @@ namespace roundbeargames_tutorial
 
                 
                 
-                Debug.Log(foundedStair);
+
 
 
             }

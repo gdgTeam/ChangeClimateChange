@@ -68,10 +68,10 @@ namespace roundbeargames_tutorial
                 var rightPerpPos = control.transform.position -newVector;
                 Debug.DrawLine(control.transform.position, rightPerpPos, Color.green, 0f);
                 newVector.Normalize();*/
-                Vector3 direction = new Vector3(0f, 1f, 1f).normalized;
+                Vector3 direction = new Vector3(0f, -1f, 1f).normalized;
                 animator.SetBool(TransitionParameter.WalkUpStairs.ToString(), true);
                 
-                control.transform.Translate( direction* 3f * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
+                control.transform.Translate( direction* 1f * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
             }
             if (control.WalkDownStair)
             {
@@ -88,8 +88,13 @@ namespace roundbeargames_tutorial
             {
                 animator.SetBool(TransitionParameter.WalkUpStairs.ToString(), false);
             }
-                
-           
+            else if (!(control.WalkDownStair))
+            {
+                animator.SetBool(TransitionParameter.WalkDownStairs.ToString(), false);
+            }
+
+
+
         }
 
         public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)

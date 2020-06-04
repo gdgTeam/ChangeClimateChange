@@ -100,7 +100,7 @@ namespace roundbeargames_tutorial
 
         private void Update()
         {
-            Debug.Log(WalkUpStair);
+
 
             if (ledgeChecker.IsGrabbingLedge == true)
             {
@@ -138,13 +138,25 @@ namespace roundbeargames_tutorial
                     WalkUpStair = false;
                     WalkDownStair = true;
                 }
+                else if (stairChecker.lastStair.VersoAvanti == false && girato == false)
+                {
+                    WalkUpStair = false;
+                    WalkDownStair = true;
+                }
+                else if (stairChecker.lastStair.VersoAvanti == false && girato == true)
+                {
+                    WalkUpStair = true;
+                    WalkDownStair = false;
+                }
 
             }
             if (stairChecker.StairVal == false )
             {
-
-
+                
+                WalkDownStair = false;
                 WalkUpStair = false;
+                SkinnedMeshAnimator.SetBool(TransitionParameter.WalkDownStairs.ToString(), false);
+                SkinnedMeshAnimator.SetBool(TransitionParameter.WalkUpStairs.ToString(), false);
 
             }
 
