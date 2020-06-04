@@ -6279,6 +6279,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1001767556}
   m_Mesh: {fileID: -3877531616988298930, guid: 83b2d1314ff4a4bb6a8ace2785c19725, type: 3}
+--- !u!1 &1002955395
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1519361892}
+  m_Layer: 0
+  m_Name: Recovery GameObject (1519361892)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1014659935
 GameObject:
   m_ObjectHideFlags: 0
@@ -10468,6 +10484,21 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1429113639}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1519361892
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 9d5ccacd4740c964bbdd3ba6250a2ed9,
+    type: 3}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002955395}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 82
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1519557700 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 842c7b135c842498380f0358e884496a,
@@ -13151,7 +13182,7 @@ GameObject:
   - component: {fileID: 1914883502}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: trigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13164,7 +13195,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1914883500}
   m_LocalRotation: {x: 0.31744012, y: -0.006956487, z: 0.006241395, w: 0.9482323}
-  m_LocalPosition: {x: -0, y: -0.044, z: -1.146}
+  m_LocalPosition: {x: 0, y: -0.067, z: -1.14}
   m_LocalScale: {x: 1, y: 4.9699993, z: 0.22641}
   m_Children: []
   m_Father: {fileID: 6057856709064238971}
@@ -15830,8 +15861,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.7700003, y: 0.2500002, z: 0.04000016}
-  m_Center: {x: 0.0000036656854, y: 0.000003449619, z: -0.00000014901161}
+  m_Size: {x: 0.7700003, y: 0.14512251, z: 0.22644435}
+  m_Center: {x: 0.00000366792, y: -0.052435514, z: 0.09322194}
 --- !u!1 &2831085915596659756
 GameObject:
   m_ObjectHideFlags: 0
