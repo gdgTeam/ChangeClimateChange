@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a20c90547f9a3f408c38291b885222d, type: 3}
   m_Name: Player_DieFire
   m_EditorClassIdentifier: 
-  add: 0
-  skin: -0.2
+  add: 0.7599996
+  skin: 0.17999992

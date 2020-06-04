@@ -16,7 +16,7 @@ namespace roundbeargames_tutorial
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
             control = characterState.GetCharacterControl(animator);
-            piantina = GameObject.Find("pianta");
+            piantina = GameObject.Find("zaino+pianta");
             rbPersonaggio = control.transform.GetComponent<Rigidbody>();
             rbPianta = piantina.transform.GetComponent<Rigidbody>();
             rbPersonaggio.isKinematic = true;
@@ -36,11 +36,15 @@ namespace roundbeargames_tutorial
         {
             animator.SetBool(TransitionParameter.PickUp.ToString(), false); //per evitare di saltare due volte se premo spazio mentre sono nello stato di landing
             MeshRenderer piantinaManoMesh;
-            MeshCollider piantinaManoCollider;
+            BoxCollider piantinaManoCollider;
             piantinaManoMesh = piantina.transform.GetComponent<MeshRenderer>();
             piantinaManoMesh.enabled = false;
-            piantinaManoCollider = piantina.transform.GetComponent<MeshCollider>();
+            piantinaManoMesh = piantina.transform.GetChild(0).gameObject.transform.GetComponent<MeshRenderer>();
+            piantinaManoMesh.enabled = false;
+            piantinaManoCollider = piantina.transform.GetComponent<BoxCollider>();
             piantinaManoCollider.enabled = false;
+            control.gameObject.transform.GetChild(3).gameObject.transform.GetComponent<SkinnedMeshRenderer>().enabled = true;
+            control.gameObject.transform.GetChild(2).gameObject.transform.GetComponent<SkinnedMeshRenderer>().enabled = true;
             control.plant = true;
             rbPersonaggio.isKinematic = false;
             /*MeshRenderer piantaSpallaMesh;

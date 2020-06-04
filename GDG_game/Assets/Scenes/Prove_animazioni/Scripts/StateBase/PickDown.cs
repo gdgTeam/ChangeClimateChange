@@ -16,7 +16,7 @@ namespace roundbeargames_tutorial
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
             control = characterState.GetCharacterControl(animator);
-            piantinaMano = GameObject.Find("piantina_prova");
+            piantinaMano = GameObject.Find("zaino+pianta");
             rbPersonaggio = control.transform.GetComponent<Rigidbody>();
             rbPianta = piantinaMano.transform.GetComponent<Rigidbody>();
             rbPersonaggio.isKinematic = true;
@@ -25,10 +25,12 @@ namespace roundbeargames_tutorial
             piantaSpallaMesh = piantinaSpalla.transform.GetComponent<MeshRenderer>();
             piantaSpallaMesh.enabled = false;*/
             MeshRenderer piantinaManoMesh;
-            MeshCollider piantinaManoCollider;
+            BoxCollider piantinaManoCollider;
+            control.gameObject.transform.GetChild(3).transform.GetComponent<SkinnedMeshRenderer>().enabled = false;
+            control.gameObject.transform.GetChild(2).transform.GetComponent<SkinnedMeshRenderer>().enabled = false;
             piantinaManoMesh = piantinaMano.transform.GetComponent<MeshRenderer>();
             piantinaManoMesh.enabled = true;
-            piantinaManoCollider = piantinaMano.transform.GetComponent<MeshCollider>();
+            piantinaManoCollider = piantinaMano.transform.GetComponent<BoxCollider>();
             piantinaManoCollider.enabled = false;
         }
 
@@ -41,8 +43,8 @@ namespace roundbeargames_tutorial
         {
             piantinaMano.transform.parent = null;
             control.plant = false;
-            MeshCollider piantinaManoCollider;
-            piantinaManoCollider = piantinaMano.transform.GetComponent<MeshCollider>();
+            BoxCollider piantinaManoCollider;
+            piantinaManoCollider = piantinaMano.transform.GetComponent<BoxCollider>();
             piantinaManoCollider.enabled = true;
             piantinaMano.transform.position = new Vector3(control.transform.position.x, piantinaMano.transform.position.y, piantinaMano.transform.position.z);
             rbPersonaggio.isKinematic = false;

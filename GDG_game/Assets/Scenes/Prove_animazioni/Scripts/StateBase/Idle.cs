@@ -101,7 +101,7 @@ namespace roundbeargames_tutorial
                 RaycastHit hit;
                 if (Physics.Raycast(o.transform.position, control.transform.forward, out hit, PickDistance) && hit.collider.gameObject.tag == "Pickable")
                 {
-                    if(hit.collider.gameObject == GameObject.Find("pianta"))
+                    if(hit.collider.gameObject == GameObject.Find("zaino+pianta"))
                     {
                         control.PickPlant = true;
                     }
