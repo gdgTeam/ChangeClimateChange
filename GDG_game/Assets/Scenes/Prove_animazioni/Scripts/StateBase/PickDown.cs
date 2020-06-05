@@ -30,6 +30,7 @@ namespace roundbeargames_tutorial
             control.gameObject.transform.GetChild(2).transform.GetComponent<SkinnedMeshRenderer>().enabled = false;
             piantinaManoMesh = piantinaMano.transform.GetComponent<MeshRenderer>();
             piantinaManoMesh.enabled = true;
+            piantinaMano.transform.GetChild(0).transform.GetComponent<MeshRenderer>().enabled = true;
             piantinaManoCollider = piantinaMano.transform.GetComponent<BoxCollider>();
             piantinaManoCollider.enabled = false;
         }

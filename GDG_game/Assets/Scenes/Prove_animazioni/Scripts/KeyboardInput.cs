@@ -82,6 +82,7 @@ namespace roundbeargames_tutorial
             if (Input.GetKey(KeyCode.Q) && !protectPlant)
             {
                 protectPlant = true;
+                control.sparaOk = true;
                 VirtualInputManager.Instance.Picking = true;
             }
             else
@@ -99,19 +100,19 @@ namespace roundbeargames_tutorial
                 VirtualInputManager.Instance.PickingDown = false;
             }
 
-            if (Input.GetMouseButtonDown(2) && protectShield)
+            if (Input.GetMouseButtonDown(2) && protectShield && protectPlant)
             {
                 protectShield = false;
                 VirtualInputManager.Instance.Shielding = true;
                 StartCoroutine("Shield");
             }
-            if (Input.GetMouseButtonDown(1) && control.Pointed==true  )
+            if (Input.GetMouseButtonDown(1) && control.Pointed==true && protectPlant)
             {
               
                 VirtualInputManager.Instance.Spiderman = true;
                 
             }
-            if (Input.GetMouseButtonUp(1))
+            if (Input.GetMouseButtonUp(1) && protectPlant)
             {
 
                 VirtualInputManager.Instance.Spiderman = false;

@@ -40,6 +40,7 @@ namespace roundbeargames_tutorial
         public bool LookLeft;
         public bool plant = false;
         public bool Shielding;
+        public bool sparaOk = false;
         private bool protectShield;
         public GameObject ColliderEdgePrefab;
         public List<GameObject> BottomSpheres = new List<GameObject>();
@@ -368,7 +369,7 @@ namespace roundbeargames_tutorial
             return obj;
         }
 
-        private void OnAnimatorIK()
+        /*private void OnAnimatorIK()
         {
             //mira al target con IK
             SkinnedMeshAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
@@ -378,14 +379,17 @@ namespace roundbeargames_tutorial
             SkinnedMeshAnimator.SetLookAtWeight(1);
             SkinnedMeshAnimator.SetLookAtPosition(targetTransform.position);
             
-        }
+        }*/
 
         private void fire()
         {
-            var go = Instantiate(bulletPrefab);
-            go.transform.position = muzzleTransform.position;
-            var bullet = go.GetComponent<Bullet>();
-            bullet.fire(go.transform.position, muzzleTransform.eulerAngles, gameObject.layer);
+            if (sparaOk == true)
+            {
+                var go = Instantiate(bulletPrefab);
+                go.transform.position = muzzleTransform.position;
+                var bullet = go.GetComponent<Bullet>();
+                bullet.fire(go.transform.position, muzzleTransform.eulerAngles, gameObject.layer);
+            }
         }
     }
 }

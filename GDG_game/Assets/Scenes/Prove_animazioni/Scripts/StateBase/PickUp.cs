@@ -8,6 +8,7 @@ namespace roundbeargames_tutorial
     public class PickUp : StateData
     {
         public GameObject piantina;
+        public GameObject troncoAcqua;
         CharacterControl control;
         private Rigidbody rbPianta;
         private Rigidbody rbPersonaggio;
@@ -17,6 +18,7 @@ namespace roundbeargames_tutorial
         {
             control = characterState.GetCharacterControl(animator);
             piantina = GameObject.Find("zaino+pianta");
+            piantina.transform.parent = null;
             rbPersonaggio = control.transform.GetComponent<Rigidbody>();
             rbPianta = piantina.transform.GetComponent<Rigidbody>();
             rbPersonaggio.isKinematic = true;
