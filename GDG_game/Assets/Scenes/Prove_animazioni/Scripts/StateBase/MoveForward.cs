@@ -43,7 +43,8 @@ namespace roundbeargames_tutorial
             {
                 control.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
                 control.SkinnedMeshAnimator.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                if (!CheckFront(control))
+                control.girato = false;
+                if (!CheckFront(control) && !control.WalkDownStair && !control.WalkDownStair)
                 {
                     control.transform.Translate(Vector3.forward * Speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
                 }
@@ -53,25 +54,47 @@ namespace roundbeargames_tutorial
             {
                 control.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
                 control.SkinnedMeshAnimator.transform.rotation= Quaternion.Euler(0f, 180f, 0f);
-                if (!CheckFront(control))
+                control.girato = true;
+                if (!CheckFront(control) && !control.WalkDownStair && !control.WalkDownStair )
                 {
                     control.transform.Translate(Vector3.forward * Speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
                 }
             }
             if(control.WalkUpStair)
             {
-                float angle = -45f;
+                animator.SetBool(TransitionParameter.WalkDownStairs.ToString(), false);
+                /*float angle =0;
                 Vector3 newVector = Quaternion.AngleAxis(angle, Vector3.forward)*Vector3.forward;
-                newVector.Normalize();
+                var rightPerpPos = control.transform.position -newVector;
+                Debug.DrawLine(control.transform.position, rightPerpPos, Color.green, 0f);
+                newVector.Normalize();*/
+                Vector3 direction = new Vector3(0f, -1f, 1f).normalized;
                 animator.SetBool(TransitionParameter.WalkUpStairs.ToString(), true);
-                control.transform.Translate( newVector* 4f * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
+                
+                control.transform.Translate( direction* 1f * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
+            }
+            if (control.WalkDownStair)
+            {
+                Vector3 direction = new Vector3(0f, 1f, 1f).normalized;
+                animator.SetBool(TransitionParameter.WalkUpStairs.ToString(), false);
+                /* float angle = -45f;
+                 Vector3 newVector = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.forward;
+                 newVector.Normalize();*/
+               
+                animator.SetBool(TransitionParameter.WalkDownStairs.ToString(), true);
+                control.transform.Translate(Vector3.down * 6f * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
             }
             else if (!(control.WalkUpStair))
             {
                 animator.SetBool(TransitionParameter.WalkUpStairs.ToString(), false);
             }
-                
-           
+            else if (!(control.WalkDownStair))
+            {
+                animator.SetBool(TransitionParameter.WalkDownStairs.ToString(), false);
+            }
+
+
+
         }
 
         public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
@@ -114,23 +137,23 @@ namespace roundbeargames_tutorial
                     
                     if (!Self && !Ledge.IsLedge(hit.collider.gameObject)  &&!Stair.IsStair(hit.collider.gameObject) && (hit.collider.gameObject.tag != "GoAhead")&& (hit.collider.gameObject.tag != "trigger"))
                     {
-                        Debug.Log(hit.collider.gameObject);
+
                         return true;
                     }
                    
 
-                    // foreach (Collider c in control.RagdollParts)
-                    // {
-                    /*if (c.gameObject == hit.collider.gameObject)
+                   /*  foreach (Collider c in control.RagdollParts)
+                     {
+                   if (c.gameObject == hit.collider.gameObject)
                     {
                         Self = true;
                         break;
-                    }*/
-                }
+                    }
+                }*/
                    
                     
 
-               //}
+               }
             }
 
             return false;

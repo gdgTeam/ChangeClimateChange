@@ -58,8 +58,9 @@ namespace roundbeargames_tutorial
                     RaycastHit hit;
                     if (Physics.Raycast(o.transform.position, -Vector3.up, out hit, Distance))
                     {
-                        if (!Ledge.IsLedge(hit.collider.gameObject))
+                        if (!Ledge.IsLedge(hit.collider.gameObject) && hit.collider.gameObject.tag!="trigger")
                         {
+
                             return true;
                         }
                     }

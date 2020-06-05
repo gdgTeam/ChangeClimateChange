@@ -31,10 +31,6 @@ namespace roundbeargames_tutorial {
 
         private void FixedUpdate()
         {
-            if(Input.mousePosition.x < Screen.width / 3)
-            {
-                Debug.Log("non posso andare avanti");
-            }
             //float direction = Mathf.Sign(targetTransform.position.z - transform.position.z);
             //if (direction > 0)
             //{

@@ -12,16 +12,20 @@ namespace roundbeargames_tutorial
         public float PickDistance;
         public bool plant = false;
         public GameObject hand;
+        private Vector3 posIdle;
 
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
-            animator.SetBool(TransitionParameter.Jump.ToString(), false); //per evitare di saltare due volte se premo spazio mentre sono nello stato di landing
+            CharacterControl control = characterState.GetCharacterControl(animator);
+            animator.SetBool(TransitionParameter.Jump.ToString(), false);//per evitare di saltare due volte se premo spazio mentre sono nello stato di landing
+            posIdle = control.transform.position;
+        
         }
 
         public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
             CharacterControl control = characterState.GetCharacterControl(animator);
-
+            control.transform.position = posIdle;
             if (control.Jump)
             {
                 animator.SetBool(TransitionParameter.Jump.ToString(), true);

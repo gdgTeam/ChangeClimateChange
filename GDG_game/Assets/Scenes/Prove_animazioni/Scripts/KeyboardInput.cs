@@ -8,18 +8,27 @@ namespace roundbeargames_tutorial
     {
         private bool protectShield = true;
         private bool protectPlant = false;
+        private CharacterControl control;
 
+        private void Start()
+        {
+            control = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterControl>();
+
+        }
         void Update()
         {
             if (Input.GetKey(KeyCode.D))
             {
                 VirtualInputManager.Instance.MoveRight = true;
                 VirtualInputManager.Instance.Move = true;
+                VirtualInputManager.Instance.LookRight = true;
+                VirtualInputManager.Instance.LookLeft = false;
             }
             else
             {
                 VirtualInputManager.Instance.MoveRight = false;
                 VirtualInputManager.Instance.Move = false;
+                //VirtualInputManager.Instance.LookRight = false;
             }
             if (Input.GetKey(KeyCode.W))
             {
@@ -42,12 +51,14 @@ namespace roundbeargames_tutorial
             {
                 VirtualInputManager.Instance.MoveLeft = true;
                 VirtualInputManager.Instance.Move = true;
+                VirtualInputManager.Instance.LookLeft = true;
+                VirtualInputManager.Instance.LookRight = false;
             }
             else
             {
                 VirtualInputManager.Instance.MoveLeft = false;
                 VirtualInputManager.Instance.Move = false;
-
+                //VirtualInputManager.Instance.LookLeft = false;
             }
 
             if (Input.GetKey(KeyCode.Space))
@@ -94,13 +105,13 @@ namespace roundbeargames_tutorial
                 VirtualInputManager.Instance.Shielding = true;
                 StartCoroutine("Shield");
             }
-            if (Input.GetMouseButtonDown(0) )
+            if (Input.GetMouseButtonDown(1) && control.Pointed==true  )
             {
               
                 VirtualInputManager.Instance.Spiderman = true;
                 
             }
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(1))
             {
 
                 VirtualInputManager.Instance.Spiderman = false;

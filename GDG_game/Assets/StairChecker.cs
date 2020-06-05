@@ -11,7 +11,7 @@ namespace roundbeargames_tutorial
         public bool StairVal;
         Stair CheckStair = null;
         public Stair foundedStair;
-
+        public Stair lastStair;
 
 
         private void OnTriggerEnter(Collider other)
@@ -19,11 +19,14 @@ namespace roundbeargames_tutorial
             CheckStair = other.gameObject.GetComponent<Stair>();
             if (CheckStair != null)
             {
-                foundedStair = CheckStair;
 
+                foundedStair = CheckStair;
+                lastStair = CheckStair;
                 StairVal = CheckStair.ON;
+
                 
-                Debug.Log(foundedStair);
+                
+
 
 
             }

@@ -14,6 +14,7 @@ namespace roundbeargames_tutorial
             {
                 d.OnEnter(this, animator, stateInfo);
             }
+           
         }
 
         public void UpdateAll(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
