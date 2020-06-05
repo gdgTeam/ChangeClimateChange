@@ -210,7 +210,7 @@ namespace roundbeargames_tutorial
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, mouseAimMask))
             {
-                targetTransform.position = new Vector3(this.transform.position.x, hit.point.y ,hit.point.z);
+                targetTransform.position = new Vector3(this.transform.position.x-0.5f, hit.point.y ,hit.point.z);
                 if (hit.collider.gameObject.tag == "Grappable" && isSwinging == false)
                 {
                     Pointed = true;

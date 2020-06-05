@@ -13,7 +13,7 @@ public class targeTransform : MonoBehaviour
         if (player != null)
         {
             //pos = player.transform.position.x;
-            this.transform.position = new Vector3(player.transform.position.x, this.transform.position.y, this. transform.position.z);
+            this.transform.position = new Vector3(player.transform.position.x -0.5f, this.transform.position.y, this. transform.position.z);
 
         }
     }
@@ -21,7 +21,7 @@ public class targeTransform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.position = new Vector3(player.transform.position.x, this.transform.position.y, this.transform.position.z);
+        this.transform.position = new Vector3(player.transform.position.x - 0.5f, this.transform.position.y, this.transform.position.z);
 
     }
 }
