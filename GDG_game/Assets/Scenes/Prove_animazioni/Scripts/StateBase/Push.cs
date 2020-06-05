@@ -13,6 +13,7 @@ namespace roundbeargames_tutorial
         public float PushDistance;
         private bool tree = false;
         private GameObject pushableTree;
+       
 
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
@@ -57,6 +58,7 @@ namespace roundbeargames_tutorial
                 RaycastHit hit;
                 if (Physics.Raycast(o.transform.position, control.transform.forward, out hit, PushDistance) && hit.collider.gameObject.tag == "PushableTree")
                 {
+                    
                     pushableTree = hit.collider.gameObject;
                     Debug.Log(hit.collider.gameObject);
                     return true;

@@ -15,11 +15,13 @@ namespace roundbeargames_tutorial
         PickUp,
         Movedown,
         WalkUpStairs,
+        WalkDownStairs,
         PickDown,
         BalanceWalk,
         Spiderman,
         Die,
-        MoveBackward
+        front,
+        back
 
     }
 
@@ -34,7 +36,7 @@ namespace roundbeargames_tutorial
         public bool Picking;
         public bool PickingDown;
         public bool PickPlant;
-        public bool LookRight;
+        public bool LookRight = true;
         public bool LookLeft;
         public bool plant = false;
         public bool Shielding;
@@ -50,12 +52,30 @@ namespace roundbeargames_tutorial
         public float PullMultiplier;
         public bool grabCharact;
         public bool WalkUpStair;
+        public bool WalkDownStair;
         private Rigidbody rigid;
         public StairChecker stairChecker;
         public GameObject Corazza;
         public bool gru;
         public bool Spiderman;
+        public bool isSwinging;
+        public GameObject spine;
+        public Transform targetTransform;
+        public LayerMask mouseAimMask;
+        private Camera mainCamera;
+        public GameObject bulletPrefab;
+        public Transform muzzleTransform;
+        public Texture2D mouseStandard;
+        public Texture2D mouseGrappable;
+        public CursorMode cursorMode;
+        public Vector2 hotspot = Vector2.zero;
+        public bool Pointed = false;
+        public bool Ragdoll = false;
+        public bool girato;
+        public GameObject liana;
+        [SerializeField] private AudioSource soundCorazza;
 
+        
         public Rigidbody RIGID_BODY
         {
             get
@@ -69,13 +89,18 @@ namespace roundbeargames_tutorial
         }
         private void Start()
         {
+            
             scale = this.transform.localScale;
+            mainCamera = Camera.main;
+            Cursor.SetCursor(mouseStandard, hotspot, cursorMode);
+            soundCorazza = GetComponent<AudioSource>();
 
+            
         }
 
         private void Update()
         {
-            //Corazza.transform.rotation = Quaternion.Euler(0.0f, 0.0f, this.gameObject.transform.rotation.z * -1.0f * Time.deltaTime);
+
 
             if (ledgeChecker.IsGrabbingLedge == true)
             {
@@ -90,7 +115,7 @@ namespace roundbeargames_tutorial
             if (MoveDown == true)
             {
              
-             SkinnedMeshAnimator.SetBool(TransitionParameter.Movedown.ToString(), true);
+            SkinnedMeshAnimator.SetBool(TransitionParameter.Movedown.ToString(), true);
             this.RIGID_BODY.useGravity = true;
             this.GetComponent<BoxCollider>().enabled = true;
 
@@ -99,17 +124,39 @@ namespace roundbeargames_tutorial
             {
                 SkinnedMeshAnimator.SetBool(TransitionParameter.Movedown.ToString(), false);
             }
-            if (stairChecker.StairVal == true)
+            if (stairChecker.StairVal == true )
             {
-                Debug.Log("true");
-                WalkUpStair = true;
+                if( stairChecker.lastStair.VersoAvanti == true && girato== false)
+                {
+                    WalkDownStair = false;
+                    WalkUpStair = true;
+                }
+               
+
+                else if (stairChecker.lastStair.VersoAvanti == true && girato== true)
+                {
+                    WalkUpStair = false;
+                    WalkDownStair = true;
+                }
+                else if (stairChecker.lastStair.VersoAvanti == false && girato == false)
+                {
+                    WalkUpStair = false;
+                    WalkDownStair = true;
+                }
+                else if (stairChecker.lastStair.VersoAvanti == false && girato == true)
+                {
+                    WalkUpStair = true;
+                    WalkDownStair = false;
+                }
 
             }
-            if (stairChecker.StairVal == false)
+            if (stairChecker.StairVal == false )
             {
-                Debug.Log("false");
-
+                
+                WalkDownStair = false;
                 WalkUpStair = false;
+                SkinnedMeshAnimator.SetBool(TransitionParameter.WalkDownStairs.ToString(), false);
+                SkinnedMeshAnimator.SetBool(TransitionParameter.WalkUpStairs.ToString(), false);
 
             }
 
@@ -118,6 +165,11 @@ namespace roundbeargames_tutorial
                 protectShield = false;
                 MeshRenderer meshCorazza = Corazza.transform.GetComponent<MeshRenderer>();
                 meshCorazza.enabled = true;
+                soundCorazza.Play();
+
+
+
+
             }
             if (!Shielding && !protectShield)
             {
@@ -141,12 +193,49 @@ namespace roundbeargames_tutorial
             {
                 SkinnedMeshAnimator.SetBool(TransitionParameter.Spiderman.ToString(), false);
             }
+           if(Ragdoll == true)
+            {
+                TurnOnRagdoll();
+            }
+          /*  if (Ragdoll == false)
+            {
+               TurnOFFRagdoll();
+            }*/
+
+
+
+            //Aim control
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, mouseAimMask))
+            {
+                targetTransform.position = new Vector3(this.transform.position.x, hit.point.y ,hit.point.z);
+                if (hit.collider.gameObject.tag == "Grappable" && isSwinging == false)
+                {
+                    Pointed = true;
+                    //cambia colore dell'oggetto
+                    Cursor.SetCursor(mouseGrappable, hotspot, cursorMode);
+                    GetComponent<DistanceJoint3D>().ConnectedRigidbody = hit.collider.gameObject.GetComponent<Rigidbody>().transform;
+                }
+                else
+                {
+                    Pointed = false;
+                    Cursor.SetCursor(mouseStandard, hotspot, cursorMode);
+                    //GetComponent<DistanceJoint3D>().ConnectedRigidbody = null;
+                }
+            }
+
+            if (Input.GetButtonDown("Fire1"))
+            {
+                fire();
+            }
 
         }
 
         private void Awake()
         {
-            //SetRagdollParts();
+            SetRagdollParts();
             SetCollidersSpheres();   
         
         }
@@ -164,19 +253,13 @@ namespace roundbeargames_tutorial
 
              }
          }
-
+      
 
 
         private void OnTriggerEnter(Collider col)
          {
 
-             /*{
-                 return;
-             }*/
-             if (col.gameObject.tag== "Pericolo")
-             {
-                 TurnOnRagdoll();
-             }
+           
              if(col.gameObject.tag == "Fire")
              {
                 Debug.Log("ColliderFire");
@@ -202,10 +285,21 @@ namespace roundbeargames_tutorial
              SkinnedMeshAnimator.avatar = null;
              foreach( Collider c in RagdollParts)
              {
+
+                c.enabled = true;
                  c.isTrigger = false;
                  c.attachedRigidbody.velocity = Vector3.zero;
              }
          }
+       /* public void TurnOFFRagdoll()
+        {
+
+           
+                foreach (Collider col in RagdollParts)
+                {
+                    col.enabled = false;
+                }
+        }*/
 
         public void CheckCorazza()
         {
@@ -272,6 +366,26 @@ namespace roundbeargames_tutorial
         {
             GameObject obj = Instantiate(ColliderEdgePrefab, pos, Quaternion.identity);
             return obj;
+        }
+
+        private void OnAnimatorIK()
+        {
+            //mira al target con IK
+            SkinnedMeshAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
+            SkinnedMeshAnimator.SetIKPosition(AvatarIKGoal.RightHand, targetTransform.position);
+
+            //look at target
+            SkinnedMeshAnimator.SetLookAtWeight(1);
+            SkinnedMeshAnimator.SetLookAtPosition(targetTransform.position);
+            
+        }
+
+        private void fire()
+        {
+            var go = Instantiate(bulletPrefab);
+            go.transform.position = muzzleTransform.position;
+            var bullet = go.GetComponent<Bullet>();
+            bullet.fire(go.transform.position, muzzleTransform.eulerAngles, gameObject.layer);
         }
     }
 }
