@@ -32,7 +32,7 @@ public class TriggerStairs : MonoBehaviour
     IEnumerator CadutaGradino()
     {
         
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(3f);
         this.GetComponent<Rigidbody>().useGravity = true;
         gradino1.GetComponent<Rigidbody>().useGravity = true;
         gradino2.GetComponent<Rigidbody>().useGravity = true;

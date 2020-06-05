@@ -53,7 +53,7 @@ public class Bullet : MonoBehaviour
         transform.position = position;
         transform.eulerAngles = new Vector3(euler.x, -euler.y, -euler.z);
         //cambiare il valore di x a seconda della profondità del personaggio
-        transform.position = new Vector3(2, transform.position.y, transform.position.z);
+       // transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         Vector3 vop = Vector3.ProjectOnPlane(transform.forward, Vector3.right);
         transform.forward = vop;
         transform.rotation = Quaternion.LookRotation(vop, Vector3.forward);

@@ -23,14 +23,14 @@ public class DistanceJoint3D : MonoBehaviour
     {
         
         if (DetermineDistanceOnStart && ConnectedRigidbody != null)
-            if(Vector3.Distance(Rigidbody.position, ConnectedRigidbody.position)>4.5f)
+            if(Vector3.Distance(Rigidbody.position, ConnectedRigidbody.position)>7f)
             {
 
-                Distance = Vector3.Distance(Rigidbody.position, ConnectedRigidbody.position)-1f;
+                Distance = Vector3.Distance(Rigidbody.position, ConnectedRigidbody.position)-2f;
             }
         else
             {
-                Distance = 5;
+                Distance = 6;
             }
            
     }

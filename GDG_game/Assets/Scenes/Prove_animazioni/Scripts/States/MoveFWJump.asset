@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3e104bfe58d24fcabf31988b2984831, type: 3}
-  m_Name: MoveForwOnBalance
+  m_Script: {fileID: 11500000, guid: 7441aff8916cb1146863bfb8d1e7c9af, type: 3}
+  m_Name: MoveFWJump
   m_EditorClassIdentifier: 
   SpeedGraph:
     serializedVersion: 2
@@ -36,5 +36,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  Speed: 4
+  Speed: 3
   BlockDistance: 0.5
+  SaltaSulPosto: 0

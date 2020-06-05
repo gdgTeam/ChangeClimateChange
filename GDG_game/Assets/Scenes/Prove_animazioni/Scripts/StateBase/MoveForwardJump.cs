@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace roundbeargames_tutorial
 {
-    [CreateAssetMenu(fileName = "New State", menuName = "Roundbeargames/AbilityData/MoveForward")]
-    public class MoveForward : StateData
+    [CreateAssetMenu(fileName = "New State", menuName = "Roundbeargames/AbilityData/MoveForwardJump")]
+    public class MoveForwardJump : StateData
     {
         public AnimationCurve SpeedGraph;
         public float Speed;
         public float BlockDistance;
         private bool Self;
-       
+        public bool SaltaSulPosto;
 
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
@@ -26,42 +26,49 @@ namespace roundbeargames_tutorial
             {
                 animator.SetBool(TransitionParameter.Jump.ToString(), true);
             }
-
-            if (control.MoveRight && control.MoveLeft)
+            if (control.WalkDownStair == false && control.WalkUpStair==false)
             {
-                animator.SetBool(TransitionParameter.Move.ToString(), false);
-                return;
-            }
-
-            if (!control.MoveRight && !control.MoveLeft)
-            {
-                animator.SetBool(TransitionParameter.Move.ToString(), false);
-                return;
-            }
-
-            //controllo che non ci sia niente davanti il character, se rilevo qualcosa non mi muovo più 
-            if (control.MoveRight)
-            {
-                control.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                control.SkinnedMeshAnimator.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                control.girato = false;
-                if (!CheckFront(control) && !control.WalkDownStair && !control.WalkDownStair)
+                Debug.Log("non sul posto");
+                if (control.MoveRight && control.MoveLeft)
                 {
-                    control.transform.Translate(Vector3.forward * Speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
+                    animator.SetBool(TransitionParameter.Move.ToString(), false);
+                    return;
                 }
-            }
 
-            if (control.MoveLeft)
-            {
-                control.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-                control.SkinnedMeshAnimator.transform.rotation= Quaternion.Euler(0f, 180f, 0f);
-                control.girato = true;
-                if (!CheckFront(control) && !control.WalkDownStair && !control.WalkDownStair )
+                if (!control.MoveRight && !control.MoveLeft)
                 {
-                    control.transform.Translate(Vector3.forward * Speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
+                    animator.SetBool(TransitionParameter.Move.ToString(), false);
+                    return;
                 }
+
+                //controllo che non ci sia niente davanti il character, se rilevo qualcosa non mi muovo più 
+                if (control.MoveRight)
+                {
+                    control.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                    control.SkinnedMeshAnimator.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                    control.girato = false;
+                    if (!CheckFront(control) && !control.WalkDownStair && !control.WalkDownStair)
+                    {
+                        Debug.Log("right");
+                        control.transform.Translate(Vector3.forward * Speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
+                    }
+
+                }
+                if (control.MoveLeft)
+                    {
+                        control.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+                        control.SkinnedMeshAnimator.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+                        control.girato = true;
+                        if (!CheckFront(control) && !control.WalkDownStair && !control.WalkDownStair)
+                        {
+                            Debug.Log("Left");
+                            control.transform.Translate(Vector3.forward * Speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
+                        }
+                    }
+                
             }
-            if(control.WalkUpStair)
+            
+            if (control.WalkUpStair)
             {
                 animator.SetBool(TransitionParameter.WalkDownStairs.ToString(), false);
                 /*float angle =0;
@@ -71,8 +78,8 @@ namespace roundbeargames_tutorial
                 newVector.Normalize();*/
                 Vector3 direction = new Vector3(0f, -1f, 1f).normalized;
                 animator.SetBool(TransitionParameter.WalkUpStairs.ToString(), true);
-                
-                control.transform.Translate( direction* 1f * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
+
+                control.transform.Translate(direction * 1f * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
             }
             if (control.WalkDownStair)
             {
@@ -81,7 +88,7 @@ namespace roundbeargames_tutorial
                 /* float angle = -45f;
                  Vector3 newVector = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.forward;
                  newVector.Normalize();*/
-               
+
                 animator.SetBool(TransitionParameter.WalkDownStairs.ToString(), true);
                 control.transform.Translate(Vector3.down * 6f * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
             }
@@ -103,9 +110,9 @@ namespace roundbeargames_tutorial
 
         }
 
-       bool CheckFront(CharacterControl control)
+        bool CheckFront(CharacterControl control)
         {
-           
+
             foreach (GameObject o in control.FrontSpheres)
             {
                 Self = false;
@@ -123,11 +130,11 @@ namespace roundbeargames_tutorial
                         BlockDistance = 0.5f;
                     }
 
-                    if (hit.collider.gameObject.tag == "Stairs" )
+                    if (hit.collider.gameObject.tag == "Stairs")
                     {
                         BlockDistance = 0.2f;
                     }
-                   
+
                 }
                 else
                 {
@@ -135,26 +142,26 @@ namespace roundbeargames_tutorial
                 }
                 if (Physics.Raycast(o.transform.position, control.transform.forward, out hit, BlockDistance))
                 {
-                    
-                    if (!Self && !Ledge.IsLedge(hit.collider.gameObject)  &&!Stair.IsStair(hit.collider.gameObject) && (hit.collider.gameObject.tag != "GoAhead") && (hit.collider.gameObject.tag != "Fire") && (hit.collider.gameObject.tag != "trigger"))
+
+                    if (!Self && !Ledge.IsLedge(hit.collider.gameObject) && !Stair.IsStair(hit.collider.gameObject) && (hit.collider.gameObject.tag != "GoAhead") && (hit.collider.gameObject.tag != "Fire") && (hit.collider.gameObject.tag != "trigger"))
                     {
 
                         return true;
                     }
-                   
 
-                   /*  foreach (Collider c in control.RagdollParts)
+
+                    /*  foreach (Collider c in control.RagdollParts)
+                      {
+                    if (c.gameObject == hit.collider.gameObject)
                      {
-                   if (c.gameObject == hit.collider.gameObject)
-                    {
-                        Self = true;
-                        break;
-                    }
-                }*/
-                   
-                    
+                         Self = true;
+                         break;
+                     }
+                 }*/
 
-               }
+
+
+                }
             }
 
             return false;

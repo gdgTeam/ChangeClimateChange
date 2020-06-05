@@ -12,16 +12,27 @@ namespace roundbeargames_tutorial
         {
             if (other.gameObject.tag == "Player")
             {
-                montacarichi.gameObject.AddComponent<Rigidbody>();
-                montacarichi.GetComponent<Rigidbody>().mass = 10f;
+                other.transform.parent = montacarichi.gameObject.transform;
+                other.GetComponent<Rigidbody>().useGravity = false;
+                other.GetComponent<Rigidbody>().isKinematic = true;
+                StartCoroutine(Animation(other));
+               
+
             }
+        }
+        IEnumerator Animation(Collider o)
+        {
+            montacarichi.GetComponent<Animation>().Play();
+
+            yield return new WaitForSeconds(1.9f);
+            o.GetComponent<Rigidbody>().useGravity = true;
+            o.GetComponent<Rigidbody>().isKinematic = false;
+            o.gameObject.transform.parent = null;
+
         }
 
         // Update is called once per frame
-        void Update()
-        {
-
-        }
+       
        
     }
 }
