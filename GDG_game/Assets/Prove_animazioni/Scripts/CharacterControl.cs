@@ -21,7 +21,9 @@ namespace roundbeargames_tutorial
         Spiderman,
         Die,
         front,
-        back
+        back,
+        Interact,
+        Pull
 
     }
 
@@ -33,6 +35,7 @@ namespace roundbeargames_tutorial
         public bool MoveLeft;
         public bool Jump;
         public bool Pushing;
+        public bool Interact;
         public bool Picking;
         public bool PickingDown;
         public bool PickPlant;
@@ -94,8 +97,6 @@ namespace roundbeargames_tutorial
             mainCamera = Camera.main;
             Cursor.SetCursor(mouseStandard, hotspot, cursorMode);
             soundCorazza = GetComponent<AudioSource>();
-
-            
         }
 
         private void Update()

@@ -13,6 +13,7 @@ namespace roundbeargames_tutorial
         {
             childToRemove = findChildrenWithTag(animator);
             childToRemove.transform.parent = null;
+            animator.SetBool(TransitionParameter.Interact.ToString(), false);
         }
 
         public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
@@ -22,6 +23,7 @@ namespace roundbeargames_tutorial
 
         public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
+
         }
 
         public GameObject findChildrenWithTag(Animator animator)

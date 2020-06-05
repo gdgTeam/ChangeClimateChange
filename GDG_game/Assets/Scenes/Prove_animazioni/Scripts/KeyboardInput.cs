@@ -73,10 +73,12 @@ namespace roundbeargames_tutorial
             if (Input.GetKey(KeyCode.E))
             {
                 VirtualInputManager.Instance.Pushing = true;
+                VirtualInputManager.Instance.Interact = true;
             }
             else
             {
                 VirtualInputManager.Instance.Pushing = false;
+                VirtualInputManager.Instance.Interact = false;
             }
 
             if (Input.GetKey(KeyCode.Q) && !protectPlant)
