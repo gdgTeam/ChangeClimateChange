@@ -18,14 +18,14 @@ namespace roundbeargames_tutorial
         {
             CharacterControl control = characterState.GetCharacterControl(animator);
             animator.SetBool(TransitionParameter.Jump.ToString(), false);//per evitare di saltare due volte se premo spazio mentre sono nello stato di landing
-            posIdle = control.transform.position;
+           // posIdle = control.transform.position;
         
         }
 
         public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
             CharacterControl control = characterState.GetCharacterControl(animator);
-            control.transform.position = posIdle;
+           // control.transform.position = posIdle;
             if (control.Jump)
             {
                 animator.SetBool(TransitionParameter.Jump.ToString(), true);
