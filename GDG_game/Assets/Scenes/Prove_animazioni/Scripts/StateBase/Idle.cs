@@ -52,9 +52,13 @@ namespace roundbeargames_tutorial
                 animator.SetBool(TransitionParameter.MoveBackward.ToString(), true);
             }*/
 
-            if (control.Pushing && CheckFrontPush(control, animator))
+            /*if (control.Pushing && CheckFrontPush(control, animator))
             {
                 animator.SetBool(TransitionParameter.Push.ToString(), true);
+            }*/
+            if(control.Interact && CheckFrontPush(control, animator))
+            {
+                animator.SetBool(TransitionParameter.Interact.ToString(), true);
             }
 
             if (control.Picking && CheckFrontPick(control, animator) && !control.plant)

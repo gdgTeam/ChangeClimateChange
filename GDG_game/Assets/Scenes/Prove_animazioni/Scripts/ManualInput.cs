@@ -58,13 +58,22 @@ namespace roundbeargames_tutorial
                 characterControl.Jump = false;
             }
 
-            if (VirtualInputManager.Instance.Pushing)
+            /*if (VirtualInputManager.Instance.Pushing)
             {
                 characterControl.Pushing = true;
             }
             else
             {
                 characterControl.Pushing = false;
+            }*/
+
+            if (VirtualInputManager.Instance.Interact)
+            {
+                characterControl.Interact = true;
+            }
+            else
+            {
+                characterControl.Interact = false;
             }
 
             if (VirtualInputManager.Instance.Picking)

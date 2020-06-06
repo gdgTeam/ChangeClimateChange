@@ -21,7 +21,9 @@ namespace roundbeargames_tutorial
         Spiderman,
         Die,
         front,
-        back
+        back,
+        Interact,
+        Pull
 
     }
 
@@ -33,6 +35,7 @@ namespace roundbeargames_tutorial
         public bool MoveLeft;
         public bool Jump;
         public bool Pushing;
+        public bool Interact;
         public bool Picking;
         public bool PickingDown;
         public bool PickPlant;
@@ -41,6 +44,8 @@ namespace roundbeargames_tutorial
         public bool plant = false;
         public bool Shielding;
         public bool sparaOk = false;
+        public Vector3 right = new Vector3(0f, 0f, 0f);
+        public Vector3 left = new Vector3(0f, 180f, 0f);
         private bool protectShield;
         public GameObject ColliderEdgePrefab;
         public List<GameObject> BottomSpheres = new List<GameObject>();
@@ -88,15 +93,13 @@ namespace roundbeargames_tutorial
                 return rigid;
             }
         }
+
         private void Start()
         {
-            
             scale = this.transform.localScale;
             mainCamera = Camera.main;
             Cursor.SetCursor(mouseStandard, hotspot, cursorMode);
             soundCorazza = GetComponent<AudioSource>();
-
-            
         }
 
         private void Update()
@@ -167,10 +170,6 @@ namespace roundbeargames_tutorial
                 MeshRenderer meshCorazza = Corazza.transform.GetComponent<MeshRenderer>();
                 meshCorazza.enabled = true;
                 soundCorazza.Play();
-
-
-
-
             }
             if (!Shielding && !protectShield)
             {

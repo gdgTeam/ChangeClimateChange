@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace roundbeargames_tutorial
 {
-    [CreateAssetMenu(fileName = "New State", menuName = "Roundbeargames/AbilityData/Push")]
-    public class Push : StateData
+    [CreateAssetMenu(fileName = "New State", menuName = "Roundbeargames/AbilityData/Interact")]
+    public class Interact : StateData
     {
 
         public AnimationCurve SpeedGraph;
@@ -13,32 +13,41 @@ namespace roundbeargames_tutorial
         public float PushDistance;
         private bool tree = false;
         private GameObject pushableTree;
+        private Vector3 rotation;
+
+
 
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
-            PushDistance = 0.5f;
+            //PushDistance = 0.5f;
             CharacterControl control = characterState.GetCharacterControl(animator);
-            tree = CheckObjectFront(control, animator);
+            rotation = control.transform.rotation.eulerAngles;
+            //tree = CheckObjectFront(control, animator);
         }
 
         public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
             CharacterControl control = characterState.GetCharacterControl(animator);
 
-            if (control.Interact && (control.MoveLeft || control.MoveRight))
+            if ((control.MoveRight && rotation==control.right) || (control.MoveLeft && rotation==control.left))
             {
-                //animator.SetBool(TransitionParameter.Push.ToString(), true);
-                control.transform.Translate(Vector3.forward * Speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
-                /*if (tree)
-                {
-                    pushableTree.transform.Rotate(new Vector3(-10f, 0, 0) * Time.deltaTime, Space.Self);
-                    Debug.Log("rotazioneAlbero");
-                }*/
+                animator.SetBool(TransitionParameter.Push.ToString(), true);
+                animator.SetBool(TransitionParameter.Pull.ToString(), false);
+            }
+            else if((control.MoveRight && rotation==control.left) || (control.MoveLeft && rotation==control.right))
+            {
+                animator.SetBool(TransitionParameter.Pull.ToString(), true);
+                animator.SetBool(TransitionParameter.Push.ToString(), false);
+            }
+            else if(!control.MoveRight && !control.MoveLeft)
+            {
+                animator.SetBool(TransitionParameter.Push.ToString(), false);
+                animator.SetBool(TransitionParameter.Pull.ToString(), false);
             }
 
             if (!control.Interact)
             {
-                //animator.SetBool(TransitionParameter.Push.ToString(), false);
+                animator.SetBool(TransitionParameter.Interact.ToString(), false);
                 return;
             }
 
@@ -57,7 +66,7 @@ namespace roundbeargames_tutorial
                 RaycastHit hit;
                 if (Physics.Raycast(o.transform.position, control.transform.forward, out hit, PushDistance) && hit.collider.gameObject.tag == "PushableTree")
                 {
-                    
+
                     pushableTree = hit.collider.gameObject;
                     Debug.Log(hit.collider.gameObject);
                     return true;
