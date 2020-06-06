@@ -7,7 +7,7 @@ namespace roundbeargames_tutorial
     public class KeyboardInput : MonoBehaviour
     {
         private bool protectShield = true;
-        private bool protectPlant = false;
+        public bool protectPlant = false;
         private CharacterControl control;
 
         private void Start()
