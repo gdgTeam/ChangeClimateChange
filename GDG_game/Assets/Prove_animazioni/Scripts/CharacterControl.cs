@@ -24,7 +24,6 @@ namespace roundbeargames_tutorial
         back,
         Interact,
         Pull
-
     }
 
     public class CharacterControl : MonoBehaviour
@@ -79,6 +78,7 @@ namespace roundbeargames_tutorial
         public bool Ragdoll = false;
         public bool girato;
         public GameObject liana;
+        public GameObject Ascensore;
         [SerializeField] private AudioSource soundCorazza;
 
         
@@ -390,6 +390,10 @@ namespace roundbeargames_tutorial
                 bullet.fire(go.transform.position, muzzleTransform.eulerAngles, gameObject.layer);
             }
         }
+
+        private void checkAscensoreInteraction()
+        {
+            
+        }
     }
 }
-
