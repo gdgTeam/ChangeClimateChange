@@ -25,9 +25,9 @@ namespace roundbeargames_tutorial
         {
             CharacterControl control = characterState.GetCharacterControl(animator);
 
-            if (control.Interact)
+            if (control.Interact && (control.MoveLeft || control.MoveRight))
             {
-                animator.SetBool(TransitionParameter.Push.ToString(), true);
+                //animator.SetBool(TransitionParameter.Push.ToString(), true);
                 control.transform.Translate(Vector3.forward * Speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
                 /*if (tree)
                 {
@@ -38,7 +38,7 @@ namespace roundbeargames_tutorial
 
             if (!control.Interact)
             {
-                animator.SetBool(TransitionParameter.Push.ToString(), false);
+                //animator.SetBool(TransitionParameter.Push.ToString(), false);
                 return;
             }
 

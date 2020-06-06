@@ -11,8 +11,6 @@ namespace roundbeargames_tutorial
         public AnimationCurve SpeedGraph;
         public float Speed;
         public float PushDistance;
-        
-        
 
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
@@ -24,15 +22,16 @@ namespace roundbeargames_tutorial
         {
             CharacterControl control = characterState.GetCharacterControl(animator);
 
-            if (control.Interact)
+            if (control.Interact && (control.MoveLeft || control.MoveRight))
             {
-                animator.SetBool(TransitionParameter.Pull.ToString(), true);
+                //animator.SetBool(TransitionParameter.Pull.ToString(), true);
                 control.transform.Translate(-Vector3.forward * Speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
+
             }
 
-            if (!control.Interact)
+            if (!control.MoveRight && !control.MoveLeft)
             {
-                animator.SetBool(TransitionParameter.Pull.ToString(), false);
+                //animator.SetBool(TransitionParameter.Pull.ToString(), false);
                 return;
             }
 

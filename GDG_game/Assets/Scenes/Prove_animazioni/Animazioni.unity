@@ -2120,6 +2120,8 @@ MonoBehaviour:
   LookLeft: 0
   plant: 0
   Shielding: 0
+  right: {x: 0, y: 0, z: 0}
+  left: {x: 0, y: 180, z: 0}
   ColliderEdgePrefab: {fileID: 8741312830442226265, guid: 32ce171f92354824b9ec0a2b62696301,
     type: 3}
   BottomSpheres: []
@@ -4608,6 +4610,8 @@ MonoBehaviour:
   LookLeft: 0
   plant: 0
   Shielding: 0
+  right: {x: 0, y: 0, z: 0}
+  left: {x: 0, y: 180, z: 0}
   ColliderEdgePrefab: {fileID: 8741312830442226265, guid: 32ce171f92354824b9ec0a2b62696301,
     type: 3}
   BottomSpheres: []
@@ -4799,6 +4803,8 @@ MonoBehaviour:
   LookLeft: 0
   plant: 0
   Shielding: 0
+  right: {x: 0, y: 0, z: 0}
+  left: {x: 0, y: 180, z: 0}
   ColliderEdgePrefab: {fileID: 8741312830442226265, guid: 32ce171f92354824b9ec0a2b62696301,
     type: 3}
   BottomSpheres: []

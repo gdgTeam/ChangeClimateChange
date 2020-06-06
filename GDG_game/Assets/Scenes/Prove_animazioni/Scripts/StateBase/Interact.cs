@@ -13,8 +13,6 @@ namespace roundbeargames_tutorial
         public float PushDistance;
         private bool tree = false;
         private GameObject pushableTree;
-        private Vector3 right = new Vector3(0f,0f,0f);
-        private Vector3 left = new Vector3(0f, 180f, 0f);
         private Vector3 rotation;
 
 
@@ -24,8 +22,6 @@ namespace roundbeargames_tutorial
             //PushDistance = 0.5f;
             CharacterControl control = characterState.GetCharacterControl(animator);
             rotation = control.transform.rotation.eulerAngles;
-            Debug.Log(rotation);
-            Debug.Log("right: " + right);
             //tree = CheckObjectFront(control, animator);
         }
 
@@ -33,14 +29,20 @@ namespace roundbeargames_tutorial
         {
             CharacterControl control = characterState.GetCharacterControl(animator);
 
-            if ((control.MoveRight && rotation==right) || (control.MoveLeft && rotation==left))
+            if ((control.MoveRight && rotation==control.right) || (control.MoveLeft && rotation==control.left))
             {
                 animator.SetBool(TransitionParameter.Push.ToString(), true);
-                //control.transform.Translate(Vector3.forward * Speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
+                animator.SetBool(TransitionParameter.Pull.ToString(), false);
             }
-            else if((control.MoveRight && rotation==left) || (control.MoveLeft && rotation==right))
+            else if((control.MoveRight && rotation==control.left) || (control.MoveLeft && rotation==control.right))
             {
                 animator.SetBool(TransitionParameter.Pull.ToString(), true);
+                animator.SetBool(TransitionParameter.Push.ToString(), false);
+            }
+            else if(!control.MoveRight && !control.MoveLeft)
+            {
+                animator.SetBool(TransitionParameter.Push.ToString(), false);
+                animator.SetBool(TransitionParameter.Pull.ToString(), false);
             }
 
             if (!control.Interact)

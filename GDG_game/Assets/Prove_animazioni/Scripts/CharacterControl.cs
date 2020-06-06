@@ -43,6 +43,8 @@ namespace roundbeargames_tutorial
         public bool LookLeft;
         public bool plant = false;
         public bool Shielding;
+        public Vector3 right = new Vector3(0f, 0f, 0f);
+        public Vector3 left = new Vector3(0f, 180f, 0f);
         private bool protectShield;
         public GameObject ColliderEdgePrefab;
         public List<GameObject> BottomSpheres = new List<GameObject>();
@@ -90,9 +92,9 @@ namespace roundbeargames_tutorial
                 return rigid;
             }
         }
+
         private void Start()
         {
-            
             scale = this.transform.localScale;
             mainCamera = Camera.main;
             Cursor.SetCursor(mouseStandard, hotspot, cursorMode);
@@ -167,10 +169,6 @@ namespace roundbeargames_tutorial
                 MeshRenderer meshCorazza = Corazza.transform.GetComponent<MeshRenderer>();
                 meshCorazza.enabled = true;
                 soundCorazza.Play();
-
-
-
-
             }
             if (!Shielding && !protectShield)
             {
