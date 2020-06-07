@@ -24,5 +24,6 @@ public class targeTransform : MonoBehaviour
         this.transform.position = new Vector3(player.transform.position.x - 0.5f, this.transform.position.y, this.transform.position.z);
 
     }
+    
 }
 
