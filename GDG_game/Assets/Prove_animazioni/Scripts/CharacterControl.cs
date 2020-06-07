@@ -260,7 +260,7 @@ namespace roundbeargames_tutorial
       
 
 
-        private void OnTriggerEnter(Collider col)
+      /*  private void OnTriggerEnter(Collider col)
          {
 
            
@@ -273,12 +273,13 @@ namespace roundbeargames_tutorial
 
         private void OnTriggerStay(Collider col)
         {
+           
             if (col.gameObject.tag == "Fire")
             {
                 Debug.Log("StayFire");
                 CheckCorazza();
             }
-        }
+        }*/
 
          public void TurnOnRagdoll()
          {
