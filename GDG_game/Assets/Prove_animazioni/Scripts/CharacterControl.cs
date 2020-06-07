@@ -43,6 +43,7 @@ namespace roundbeargames_tutorial
         public bool plant = false;
         public bool Shielding;
         public bool sparaOk = false;
+        public bool interazioneLeva;
         public Vector3 right = new Vector3(0f, 0f, 0f);
         public Vector3 left = new Vector3(0f, 180f, 0f);
         private bool protectShield;
@@ -79,6 +80,8 @@ namespace roundbeargames_tutorial
         public bool girato;
         public GameObject liana;
         public GameObject Ascensore;
+        public int pianoAscensoreOggetto;
+        
         [SerializeField] private AudioSource soundCorazza;
 
         
@@ -100,6 +103,7 @@ namespace roundbeargames_tutorial
             mainCamera = Camera.main;
             Cursor.SetCursor(mouseStandard, hotspot, cursorMode);
             soundCorazza = GetComponent<AudioSource>();
+            pianoAscensoreOggetto = 1;
         }
 
         private void Update()
@@ -389,11 +393,6 @@ namespace roundbeargames_tutorial
                 var bullet = go.GetComponent<Bullet>();
                 bullet.fire(go.transform.position, muzzleTransform.eulerAngles, gameObject.layer);
             }
-        }
-
-        private void checkAscensoreInteraction()
-        {
-            
         }
     }
 }
