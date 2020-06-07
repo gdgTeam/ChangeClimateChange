@@ -22,6 +22,7 @@ public class LuceFotosintesi : MonoBehaviour
             Piante.GetComponent<Animator>().enabled = true;
             Piante.GetComponent<Animator>().SetBool("fotosintesi", true);
             pS.Play();
+          
         }
     }
 }

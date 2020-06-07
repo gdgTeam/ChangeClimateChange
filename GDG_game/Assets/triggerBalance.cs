@@ -12,7 +12,29 @@ namespace roundbeargames_tutorial
         {
             if (other.gameObject.tag == "Player")
             {
-                other.GetComponent<CharacterControl>().gru = On;
+                if (On == true)
+                {
+                    if (other.gameObject.GetComponent<CharacterControl>().girato == false)
+                    {
+                        other.GetComponent<CharacterControl>().gru = On;
+                    }
+                    else
+                    {
+                        other.GetComponent<CharacterControl>().gru = false;
+                    }
+                }
+                else
+                {
+                    if (other.gameObject.GetComponent<CharacterControl>().girato == false)
+                    {
+                        other.GetComponent<CharacterControl>().gru = On;
+                    }
+                    else
+                    {
+                        other.GetComponent<CharacterControl>().gru = true;
+                    }
+                }
+              
             }
         }
     }
