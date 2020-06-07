@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 0
   m_FogColor: {r: 0.4784314, g: 0.5058824, b: 0.5137255, a: 1}
   m_FogMode: 2
-  m_FogDensity: 0.1
+  m_FogDensity: 0.03
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -38,13 +38,13 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18725096, g: 0.24204826, b: 0.2899693, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 1
+  m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -96,7 +96,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000004, guid: 464ca695f8d7e974ebb2096a2eec6afa,
+    type: 2}
   m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
@@ -8668,6 +8669,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PIANTE
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 8687c05a6091b0a41af46d12ce181264,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8687c05a6091b0a41af46d12ce181264,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9360,7 +9366,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 1033193410289624c89581b098c12c10,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 1033193410289624c89581b098c12c10,
         type: 3}
@@ -11914,6 +11920,7 @@ GameObject:
   - component: {fileID: 1615557383}
   - component: {fileID: 1615557386}
   - component: {fileID: 1615557385}
+  - component: {fileID: 1615557387}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Untagged
@@ -11963,8 +11970,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1615557382}
-  m_LocalRotation: {x: 0.06038412, y: -0.67919636, z: 0.061765276, w: 0.728856}
-  m_LocalPosition: {x: 89.13, y: 37.899998, z: 18.070002}
+  m_LocalRotation: {x: 0.060384188, y: -0.67919636, z: 0.061765283, w: 0.7288561}
+  m_LocalPosition: {x: 89.33, y: 5, z: 97.87}
   m_LocalScale: {x: 1.0000006, y: 0.99999976, z: 1.0000007}
   m_Children:
   - {fileID: 648140970}
@@ -12033,6 +12040,61 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1615557387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615557382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdcd06815c47d30489f70df42db56a48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frustum:
+    settings:
+      enableVolumes: 1
+      enableVolumesTextureMask: 1
+      enableVolumesNoiseMask: 1
+      enableDirectionalLights: 1
+      enableDirectionalLightsShadows: 1
+      enableSpotLights: 1
+      enableSpotLightsShadows: 1
+      enablePointLights: 1
+      enablePointLightsShadows: 1
+      enableLightsCookies: 1
+      enableOcclusionCulling: 1
+      occlusionCullingAccuracy: 2
+      enableTemporalReprojection: 1
+      temporalReprojectionFactor: 0.9
+      resolution: {x: 160, y: 88, z: 128}
+      farClipPlaneDistance: 50
+      density: 107.04
+      anisotropy: 0.5
+      color: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+      colorStrength: 0.25
+    _computeMaximumDepthComputeShader: {fileID: 7200000, guid: a5d52c8a306e8b746ab60b306575aa3e,
+      type: 3}
+    _processOcclusionMapShader: {fileID: 4800000, guid: b9b5b0990ea6cfa4d96c89a9c1cec3e9,
+      type: 3}
+    _computeDataComputeShader: {fileID: 7200000, guid: 971d5d94be5bebc44aa6d832c17f5e62,
+      type: 3}
+    _computeAccumulationComputeShader: {fileID: 7200000, guid: 41ac7d79af1f9614ebe54df4f30ac3e0,
+      type: 3}
+  applyAsPostProcess: 1
+  computeMaximumDepthComputeShader: {fileID: 7200000, guid: a5d52c8a306e8b746ab60b306575aa3e,
+    type: 3}
+  processOcclusionMapShader: {fileID: 4800000, guid: b9b5b0990ea6cfa4d96c89a9c1cec3e9,
+    type: 3}
+  computeDataComputeShader: {fileID: 7200000, guid: 971d5d94be5bebc44aa6d832c17f5e62,
+    type: 3}
+  computeAccumulationComputeShader: {fileID: 7200000, guid: 41ac7d79af1f9614ebe54df4f30ac3e0,
+    type: 3}
+  postProcessShader: {fileID: 4800000, guid: 50255fa344dbd814c910fdafc5692b09, type: 3}
+  blueNoiseTexturesArray: {fileID: 18700000, guid: 518b8337a0340444aa49dd0780efa9c2,
+    type: 2}
+  _hasBeenAssigned: 1
 --- !u!1 &1619857422
 GameObject:
   m_ObjectHideFlags: 0
@@ -12113,7 +12175,7 @@ Transform:
   - {fileID: 1697961947}
   - {fileID: 1866975452}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1682469055
 PrefabInstance:
@@ -13026,7 +13088,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 7ebbdffbc5270e54097c47482d1a318b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7ebbdffbc5270e54097c47482d1a318b,
         type: 3}
@@ -13143,8 +13205,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2031721355}
-  m_LocalRotation: {x: 0.06038412, y: -0.67919636, z: 0.061765276, w: 0.728856}
-  m_LocalPosition: {x: 89.13, y: 37.899998, z: 18.070002}
+  m_LocalRotation: {x: 0.060384188, y: -0.67919636, z: 0.061765283, w: 0.7288561}
+  m_LocalPosition: {x: 89.33, y: 5, z: 97.87}
   m_LocalScale: {x: 1, y: 0.9999999, z: 1.0000002}
   m_Children: []
   m_Father: {fileID: 0}
@@ -13546,6 +13608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Piante: {fileID: 697797907}
   pS: {fileID: 381748594}
+  fog: []
 --- !u!65 &2143092155
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14433,7 +14496,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8296172667965798569}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 81.7, y: 36.6, z: 18.6}
+  m_LocalPosition: {x: 81.9, y: 3.7, z: 98.4}
   m_LocalScale: {x: 0.21121848, y: 0.21121848, z: 0.21121848}
   m_Children:
   - {fileID: 7525180364875952235}
@@ -14444,7 +14507,7 @@ Transform:
   - {fileID: 161917208}
   - {fileID: 1715407048}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &5058623949918269300
 SkinnedMeshRenderer:
