@@ -29,11 +29,11 @@ namespace roundbeargames_tutorial
             {
                 //animator.SetBool(TransitionParameter.Push.ToString(), true);
                 control.transform.Translate(Vector3.forward * Speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
-                /*if (tree)
+                if (tree)
                 {
                     pushableTree.transform.Rotate(new Vector3(-10f, 0, 0) * Time.deltaTime, Space.Self);
                     Debug.Log("rotazioneAlbero");
-                }*/
+                }
             }
 
             if (!control.Interact)

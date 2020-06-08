@@ -7169,6 +7169,7 @@ MonoBehaviour:
   LookLeft: 0
   plant: 0
   Shielding: 0
+  ShieldLast: 0
   sparaOk: 0
   interazioneLeva: 0
   right: {x: 0, y: 0, z: 0}
@@ -9668,6 +9669,7 @@ MonoBehaviour:
   LookLeft: 0
   plant: 0
   Shielding: 0
+  ShieldLast: 0
   sparaOk: 0
   interazioneLeva: 0
   right: {x: 0, y: 0, z: 0}
@@ -9957,6 +9959,7 @@ MonoBehaviour:
   LookLeft: 0
   plant: 0
   Shielding: 0
+  ShieldLast: 0
   sparaOk: 0
   interazioneLeva: 0
   right: {x: 0, y: 0, z: 0}

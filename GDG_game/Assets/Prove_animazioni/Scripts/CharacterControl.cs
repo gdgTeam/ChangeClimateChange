@@ -42,6 +42,7 @@ namespace roundbeargames_tutorial
         public bool LookLeft;
         public bool plant = false;
         public bool Shielding;
+        public bool ShieldLast = true;
         public bool sparaOk = false;
         public bool interazioneLeva;
         public Vector3 right = new Vector3(0f, 0f, 0f);
@@ -180,6 +181,16 @@ namespace roundbeargames_tutorial
                 protectShield = true;
                 MeshRenderer meshCorazza = Corazza.transform.GetComponent<MeshRenderer>();
                 meshCorazza.enabled = false;
+            }
+            if (ShieldLast)
+            {
+                MeshRenderer meshCorazza = Corazza.transform.GetComponent<MeshRenderer>();
+                meshCorazza.enabled = false;
+            }
+            if (!ShieldLast)
+            {
+                MeshRenderer meshCorazza = Corazza.transform.GetComponent<MeshRenderer>();
+                meshCorazza.enabled = true;
             }
             if(gru == true)
             {
