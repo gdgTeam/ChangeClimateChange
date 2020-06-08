@@ -2,24 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnTriggerFire : MonoBehaviour
+namespace roundbeargames_tutorial
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+
+    public class OnTriggerFire : MonoBehaviour
     {
-        
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
+        // Start is called before the first frame update
+        void Start()
         {
-          
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.tag == "Player")
+            {
+                other.GetComponent<CharacterControl>().CheckCorazza();
+            }
         }
     }
 }

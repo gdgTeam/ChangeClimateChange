@@ -14,12 +14,13 @@ namespace roundbeargames_tutorial
         GameObject character;
         GameObject zainetto;
         GameObject piantina;
-        public float add = 0;
+        public float add = 0f;
         public float skin = -0.2f;
 
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
-
+            add = 0f;
+            skin = -0.2f;
         }
 
         public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
