@@ -18,6 +18,8 @@ namespace roundbeargames_tutorial
         public float piano_3;
         public float piano_4;
 
+        private float newPiano;
+
         private CharacterControl control;
         private bool wait;
 
@@ -44,7 +46,6 @@ namespace roundbeargames_tutorial
         private void Start()
         {
             //parto dal piano terra
-            //this.transform.position = new Vector3(this.transform.position.x, piano_0, this.transform.position.z);
             Ascensore.transform.localPosition = new Vector3(0, piano_0, 0);
             pianoCorrente = 0;
             wait = false;
@@ -60,19 +61,24 @@ namespace roundbeargames_tutorial
                 switch (nuovoPiano)
                 {
                     case 0:
-                        Ascensore.transform.localPosition = new Vector3(0, piano_0, 0);
+                        //Ascensore.transform.localPosition = new Vector3(0, piano_0, 0);
+                        newPiano = piano_0;
                         break;
                     case 1:
-                        Ascensore.transform.localPosition = new Vector3(0, piano_1, 0);
+                        //Ascensore.transform.localPosition = new Vector3(0, piano_1, 0);
+                        newPiano = piano_1;
                         break;
                     case 2:
-                        Ascensore.transform.localPosition = new Vector3(0, piano_2, 0);
+                        //Ascensore.transform.localPosition = new Vector3(0, piano_2, 0);
+                        newPiano = piano_2;
                         break;
                     case 3:
-                        Ascensore.transform.localPosition = new Vector3(0, piano_3, 0);
+                        //Ascensore.transform.localPosition = new Vector3(0, piano_3, 0);
+                        newPiano = piano_3;
                         break;
                     case 4:
-                        Ascensore.transform.localPosition = new Vector3(0, piano_4, 0);
+                        //Ascensore.transform.localPosition = new Vector3(0, piano_4, 0);
+                        newPiano = piano_4;
                         break;
                 }
             }
@@ -81,17 +87,6 @@ namespace roundbeargames_tutorial
                 wait = false;
             }
         }
-
-        IEnumerator Animation(Collider o)
-		{
-			Ascensore.GetComponent<Animation>().Play();
-
-			yield return new WaitForSeconds(1.9f);
-			o.GetComponent<Rigidbody>().useGravity = true;
-			o.GetComponent<Rigidbody>().isKinematic = false;
-			o.gameObject.transform.parent = null;
-
-		}
 
 		private int checkInteractionAscensore()
         {
@@ -103,7 +98,6 @@ namespace roundbeargames_tutorial
                     wait = true;
                     Character.transform.SetParent(Ascensore.transform);
                     return pianoCorrente;
-
                 }
                 else if (control.MoveUp && pianoCorrente != 4)
                 {
@@ -112,11 +106,8 @@ namespace roundbeargames_tutorial
                     Character.transform.SetParent(Ascensore.transform);
                     return pianoCorrente;
                 }
-
             }
             return -1;
         }
-
-
 	}
 }
