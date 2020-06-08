@@ -242,7 +242,7 @@ AnimatorState:
   m_Transitions:
   - {fileID: -763212309166968925}
   - {fileID: -6556134850419841096}
-  - {fileID: -7697972778615321573}
+  - {fileID: 3809651382811007057}
   m_StateMachineBehaviours:
   - {fileID: -5699320360715514958}
   m_Position: {x: 50, y: 50, z: 0}
@@ -312,31 +312,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ef846d6893517cd44aaf83cd7d563ce9, type: 2}
   - {fileID: 11400000, guid: 34d009b2b14ebba4499bba058ae9802b, type: 2}
   - {fileID: 11400000, guid: a78e7d309d7fc2a4aa403a126c4c50ac, type: 2}
---- !u!1101 &-7697972778615321573
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: Interact
-    m_EventTreshold: 0
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: -4068633398064885310}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.81707317
-  m_HasExitTime: 0
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
 --- !u!114 &-7695324897603691393
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3023,6 +2998,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListAbilityData: []
+--- !u!1101 &3809651382811007057
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: Interact
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 441646535143307725}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0.81707317
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1102 &3988499508376779388
 AnimatorState:
   serializedVersion: 5
