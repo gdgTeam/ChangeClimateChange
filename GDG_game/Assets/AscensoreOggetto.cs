@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 namespace roundbeargames_tutorial {
     public class AscensoreOggetto : MonoBehaviour
     {
@@ -13,10 +14,16 @@ namespace roundbeargames_tutorial {
         private string interruttore;
         private CharacterControl control;
         private GameObject player;
+        private bool altezzaCalcolata;
+        private float nuovaAltezza;
+        private bool scendi;
+        private bool sali;
 
         void Start()
         {
             triggerEnter = false;
+            altezzaCalcolata = false;
+            nuovaAltezza = ascensoreOggetto.localPosition.y;
         }
 
         // Update is called once per frame
@@ -26,36 +33,51 @@ namespace roundbeargames_tutorial {
             {
                 control = player.GetComponent<CharacterControl>();
             }
-            //checkInterruttoreAscensore();
+
             if (triggerEnter && control.Interact && (control.pianoAscensoreOggetto>0 || control.pianoAscensoreOggetto<5))
             {
 
-                if (nuovoPiano < control.pianoAscensoreOggetto)
+                //discesa
+                if (nuovoPiano < control.pianoAscensoreOggetto && !altezzaCalcolata)
                 {
-                    Debug.Log("Scendo");
-                    Debug.Log("Nuovo piano: " + nuovoPiano);
-                    Debug.Log("Piano corrente" + control.pianoAscensoreOggetto);
-                    ascensoreOggetto.localPosition = new Vector3(0,
-                        ascensoreOggetto.localPosition.y - (translation*(control.pianoAscensoreOggetto - nuovoPiano)),
-                        0);
+                    nuovaAltezza = ascensoreOggetto.localPosition.y -
+                        (translation * (control.pianoAscensoreOggetto - nuovoPiano));
                     control.pianoAscensoreOggetto = nuovoPiano;
+                    altezzaCalcolata = true;
+                    scendi = true;
                 }
-                else if (nuovoPiano > control.pianoAscensoreOggetto)
+                //salita
+                if (nuovoPiano > control.pianoAscensoreOggetto && !altezzaCalcolata)
                 {
-                    Debug.Log("Salgo");
-                    Debug.Log("Nuovo piano: " + nuovoPiano);
-                    Debug.Log("Piano corrente" + control.pianoAscensoreOggetto);
-                    ascensoreOggetto.localPosition = new Vector3(0,
-                        ascensoreOggetto.localPosition.y + (translation * (nuovoPiano - control.pianoAscensoreOggetto)),
-                        0);
+                    nuovaAltezza = ascensoreOggetto.localPosition.y +
+                        (translation * (nuovoPiano - control.pianoAscensoreOggetto));
                     control.pianoAscensoreOggetto = nuovoPiano;
+                    altezzaCalcolata = true;
+                    sali = true;
+                }
+            }
+
+            if (altezzaCalcolata)
+            {
+                if (ascensoreOggetto.localPosition.y > nuovaAltezza && scendi)
+                {
+                    ascensoreOggetto.Translate(new Vector3(0, 0.2f, 0));
+                }
+                else if (ascensoreOggetto.localPosition.y < nuovaAltezza && sali)
+                {
+                    ascensoreOggetto.Translate(new Vector3(0, -0.2f, 0));
+                }
+                else
+                {
+                    altezzaCalcolata = false;
+                    sali = false;
+                    scendi = false;
                 }
             }
         }
 
         private int checkInterruttoreAscensore()
         {
-            //string interruttore = this.gameObject.transform.name;
             switch (interruttore)
             {
                 case "Interruttore_1":
@@ -71,7 +93,6 @@ namespace roundbeargames_tutorial {
                     nuovoPiano = 4;
                     break;
             }
-
             return nuovoPiano;
         }
 
@@ -94,6 +115,5 @@ namespace roundbeargames_tutorial {
                 triggerEnter = false;
             }
         }
-
     }
 }
