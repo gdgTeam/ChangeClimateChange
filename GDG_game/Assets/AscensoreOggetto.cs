@@ -8,7 +8,10 @@ namespace roundbeargames_tutorial {
         public int pianoCorrente = 1;
         public float translation;
         public Transform ascensoreOggetto;
+        public Transform cassa;
         public bool triggerEnter;
+        public GameObject colliderAscensoreSup;
+        public GameObject colliderAscensoreInf;
 
         private int nuovoPiano;
         private string interruttore;
@@ -18,6 +21,7 @@ namespace roundbeargames_tutorial {
         private float nuovaAltezza;
         private bool scendi;
         private bool sali;
+
 
         void Start()
         {
@@ -45,6 +49,11 @@ namespace roundbeargames_tutorial {
                     control.pianoAscensoreOggetto = nuovoPiano;
                     altezzaCalcolata = true;
                     scendi = true;
+                    if (colliderAscensoreSup.GetComponent<TriggerCassa>().cassa || colliderAscensoreInf.GetComponent<TriggerCassa>().cassa)
+                    {
+                        cassa.SetParent(ascensoreOggetto);
+                        cassa.GetComponent<Rigidbody>().isKinematic = true;
+                    }
                 }
                 //salita
                 if (nuovoPiano > control.pianoAscensoreOggetto && !altezzaCalcolata)
@@ -54,6 +63,11 @@ namespace roundbeargames_tutorial {
                     control.pianoAscensoreOggetto = nuovoPiano;
                     altezzaCalcolata = true;
                     sali = true;
+                    if (colliderAscensoreSup.GetComponent<TriggerCassa>().cassa || colliderAscensoreInf.GetComponent<TriggerCassa>().cassa)
+                    {
+                        cassa.SetParent(ascensoreOggetto);
+                        cassa.GetComponent<Rigidbody>().isKinematic = true;
+                    }
                 }
             }
 
@@ -61,17 +75,21 @@ namespace roundbeargames_tutorial {
             {
                 if (ascensoreOggetto.localPosition.y > nuovaAltezza && scendi)
                 {
-                    ascensoreOggetto.Translate(new Vector3(0, 0.2f, 0));
+                    ascensoreOggetto.Translate(0, 0.2f, 0);
+                    //cassa.Translate(0, 0.2f, 0);
                 }
                 else if (ascensoreOggetto.localPosition.y < nuovaAltezza && sali)
                 {
-                    ascensoreOggetto.Translate(new Vector3(0, -0.2f, 0));
+                    ascensoreOggetto.Translate(0, -0.2f, 0);
+                    //cassa.Translate(0, -0.2f, 0);
                 }
                 else
                 {
                     altezzaCalcolata = false;
                     sali = false;
                     scendi = false;
+                    cassa.parent = null;
+                    cassa.GetComponent<Rigidbody>().isKinematic = false;
                 }
             }
         }
