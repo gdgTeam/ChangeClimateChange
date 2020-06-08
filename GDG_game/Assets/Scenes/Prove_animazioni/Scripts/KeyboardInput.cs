@@ -106,6 +106,7 @@ namespace roundbeargames_tutorial
             {
                 protectShield = false;
                 VirtualInputManager.Instance.Shielding = true;
+                VirtualInputManager.Instance.ShieldLast = true;
                 StartCoroutine("Shield");
             }
             if (Input.GetMouseButtonDown(1) && control.Pointed==true && protectPlant)
@@ -125,7 +126,24 @@ namespace roundbeargames_tutorial
 
         IEnumerator Shield()
         {
-            yield return new WaitForSeconds(6.5f);
+            yield return new WaitForSeconds(4.5f);
+            VirtualInputManager.Instance.ShieldLast = false;
+            yield return new WaitForSeconds(0.25f);
+            VirtualInputManager.Instance.ShieldLast = true;
+            yield return new WaitForSeconds(0.25f);
+            VirtualInputManager.Instance.ShieldLast = false;
+            yield return new WaitForSeconds(0.25f);
+            VirtualInputManager.Instance.ShieldLast = true;
+            yield return new WaitForSeconds(0.25f);
+            VirtualInputManager.Instance.ShieldLast = false;
+            yield return new WaitForSeconds(0.25f);
+            VirtualInputManager.Instance.ShieldLast = true;
+            yield return new WaitForSeconds(0.25f);
+            VirtualInputManager.Instance.ShieldLast = false;
+            yield return new WaitForSeconds(0.25f);
+            VirtualInputManager.Instance.ShieldLast = true;
+            yield return new WaitForSeconds(0.25f);
+            VirtualInputManager.Instance.ShieldLast = false;
             VirtualInputManager.Instance.Shielding = false;
             yield return new WaitForSeconds(2f);
             protectShield = true;

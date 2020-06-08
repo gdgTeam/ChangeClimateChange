@@ -15,6 +15,7 @@ namespace roundbeargames_tutorial
         public bool MoveUp;
         public bool MoveDown;
         public bool Shielding;
+        public bool ShieldLast;
         public bool Picking;
         public bool PickingDown;
         public bool Spiderman;
