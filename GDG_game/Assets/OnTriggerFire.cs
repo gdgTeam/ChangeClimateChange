@@ -26,5 +26,12 @@ namespace roundbeargames_tutorial
                 other.GetComponent<CharacterControl>().CheckCorazza();
             }
         }
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.gameObject.tag == "Player")
+            {
+                other.GetComponent<CharacterControl>().CheckCorazza();
+            }
+        }
     }
 }

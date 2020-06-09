@@ -3,7 +3,12 @@ guid: 85ce742b01f411c4b87156266e5e3e88
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: log_texture
+    second: {fileID: 2100000, guid: ff2de7df5b34a9d4cb0bf3b98f87b9ab, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

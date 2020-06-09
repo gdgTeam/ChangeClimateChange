@@ -47,13 +47,14 @@ namespace roundbeargames_tutorial
         }*/
         private void OnTriggerExit(Collider other)
         {
-            if (fatto == false)
+            if (fatto == false )
             {
                 other.transform.parent = null;
-                this.gameObject.AddComponent<Rigidbody>();
-                Rigidbody rb = this.GetComponent<Rigidbody>();
+                this.gameObject.transform.parent.gameObject.AddComponent<Rigidbody>();
+                Rigidbody rb = this.gameObject.transform.parent.gameObject.GetComponent<Rigidbody>();
                 rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotationX;
-                this.GetComponent<Rigidbody>().useGravity = true;
+                rb.useGravity = true;
+                rb.mass = 10f;
                 fatto = true;
             }
         }

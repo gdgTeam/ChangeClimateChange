@@ -121,7 +121,7 @@ namespace roundbeargames_tutorial
                     case TransitionConditionType.JUMP:
                         {
                            
-                            if (!control.Jump || control.ledgeChecker.GrabbedLedge.gameObject.tag=="Pushable")
+                            if (!control.Jump || control.ledgeChecker.GrabbedLedge.gameObject.transform.parent.gameObject.tag=="Pushable")
                             {
                                 return false;
                             }
