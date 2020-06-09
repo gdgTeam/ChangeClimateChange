@@ -1780,7 +1780,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 8f7815021eec7684585a97817546ae41, type: 2}
+      objectReference: {fileID: 2100000, guid: 45758fb527d21f24399d8d4ca1f870e8, type: 2}
+    - target: {fileID: -1504981713932161579, guid: cd3588ee0d43b3a42a63d3366ac647a9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd3588ee0d43b3a42a63d3366ac647a9, type: 3}
 --- !u!1 &150431340
@@ -4427,7 +4432,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0.33962262, g: 0.33161265, b: 0.33161265, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4872,7 +4877,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: -3.77, y: -18.2, z: -1.79}
+    m_Scale: {x: -8.2, y: -18.2, z: 2.43}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -6827,11 +6832,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   NoiseModule:
-    enabled: 0
+    enabled: 1
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -6988,7 +6993,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     separateAxes: 0
-    frequency: 0.5
+    frequency: 0.1
     damping: 1
     octaves: 1
     octaveMultiplier: 0.5
@@ -7967,9 +7972,9 @@ ParticleSystem:
       properties: 0
       emitProbability: 1
   LightsModule:
-    enabled: 0
+    enabled: 1
     ratio: 0
-    light: {fileID: 0}
+    light: {fileID: 1861544486}
     randomDistribution: 1
     color: 1
     range: 1
@@ -8903,7 +8908,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 463599340}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 63, y: 13, z: -212}
+  m_LocalPosition: {x: 92.8, y: -4.6, z: -255.8}
   m_LocalScale: {x: 3.04356, y: 0.92631996, z: 5.82727}
   m_Children: []
   m_Father: {fileID: 0}
@@ -13346,8 +13351,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 942190631}
   m_LocalRotation: {x: 0.5247431, y: 0.47396705, z: -0.47396705, w: 0.5247431}
-  m_LocalPosition: {x: 8.9, y: 9.4, z: -340.5}
-  m_LocalScale: {x: 7.533558, y: 5.115126, z: 5.115126}
+  m_LocalPosition: {x: 74.1, y: 3.7, z: -301}
+  m_LocalScale: {x: 2.2012303, y: 1.4945886, z: 1.4945886}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 146
@@ -21544,7 +21549,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1684719386}
   m_LocalRotation: {x: 0.5247431, y: 0.47396705, z: -0.47396705, w: 0.5247431}
-  m_LocalPosition: {x: 31.6, y: 11.4, z: -184.4}
+  m_LocalPosition: {x: 43.7, y: 11.4, z: -184.4}
   m_LocalScale: {x: 7.533558, y: 5.115126, z: 5.115126}
   m_Children: []
   m_Father: {fileID: 0}
