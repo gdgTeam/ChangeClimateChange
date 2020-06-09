@@ -36,8 +36,7 @@ public class LuceFotosintesi : MonoBehaviour
         {
 
             var main = fog[i].GetComponent<ParticleSystem>().main;
-            main.maxParticles = 100;
-            main.startLifetime = 100;
+            main.startColor = new Color(1f, 1f, 1f, .2f);
         }
     }
 
@@ -49,7 +48,7 @@ public class LuceFotosintesi : MonoBehaviour
             Piante.GetComponent<Animator>().enabled = false;
             Piante.GetComponent<Animator>().SetBool("fotosintesi", false);
             pS.Stop();
-
+            Destroy(this);
         }
     }
 
