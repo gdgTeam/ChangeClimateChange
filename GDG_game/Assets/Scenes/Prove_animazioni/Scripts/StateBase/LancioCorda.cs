@@ -21,8 +21,9 @@ namespace roundbeargames_tutorial
             control.liana.transform.position = control.transform.position;
             control.liana.GetComponent<MeshRenderer>().enabled = true;
             control.liana.GetComponent<Animator>().enabled = true;
+            control.liana.GetComponent<Animator>().SetBool("Liana", true);
 
-           
+
 
         }
 

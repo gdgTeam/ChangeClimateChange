@@ -14,13 +14,17 @@ namespace roundbeargames_tutorial
 
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
+           
             control = characterState.GetCharacterControl(animator);
             control.isSwinging = true;
+            
             rope = control.transform.GetComponent<LineRenderer>();
-            rope.enabled = true;
-            rope.SetPosition(0, control.spine.transform.position);
-            Vector3 ancoraggio = new Vector3(control.transform.position.x, control.transform.GetComponent<DistanceJoint3D>().ConnectedRigidbody.transform.position.y, control.transform.GetComponent<DistanceJoint3D>().ConnectedRigidbody.transform.position.z);
-            rope.SetPosition(1, ancoraggio);
+            {
+                rope.enabled = true;
+                rope.SetPosition(0, control.spine.transform.position);
+                Vector3 ancoraggio = new Vector3(control.transform.position.x, control.transform.GetComponent<DistanceJoint3D>().ConnectedRigidbody.transform.position.y, control.transform.GetComponent<DistanceJoint3D>().ConnectedRigidbody.transform.position.z);
+                rope.SetPosition(1, ancoraggio);
+            }
 
             control.liana.transform.position = control.transform.GetComponent<DistanceJoint3D>().ConnectedRigidbody.transform.position;
             if (control.transform.GetComponent<DistanceJoint3D>().enabled == false)
@@ -29,6 +33,7 @@ namespace roundbeargames_tutorial
                 control.transform.GetComponent<DistanceJoint3D>().enabled = true;
                 control.liana.GetComponent<MeshRenderer>().enabled = true;
                 control.liana.GetComponent<Animator>().enabled = true;
+                control.liana.GetComponent<Animator>().SetBool("Liana", true);
 
             }
            
@@ -57,6 +62,7 @@ namespace roundbeargames_tutorial
            
             control.liana.GetComponent<MeshRenderer>().enabled = false;
             control.liana.GetComponent<Animator>().enabled = false;
+            control.liana.GetComponent<Animator>().SetBool("Liana", false);
             control.isSwinging = false;
             control.transform.GetComponent<DistanceJoint3D>().ConnectedRigidbody = null;
             animator.SetLayerWeight(0, 1);
