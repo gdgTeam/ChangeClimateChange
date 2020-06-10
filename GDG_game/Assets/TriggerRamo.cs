@@ -7,7 +7,7 @@ namespace roundbeargames_tutorial
     public class TriggerRamo : MonoBehaviour
     {
         bool fatto = false;
-        int count;
+       
         // Start is called before the first frame update
         void Start()
         {
@@ -17,8 +17,8 @@ namespace roundbeargames_tutorial
         // Update is called once per frame
         void Update()
         {
-            count = this.transform.childCount;
-            Debug.Log(count);
+           
+
            
             if (fatto == true)
             {

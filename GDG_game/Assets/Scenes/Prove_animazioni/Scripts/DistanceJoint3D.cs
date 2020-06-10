@@ -5,7 +5,7 @@ public class DistanceJoint3D : MonoBehaviour
 {
 
     public Transform ConnectedRigidbody;
-    public bool DetermineDistanceOnStart = true;
+    public bool DetermineDistanceOnStart = false;
     public float Distance;
     public float Spring = 0.1f;
     public float Damper = 5f;
@@ -18,25 +18,47 @@ public class DistanceJoint3D : MonoBehaviour
         Rigidbody = GetComponent<Rigidbody>();
 
     }
+    
 
     void Start()
     {
-        
-        if (DetermineDistanceOnStart && ConnectedRigidbody != null)
+        /*Debug.Log("start");
+        if ( ConnectedRigidbody != null)
             if(Vector3.Distance(Rigidbody.position, ConnectedRigidbody.position)>7f)
             {
+                Debug.Log("minore");
 
                 Distance = Vector3.Distance(Rigidbody.position, ConnectedRigidbody.position)-2f;
             }
         else
             {
+                Debug.Log("maggiore");
                 Distance = 6;
-            }
+            }*/
            
     }
 
+    private void OnEnable()
+    {
+        if (ConnectedRigidbody != null)
+        {
+            Debug.Log(Vector3.Distance(Rigidbody.position, ConnectedRigidbody.position));
+            if (Vector3.Distance(Rigidbody.position, ConnectedRigidbody.position) > 5f)
+            {
+                Debug.Log("maggiore");
+
+                Distance = Vector3.Distance(Rigidbody.position, ConnectedRigidbody.position)-1f;
+            }
+            else
+            {
+                Debug.Log("minore");
+                Distance =4f;
+            }
+        }
+    }
     void FixedUpdate()
     {
+     
 
         var connection = Rigidbody.position - ConnectedRigidbody.position;
         var distanceDiscrepancy = Distance - connection.magnitude;

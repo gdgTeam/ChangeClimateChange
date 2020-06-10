@@ -19,8 +19,9 @@ namespace roundbeargames_tutorial
             rope = control.transform.GetComponent<LineRenderer>();
             rope.enabled = true;
             rope.SetPosition(0, control.spine.transform.position);
-            rope.SetPosition(1, control.transform.GetComponent<DistanceJoint3D>().ConnectedRigidbody.transform.position);
-            
+            Vector3 ancoraggio = new Vector3(control.transform.position.x, control.transform.GetComponent<DistanceJoint3D>().ConnectedRigidbody.transform.position.y, control.transform.GetComponent<DistanceJoint3D>().ConnectedRigidbody.transform.position.z);
+            rope.SetPosition(1, ancoraggio);
+
             control.liana.transform.position = control.transform.GetComponent<DistanceJoint3D>().ConnectedRigidbody.transform.position;
             if (control.transform.GetComponent<DistanceJoint3D>().enabled == false)
             {
