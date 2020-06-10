@@ -104,7 +104,7 @@ namespace roundbeargames_tutorial
             mainCamera = Camera.main;
             Cursor.SetCursor(mouseStandard, hotspot, cursorMode);
             soundCorazza = GetComponent<AudioSource>();
-            pianoAscensoreOggetto = 1;
+            pianoAscensoreOggetto = 2;
         }
 
         private void Update()
