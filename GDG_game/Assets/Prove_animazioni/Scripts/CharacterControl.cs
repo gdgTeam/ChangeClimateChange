@@ -105,6 +105,7 @@ namespace roundbeargames_tutorial
             Cursor.SetCursor(mouseStandard, hotspot, cursorMode);
             soundCorazza = GetComponent<AudioSource>();
             pianoAscensoreOggetto = 2;
+            TurnOFFRagdoll();
         }
 
         private void Update()
@@ -307,15 +308,26 @@ namespace roundbeargames_tutorial
                  c.attachedRigidbody.velocity = Vector3.zero;
              }
          }
-       /* public void TurnOFFRagdoll()
+        public void TurnOFFRagdoll()
         {
-
-           
-                foreach (Collider col in RagdollParts)
+            foreach(Transform child in transform)
+            {
+                if (child.GetComponent<Collider>() != null)
                 {
-                    col.enabled = false;
+                    child.GetComponent<Collider>().enabled = false;
                 }
-        }*/
+                if (child.GetComponent<Rigidbody>() != null)
+                {
+                    Destroy(child.GetComponent<Rigidbody>());
+                }
+                if (child.GetComponent<CharacterJoint>() != null)
+                {
+                    Destroy(child.GetComponent<CharacterJoint>());
+                }
+               
+
+            }
+        }
 
         public void CheckCorazza()
         {
