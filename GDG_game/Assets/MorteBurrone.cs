@@ -22,7 +22,8 @@ namespace roundbeargames_tutorial
         {
             if (other.gameObject.tag == "Player")
             {
-                other.GetComponent<CharacterControl>().TurnOnRagdoll();
+                Debug.Log("jhhjbbhj");
+                other.GetComponent<Animator>().SetBool("FallToDie",true);
             }
         }
     }
