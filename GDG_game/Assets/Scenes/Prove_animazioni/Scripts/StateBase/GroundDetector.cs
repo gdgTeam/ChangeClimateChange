@@ -60,7 +60,7 @@ namespace roundbeargames_tutorial
                     {
                         if (!Ledge.IsLedge(hit.collider.gameObject) && hit.collider.gameObject.tag!="trigger")
                         {
-
+                            Debug.Log(hit.collider);
                             return true;
                         }
                     }
