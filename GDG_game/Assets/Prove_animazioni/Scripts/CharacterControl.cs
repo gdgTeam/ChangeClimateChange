@@ -83,7 +83,13 @@ namespace roundbeargames_tutorial
         public GameObject Ascensore;
         public int pianoAscensoreOggetto;
         public GameObject pioggia;
-        
+        public GameObject triggerPioggiaAcida;
+        public GameObject zainetto;
+        public GameObject piantina;
+        Material[] piantinaMaterials;
+        Material[] zainettoMaterial;
+        public float add;
+
         [SerializeField] private AudioSource soundCorazza;
 
         
@@ -288,7 +294,9 @@ namespace roundbeargames_tutorial
              {
                 Debug.Log("Pioggia");
                 pioggia.active = true;
+                triggerPioggiaAcida.active = true;
              }
+
         }
 
         private void OnTriggerStay(Collider col)
@@ -299,6 +307,24 @@ namespace roundbeargames_tutorial
                 Debug.Log("StayFire");
                 CheckCorazza();
             }
+
+            if (col.gameObject.name == "TriggerPioggiaAcida" && !sparaOk)
+            {
+                Debug.Log("StayPioggia");
+                add = add + 0.01f;
+                piantinaMaterials = piantina.gameObject.GetComponent<SkinnedMeshRenderer>().materials;
+                zainettoMaterial = zainetto.gameObject.GetComponent<SkinnedMeshRenderer>().materials;
+                piantinaMaterials[0].SetFloat("Vector1_ACBAB4A6", add);
+                piantinaMaterials[1].SetFloat("Vector1_ACBAB4A6", add);
+                piantinaMaterials[2].SetFloat("Vector1_ACBAB4A6", add);
+                piantinaMaterials[3].SetFloat("Vector1_ACBAB4A6", add);
+                zainettoMaterial[0].SetFloat("Vector1_9ACB71BD", add);
+                if (add >= 1) //temporaneo
+                {
+                    OnExit();
+                }
+            }
+
         }
 
          public void TurnOnRagdoll()
@@ -425,6 +451,11 @@ namespace roundbeargames_tutorial
                 var bullet = go.GetComponent<Bullet>();
                 bullet.fire(go.transform.position, muzzleTransform.eulerAngles, gameObject.layer);
             }
+        }
+
+        public void OnExit()
+        {
+            add = 0;
         }
     }
 }
