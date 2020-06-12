@@ -278,11 +278,11 @@ namespace roundbeargames_tutorial
          {
 
            
-             if(col.gameObject.tag == "Fire")
+            /* if(col.gameObject.tag == "Fire")
              {
                 Debug.Log("ColliderFire");
                 CheckCorazza();
-             }
+             }*/
              
              if (col.gameObject.name == "TriggerPioggia")
              {
@@ -294,11 +294,11 @@ namespace roundbeargames_tutorial
         private void OnTriggerStay(Collider col)
         {
            
-            if (col.gameObject.tag == "Fire")
+           /* if (col.gameObject.tag == "Fire")
             {
                 Debug.Log("StayFire");
                 CheckCorazza();
-            }
+            }*/
         }
 
          public void TurnOnRagdoll()
