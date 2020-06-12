@@ -82,7 +82,14 @@ namespace roundbeargames_tutorial
         public GameObject liana;
         public GameObject Ascensore;
         public int pianoAscensoreOggetto;
-        
+        public GameObject pioggia;
+        public GameObject triggerPioggiaAcida;
+        public GameObject zainetto;
+        public GameObject piantina;
+        Material[] piantinaMaterials;
+        Material[] zainettoMaterial;
+        public float add;
+
         [SerializeField] private AudioSource soundCorazza;
 
         
@@ -223,6 +230,7 @@ namespace roundbeargames_tutorial
             //Aim control
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
+            Debug.DrawRay(ray.origin, ray.direction*10f);
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, mouseAimMask))
             {
@@ -272,26 +280,56 @@ namespace roundbeargames_tutorial
       
 
 
-      /*  private void OnTriggerEnter(Collider col)
+        private void OnTriggerEnter(Collider col)
          {
 
            
-             if(col.gameObject.tag == "Fire")
+            /* if(col.gameObject.tag == "Fire")
              {
                 Debug.Log("ColliderFire");
                 CheckCorazza();
+             }*/
+             
+             if (col.gameObject.name == "TriggerPioggia")
+             {
+                Debug.Log("Pioggia");
+                pioggia.active = true;
+                triggerPioggiaAcida.active = true;
              }
+
         }
 
         private void OnTriggerStay(Collider col)
         {
            
-            if (col.gameObject.tag == "Fire")
+           /* if (col.gameObject.tag == "Fire")
             {
                 Debug.Log("StayFire");
                 CheckCorazza();
+
+            }*/
+
+            
+
+            if (col.gameObject.name == "TriggerPioggiaAcida" && !sparaOk)
+            {
+                Debug.Log("StayPioggia");
+                add = add + 0.01f;
+                piantinaMaterials = piantina.gameObject.GetComponent<SkinnedMeshRenderer>().materials;
+                zainettoMaterial = zainetto.gameObject.GetComponent<SkinnedMeshRenderer>().materials;
+                piantinaMaterials[0].SetFloat("Vector1_ACBAB4A6", add);
+                piantinaMaterials[1].SetFloat("Vector1_ACBAB4A6", add);
+                piantinaMaterials[2].SetFloat("Vector1_ACBAB4A6", add);
+                piantinaMaterials[3].SetFloat("Vector1_ACBAB4A6", add);
+                zainettoMaterial[0].SetFloat("Vector1_9ACB71BD", add);
+                if (add >= 1) //temporaneo
+                {
+                    OnExit();
+                }
             }
-        }*/
+
+
+        }
 
          public void TurnOnRagdoll()
          {
@@ -417,6 +455,11 @@ namespace roundbeargames_tutorial
                 var bullet = go.GetComponent<Bullet>();
                 bullet.fire(go.transform.position, muzzleTransform.eulerAngles, gameObject.layer);
             }
+        }
+
+        public void OnExit()
+        {
+            add = 0;
         }
     }
 }

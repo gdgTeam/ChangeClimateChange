@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace roundbeargames_tutorial
 {
@@ -13,7 +14,7 @@ namespace roundbeargames_tutorial
 
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
-
+            animator.SetBool("LancioCorda", true);
             control = characterState.GetCharacterControl(animator);
            
             control.isSwinging = true;
@@ -33,6 +34,7 @@ namespace roundbeargames_tutorial
            
             if (!control.Spiderman)
             {
+                
                 animator.SetBool(TransitionParameter.Spiderman.ToString(), false);
             }
         }
@@ -47,5 +49,6 @@ namespace roundbeargames_tutorial
             rope.SetPosition(1, ancoraggio);
             
         }
+       
     }
 }

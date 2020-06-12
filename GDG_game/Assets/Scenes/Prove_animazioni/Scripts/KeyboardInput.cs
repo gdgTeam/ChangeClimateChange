@@ -9,11 +9,16 @@ namespace roundbeargames_tutorial
         private bool protectShield = true;
         public bool protectPlant = false;
         private CharacterControl control;
+        private Animator animator;
+        private bool PickUp;
+        private bool PickDown;
 
         private void Start()
         {
             control = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterControl>();
-
+            animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
+            PickDown = animator.GetBool("PickDown");
+            PickUp = animator.GetBool("PickUp");
         }
         void Update()
         {
@@ -92,9 +97,10 @@ namespace roundbeargames_tutorial
                 VirtualInputManager.Instance.Picking = false;
             }
 
-            if(Input.GetKey(KeyCode.Q) && !VirtualInputManager.Instance.Picking && protectPlant)
+            if (Input.GetKey(KeyCode.Q) && !VirtualInputManager.Instance.Picking && protectPlant)
             {
                 protectPlant = false;
+                control.sparaOk = false;
                 VirtualInputManager.Instance.PickingDown = true;
             }
             else
@@ -109,45 +115,46 @@ namespace roundbeargames_tutorial
                 VirtualInputManager.Instance.ShieldLast = true;
                 StartCoroutine("Shield");
             }
-            if (Input.GetMouseButtonDown(1) && control.Pointed==true && protectPlant)
-            {
-              
-                VirtualInputManager.Instance.Spiderman = true;
-                
-            }
-            if (Input.GetMouseButtonUp(1) && protectPlant)
+            if (Input.GetMouseButtonDown(1) && control.Pointed == true && protectPlant)
             {
 
+                VirtualInputManager.Instance.Spiderman = true;
+
+            }
+             if (Input.GetMouseButtonUp(1) && protectPlant)
+              {
                 VirtualInputManager.Instance.Spiderman = false;
 
+               }
+
+         }
+  
+
+            IEnumerator Shield()
+            {
+                yield return new WaitForSeconds(4.5f);
+                VirtualInputManager.Instance.ShieldLast = false;
+                yield return new WaitForSeconds(0.25f);
+                VirtualInputManager.Instance.ShieldLast = true;
+                yield return new WaitForSeconds(0.25f);
+                VirtualInputManager.Instance.ShieldLast = false;
+                yield return new WaitForSeconds(0.25f);
+                VirtualInputManager.Instance.ShieldLast = true;
+                yield return new WaitForSeconds(0.25f);
+                VirtualInputManager.Instance.ShieldLast = false;
+                yield return new WaitForSeconds(0.25f);
+                VirtualInputManager.Instance.ShieldLast = true;
+                yield return new WaitForSeconds(0.25f);
+                VirtualInputManager.Instance.ShieldLast = false;
+                yield return new WaitForSeconds(0.25f);
+                VirtualInputManager.Instance.ShieldLast = true;
+                yield return new WaitForSeconds(0.25f);
+                VirtualInputManager.Instance.ShieldLast = false;
+                VirtualInputManager.Instance.Shielding = false;
+                yield return new WaitForSeconds(2f);
+                protectShield = true;
             }
-
-        }
-
-        IEnumerator Shield()
-        {
-            yield return new WaitForSeconds(4.5f);
-            VirtualInputManager.Instance.ShieldLast = false;
-            yield return new WaitForSeconds(0.25f);
-            VirtualInputManager.Instance.ShieldLast = true;
-            yield return new WaitForSeconds(0.25f);
-            VirtualInputManager.Instance.ShieldLast = false;
-            yield return new WaitForSeconds(0.25f);
-            VirtualInputManager.Instance.ShieldLast = true;
-            yield return new WaitForSeconds(0.25f);
-            VirtualInputManager.Instance.ShieldLast = false;
-            yield return new WaitForSeconds(0.25f);
-            VirtualInputManager.Instance.ShieldLast = true;
-            yield return new WaitForSeconds(0.25f);
-            VirtualInputManager.Instance.ShieldLast = false;
-            yield return new WaitForSeconds(0.25f);
-            VirtualInputManager.Instance.ShieldLast = true;
-            yield return new WaitForSeconds(0.25f);
-            VirtualInputManager.Instance.ShieldLast = false;
-            VirtualInputManager.Instance.Shielding = false;
-            yield return new WaitForSeconds(2f);
-            protectShield = true;
         }
     }
-}
+
 
