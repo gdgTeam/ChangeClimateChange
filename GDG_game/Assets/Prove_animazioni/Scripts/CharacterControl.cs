@@ -82,6 +82,7 @@ namespace roundbeargames_tutorial
         public GameObject liana;
         public GameObject Ascensore;
         public int pianoAscensoreOggetto;
+        public GameObject pioggia;
         
         [SerializeField] private AudioSource soundCorazza;
 
@@ -273,7 +274,7 @@ namespace roundbeargames_tutorial
       
 
 
-      /*  private void OnTriggerEnter(Collider col)
+        private void OnTriggerEnter(Collider col)
          {
 
            
@@ -281,6 +282,12 @@ namespace roundbeargames_tutorial
              {
                 Debug.Log("ColliderFire");
                 CheckCorazza();
+             }
+             
+             if (col.gameObject.name == "TriggerPioggia")
+             {
+                Debug.Log("Pioggia");
+                pioggia.active = true;
              }
         }
 
@@ -292,7 +299,7 @@ namespace roundbeargames_tutorial
                 Debug.Log("StayFire");
                 CheckCorazza();
             }
-        }*/
+        }
 
          public void TurnOnRagdoll()
          {
