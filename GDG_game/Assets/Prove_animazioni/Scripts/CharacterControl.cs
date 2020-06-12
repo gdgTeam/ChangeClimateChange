@@ -306,10 +306,10 @@ namespace roundbeargames_tutorial
             {
                 Debug.Log("StayFire");
                 CheckCorazza();
-<<<<<<< HEAD
+
             }*/
-=======
-            }
+
+            
 
             if (col.gameObject.name == "TriggerPioggiaAcida" && !sparaOk)
             {
@@ -328,7 +328,7 @@ namespace roundbeargames_tutorial
                 }
             }
 
->>>>>>> AvanzamentoForesta
+
         }
 
          public void TurnOnRagdoll()
