@@ -223,6 +223,7 @@ namespace roundbeargames_tutorial
             //Aim control
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
+            Debug.DrawRay(ray.origin, ray.direction*10f);
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, mouseAimMask))
             {
