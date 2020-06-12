@@ -9,11 +9,16 @@ namespace roundbeargames_tutorial
         private bool protectShield = true;
         public bool protectPlant = false;
         private CharacterControl control;
+        private Animator animator;
+        private bool PickUp;
+        private bool PickDown;
 
         private void Start()
         {
             control = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterControl>();
-
+            animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
+            PickDown = animator.GetBool("PickDown");
+            PickUp = animator.GetBool("PickUp");
         }
         void Update()
         {
@@ -95,6 +100,7 @@ namespace roundbeargames_tutorial
             if (Input.GetKey(KeyCode.Q) && !VirtualInputManager.Instance.Picking && protectPlant)
             {
                 protectPlant = false;
+                control.sparaOk = false;
                 VirtualInputManager.Instance.PickingDown = true;
             }
             else

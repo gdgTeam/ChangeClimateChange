@@ -36,7 +36,7 @@ namespace roundbeargames_tutorial
 
         public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
-            animator.SetBool(TransitionParameter.PickUp.ToString(), false); //per evitare di saltare due volte se premo spazio mentre sono nello stato di landing
+            animator.SetBool(TransitionParameter.PickUp.ToString(), false);
             MeshRenderer piantinaManoMesh;
             BoxCollider piantinaManoCollider;
             piantinaManoMesh = piantina.transform.GetComponent<MeshRenderer>();
