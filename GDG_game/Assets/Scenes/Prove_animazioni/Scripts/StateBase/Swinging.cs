@@ -14,7 +14,7 @@ namespace roundbeargames_tutorial
 
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
-           
+            animator.SetBool("LancioCorda", false);
             control = characterState.GetCharacterControl(animator);
             control.isSwinging = true;
             
