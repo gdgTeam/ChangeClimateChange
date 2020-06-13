@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6b87e284350a43b8b753d193e0a59a0, type: 3}
+  m_Name: Robot_stopMoving
+  m_EditorClassIdentifier: 
+  Speed: 2
+  SpeedGraph:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0083351135
+      value: 0.2206688
+      inSlope: 0.10547396
+      outSlope: 0.10547396
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.41609687
+    - serializedVersion: 3
+      time: 0.92724663
+      value: 0.104377106
+      inSlope: -0.78421485
+      outSlope: -0.78421485
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.03454568
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
