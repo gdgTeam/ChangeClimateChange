@@ -8,10 +8,10 @@ namespace roundbeargames_tutorial
     public class Fall : StateData
     {
 
-        public float timeLeft =1.5f; 
+        public float timeLeft =1.7f; 
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
-            timeLeft = 1.5f;
+            timeLeft = 1.7f;
         }
 
         public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
@@ -25,7 +25,7 @@ namespace roundbeargames_tutorial
 
         public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
-            timeLeft = 1.5f;
+            timeLeft = 1.7f;
         }
     }
 }
