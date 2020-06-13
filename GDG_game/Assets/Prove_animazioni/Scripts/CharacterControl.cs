@@ -41,6 +41,8 @@ namespace roundbeargames_tutorial
         public bool LookRight = true;
         public bool LookLeft;
         public bool plant = false;
+        public bool checkPick = true;
+        public bool checkPickFalse = false;
         public bool Shielding;
         public bool ShieldLast = true;
         public bool sparaOk = false;
@@ -311,7 +313,7 @@ namespace roundbeargames_tutorial
 
             
 
-            if (col.gameObject.name == "TriggerPioggiaAcida" && !sparaOk)
+            if (col.gameObject.name == "TriggerPioggiaAcida" && sparaOk)
             {
                 Debug.Log("StayPioggia");
                 add = add + 0.01f;

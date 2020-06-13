@@ -17,6 +17,7 @@ namespace roundbeargames_tutorial
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
             control = characterState.GetCharacterControl(animator);
+            control.sparaOk = true;
             piantina = GameObject.Find("zaino+pianta");
             piantina.transform.parent = null;
             rbPersonaggio = control.transform.GetComponent<Rigidbody>();
@@ -49,6 +50,7 @@ namespace roundbeargames_tutorial
             control.gameObject.transform.GetChild(2).gameObject.transform.GetComponent<SkinnedMeshRenderer>().enabled = true;
             control.plant = true;
             rbPersonaggio.isKinematic = false;
+            control.checkPickFalse = true;
             /*MeshRenderer piantaSpallaMesh;
             piantaSpallaMesh = piantinaSpalla.transform.GetComponent<MeshRenderer>();
             piantaSpallaMesh.enabled = true;*/
