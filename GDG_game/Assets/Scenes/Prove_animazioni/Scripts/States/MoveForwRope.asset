@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: MoveForwRope
   m_EditorClassIdentifier: 
   control: {fileID: 0}
-  swingForce: 4
+  swingForce: 4.5
