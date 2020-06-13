@@ -127,6 +127,11 @@ namespace roundbeargames_tutorial
                     {
                         BlockDistance = 0.2f;
                     }
+
+                    if(hit.collider.gameObject.tag == "PickCopertura")
+                    {
+                        BlockDistance = 0.05f;
+                    }
                    
                 }
                 else

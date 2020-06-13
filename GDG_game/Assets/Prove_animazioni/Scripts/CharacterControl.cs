@@ -23,7 +23,8 @@ namespace roundbeargames_tutorial
         front,
         back,
         Interact,
-        Pull
+        Pull,
+        PickUpMetallo
     }
 
     public class CharacterControl : MonoBehaviour
@@ -45,7 +46,7 @@ namespace roundbeargames_tutorial
         public bool checkPickFalse = false;
         public bool Shielding;
         public bool ShieldLast = true;
-        public bool sparaOk = false;
+        public bool sparaOk = true;
         public bool interazioneLeva;
         public Vector3 right = new Vector3(0f, 0f, 0f);
         public Vector3 left = new Vector3(0f, 180f, 0f);
