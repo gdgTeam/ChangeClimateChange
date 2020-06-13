@@ -70,6 +70,15 @@ namespace roundbeargames_tutorial
                 animator.SetBool(TransitionParameter.PickUp.ToString(), false);
             }
 
+            if(control.Picking && CheckPickMetallo(control, animator))
+            {
+                animator.SetBool(TransitionParameter.PickUpMetallo.ToString(), true);
+            }
+            else
+            {
+                animator.SetBool(TransitionParameter.PickUpMetallo.ToString(), false);
+            }
+
             if (control.PickingDown && control.plant)
             {
                 animator.SetBool(TransitionParameter.PickDown.ToString(), true);
@@ -117,6 +126,22 @@ namespace roundbeargames_tutorial
                     {
                         control.PickPlant = false;
                     }
+                    //hit.collider.gameObject.transform.SetParent(GameObject.Find("RightHand").transform);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        bool CheckPickMetallo(CharacterControl control, Animator animator)
+        {
+            foreach (GameObject o in control.FrontSpheres)
+            {
+                Debug.DrawRay(o.transform.position, control.transform.forward * 0.3f, Color.yellow);
+                RaycastHit hit;
+                if (Physics.Raycast(o.transform.position, control.transform.forward, out hit, PickDistance) && hit.collider.gameObject.tag == "PickCopertura")
+                {
                     //hit.collider.gameObject.transform.SetParent(GameObject.Find("RightHand").transform);
                     return true;
                 }

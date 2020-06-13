@@ -23,7 +23,8 @@ namespace roundbeargames_tutorial
         front,
         back,
         Interact,
-        Pull
+        Pull,
+        PickUpMetallo
     }
 
     public class CharacterControl : MonoBehaviour
@@ -41,9 +42,11 @@ namespace roundbeargames_tutorial
         public bool LookRight = true;
         public bool LookLeft;
         public bool plant = false;
+        public bool checkPick = true;
+        public bool checkPickFalse = false;
         public bool Shielding;
         public bool ShieldLast = true;
-        public bool sparaOk = false;
+        public bool sparaOk = true;
         public bool interazioneLeva;
         public Vector3 right = new Vector3(0f, 0f, 0f);
         public Vector3 left = new Vector3(0f, 180f, 0f);
@@ -311,7 +314,7 @@ namespace roundbeargames_tutorial
 
             
 
-            if (col.gameObject.name == "TriggerPioggiaAcida" && !sparaOk)
+            if (col.gameObject.name == "TriggerPioggiaAcida" && sparaOk)
             {
                 Debug.Log("StayPioggia");
                 add = add + 0.01f;
