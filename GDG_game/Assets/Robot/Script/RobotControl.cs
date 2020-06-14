@@ -29,10 +29,10 @@ namespace roundbeargames_tutorial
                 MoveLeft = true;
                 MoveRight = false;
             }
-            else if( this.gameObject.transform.rotation.eulerAngles == right)
+            else if(this.gameObject.transform.rotation.eulerAngles == right)
             {
                 MoveRight = true;
-                MoveLeft = true;
+                MoveLeft = false;
             }
         }
     }
