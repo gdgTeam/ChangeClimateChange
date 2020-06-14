@@ -10,6 +10,7 @@ namespace roundbeargames_tutorial
         public bool MoveRight;
         public bool Stopping;
         public bool Turning;
+        public GameObject EdgeCollider;
 
         private Vector3 left;
         private Vector3 right;

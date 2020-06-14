@@ -12,7 +12,7 @@ namespace roundbeargames_tutorial
         {
             //faccio fermare il robot
             Animator animator = other.gameObject.GetComponent<Animator>();
-            if (animator.GetBool("Walk"))
+            if (animator.GetBool("Walk") && !animator.GetBool("CharacterDetected"))
             {
                 Debug.Log("non cammino");  
                 animator.SetBool("Walk", false);
