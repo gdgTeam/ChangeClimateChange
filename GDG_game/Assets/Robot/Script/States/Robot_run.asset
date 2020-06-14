@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e5854cbacb924737967bd9bfb89e8d2, type: 3}
   m_Name: Robot_run
   m_EditorClassIdentifier: 
-  Speed: 4
+  Speed: 7
   SpeedGraph:
     serializedVersion: 2
     m_Curve:

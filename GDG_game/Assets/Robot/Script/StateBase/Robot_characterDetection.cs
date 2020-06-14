@@ -37,7 +37,6 @@ namespace roundbeargames_tutorial
             {
                 if (hit.collider.gameObject.tag == "Player")
                 {
-                    Debug.Log("trovato player");
                     return true;
                 }
             }
