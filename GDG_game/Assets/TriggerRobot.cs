@@ -11,11 +11,14 @@ namespace roundbeargames_tutorial
         private void OnTriggerEnter(Collider other)
         {
             //faccio fermare il robot
-            Animator animator = other.gameObject.GetComponent<Animator>();
-            if (animator.GetBool("Walk") && !animator.GetBool("CharacterDetected"))
+            if (other.transform.tag == "Robot")
             {
-                Debug.Log("non cammino");  
-                animator.SetBool("Walk", false);
+                Animator animator = other.gameObject.GetComponent<Animator>();
+                if (animator.GetBool("Walk") && !animator.GetBool("CharacterDetected"))
+                {
+                    Debug.Log("non cammino");
+                    animator.SetBool("Walk", false);
+                }
             }
         }
     }

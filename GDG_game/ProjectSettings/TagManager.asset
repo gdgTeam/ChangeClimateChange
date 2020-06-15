@@ -18,6 +18,7 @@ TagManager:
   - Pioggia
   - PickCopertura
   - Scimmia
+  - Robot
   layers:
   - Default
   - TransparentFX

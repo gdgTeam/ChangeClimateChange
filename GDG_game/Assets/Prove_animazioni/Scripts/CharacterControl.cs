@@ -442,7 +442,7 @@ namespace roundbeargames_tutorial
             return obj;
         }
 
-        /*private void OnAnimatorIK()
+        private void OnAnimatorIK()
         {
             //mira al target con IK
             SkinnedMeshAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
@@ -452,7 +452,7 @@ namespace roundbeargames_tutorial
             SkinnedMeshAnimator.SetLookAtWeight(1);
             SkinnedMeshAnimator.SetLookAtPosition(targetTransform.position);
             
-        }*/
+        }
 
         private void fire()
         {

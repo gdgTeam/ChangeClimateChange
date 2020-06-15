@@ -44,6 +44,10 @@ public class Bullet : MonoBehaviour
     private void Hit(Vector3 position, Vector3 direction, Vector3 reflected, Collider collider)
     {
         //qui posso fare qualcosa con l'oggetto che ho colpito (che sarebbe il collider.gameObject)
+        if(collider.gameObject.transform.tag == "Robot")
+        {
+
+        }
         Destroy(gameObject);
     }
 
