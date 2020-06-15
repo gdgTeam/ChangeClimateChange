@@ -7,7 +7,6 @@ namespace roundbeargames_tutorial
     public class KeyboardInput : MonoBehaviour
     {
         private bool protectShield = true;
-        public bool protectPlant = false;
         private CharacterControl control;
         private Animator animator;
         private bool PickUp;
@@ -84,41 +83,45 @@ namespace roundbeargames_tutorial
                 VirtualInputManager.Instance.Interact = false;
             }
 
-            if (Input.GetKey(KeyCode.Q) && !protectPlant)
+            if (Input.GetKey(KeyCode.Q))
             {
                 Debug.Log("Qui");
-                protectPlant = true;
-                VirtualInputManager.Instance.Picking = true;
+                if (control.PickPlant == true || control.PickMetal == true)
+                {
+                    VirtualInputManager.Instance.Picking = true;
+                }
             }
             else
             {
                 VirtualInputManager.Instance.Picking = false;
             }
 
-            if (Input.GetKey(KeyCode.Q) && !VirtualInputManager.Instance.Picking && protectPlant)
+            if (Input.GetKey(KeyCode.Q) && !VirtualInputManager.Instance.Picking)
             {
-                protectPlant = false;
-                VirtualInputManager.Instance.PickingDown = true;
+                if (control.protectPlant || control.pickedMetal)
+                {
+                    VirtualInputManager.Instance.PickingDown = true;
+                }
             }
             else
             {
                 VirtualInputManager.Instance.PickingDown = false;
             }
 
-            if (Input.GetMouseButtonDown(2) && protectShield && protectPlant)
+            if (Input.GetMouseButtonDown(2) && protectShield && control.protectPlant)
             {
                 protectShield = false;
                 VirtualInputManager.Instance.Shielding = true;
                 VirtualInputManager.Instance.ShieldLast = true;
                 StartCoroutine("Shield");
             }
-            if (Input.GetMouseButtonDown(1) && control.Pointed == true && protectPlant)
+            if (Input.GetMouseButtonDown(1) && control.Pointed == true && control.protectPlant)
             {
 
                 VirtualInputManager.Instance.Spiderman = true;
 
             }
-             if (Input.GetMouseButtonUp(1) && protectPlant)
+             if (Input.GetMouseButtonUp(1) && control.protectPlant)
               {
                 VirtualInputManager.Instance.Spiderman = false;
 

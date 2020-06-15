@@ -216,7 +216,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListAbilityData:
-  - {fileID: 11400000, guid: 62223b2f4b81a4ff2a36b43be3e5efaf, type: 2}
   - {fileID: 11400000, guid: 0b0d837385a58443f8f3d14104771727, type: 2}
 --- !u!91 &9100000
 AnimatorController:
@@ -231,7 +230,7 @@ AnimatorController:
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 1
+    m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: Turn
     m_Type: 4
@@ -296,7 +295,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: c3bf06697186040c5a6f5a3fc901d8bc,
+  m_Motion: {fileID: -203655887218126122, guid: e4a5443e282729b4584e1ae3c7c0fc31,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 

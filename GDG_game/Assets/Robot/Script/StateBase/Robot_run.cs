@@ -13,11 +13,12 @@ namespace roundbeargames_tutorial
 
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
-
+            animator.transform.position = new Vector3(animator.transform.position.x, 3.65f, animator.transform.position.z);
         }
 
         public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
+            animator.transform.position = new Vector3(animator.transform.position.x, 3.65f, animator.transform.position.z);
             control = animator.GetComponentInParent<RobotControl>();
             if (control.MoveRight)
                 control.transform.Translate(Vector3.forward * Speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);

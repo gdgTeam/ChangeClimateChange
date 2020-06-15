@@ -11,21 +11,24 @@ namespace roundbeargames_tutorial
 
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
+            playerDetected = false;
         }
 
         public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
-            control = animator.GetComponentInParent<RobotControl>();
-            playerDetected = checkFront(control);
-            if (playerDetected)
-                animator.SetBool("CharacterDetected", true);
-            else
-                animator.SetBool("CharacterDetected", false);
+            if (playerDetected == false)
+            {
+                control = animator.GetComponentInParent<RobotControl>();
+                playerDetected = checkFront(control);
+                if (playerDetected)
+                    animator.SetBool("CharacterDetected", true);
+                else
+                    animator.SetBool("CharacterDetected", false);
+            }
         }
 
         public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
-
         }
 
 
@@ -33,7 +36,7 @@ namespace roundbeargames_tutorial
         {
             RaycastHit hit;
             Debug.DrawRay(control.EdgeCollider.transform.position, control.transform.forward, Color.yellow);
-            if(Physics.Raycast(control.EdgeCollider.gameObject.transform.position, control.transform.forward, out hit, 5f))
+            if(Physics.Raycast(control.EdgeCollider.gameObject.transform.position, control.transform.forward, out hit, 100f))
             {
                 if (hit.collider.gameObject.tag == "Player")
                 {
