@@ -27,7 +27,7 @@ public class offMesh : MonoBehaviour
                 if (method == OffMeshLinkMoveMethod.Parabola)
                     yield return StartCoroutine(Parabola(agent, 2.0f, 0.5f));
                 else if (method == OffMeshLinkMoveMethod.Arrampica)
-                    yield return StartCoroutine(Arrampica(agent, 0.01f,2f));
+                    yield return StartCoroutine(Arrampica(agent, 0.3f,2f));
                 agent.CompleteOffMeshLink();
                 agent.GetComponent<Animator>().SetBool("Arrampica", false);
             }

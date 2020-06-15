@@ -8,10 +8,10 @@ public class CharacterNavController : MonoBehaviour
 {
     //[SerializeField] private Camera _camera;
      public GameObject _targetFeedback;
-
+    public GameObject _targetFeedback2;
     private NavMeshAgent _navMeshAgent;
     private bool fatto=false;
-
+    
     void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
@@ -36,31 +36,38 @@ public class CharacterNavController : MonoBehaviour
                                                                 hit.point.z);
                 _targetFeedback.transform.forward = hit.normal;
             }
-        }
+        }*/
 
-        if (_targetFeedback != null)
-            _targetFeedback.SetActive(!TargetReached());*/
+        if (_targetFeedback == null)
+           Changebox();
+      
         if (_targetFeedback != null)
         {
+           // Debug.Log(_targetFeedback + ":" + TargetReached() + count);
             _navMeshAgent.SetDestination(_targetFeedback.transform.position);
-            if (TargetReached() == true || _targetFeedback == null)
+            if (TargetReached() == true )
             {
-                this.GetComponent<Animator>().SetBool("Walk", false);
-                if (fatto == false)
-                    StartCoroutine(LanciaOggetto());
+                    this.GetComponent<Animator>().SetBool("Walk", false);
+                    if (fatto == false)
+                        StartCoroutine(LanciaOggetto(_targetFeedback));
+               
             }
-            /* if (_navMeshAgent.isOnOffMeshLink)
-             {
-                 _navMeshAgent.autoTraverseOffMeshLink = false;
-                 Debug.Log("navMeshLink");
-             }*/
+           
             else
             {
                 this.GetComponent<Animator>().SetBool("Walk", true);
             }
+             
+
         }
 
-        
+       /* if(fatto==true && _targetFeedback.name == "secondo")
+        {
+          //  Debug.Log("bhbhjbjh");
+            this.GetComponent<NavMeshAgent>().enabled = false;
+        }*/
+
+
     }
 
     private bool TargetReached()
@@ -68,32 +75,47 @@ public class CharacterNavController : MonoBehaviour
         if (!_navMeshAgent.pathPending)
             if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
                 if (!_navMeshAgent.hasPath || _navMeshAgent.velocity.sqrMagnitude == 0f)
+                {
                     return true;
+                }
 
         return false;
     }
-    IEnumerator LanciaOggetto()
+    IEnumerator LanciaOggetto(GameObject target)
     {
-        if (_targetFeedback.transform.position.y> 2.69)
+        if (target!= null && target.transform.position.x< 84 && fatto==false)
         {
-            
+            Debug.Log(target);
             yield return new WaitForSeconds(1f);
             this.GetComponent<Animator>().SetBool("LanciaOggetto", true);
             yield return new WaitForSeconds(3f);
+            
             this.GetComponent<Animator>().SetBool("LanciaOggetto", false);
             this.GetComponent<Animator>().SetBool("LanciaSuRobot", true);
-            //Debug.Log("jhvhjvjhvjh");
-            _targetFeedback.GetComponent<Rigidbody>().AddForce(new Vector3(15f, 0f, 0f), ForceMode.Force);
-            yield return new WaitForSeconds(2f);
-           
+            target.transform.Translate(Vector3.right * 2f * Time.deltaTime);
+        
+            // target.GetComponent<Rigidbody>().AddForce(new Vector3(7f, 0f, 0f), ForceMode.Force);
+            yield return new WaitForSeconds(1f);
+            
             this.GetComponent<Animator>().SetBool("LanciaSuRobot", false);
-            //fatto = true;
-           
-        }
-        else
-        {
+
+            fatto = true;
+           // if(_targetFeedback.name=="primo")
             _targetFeedback = null;
+
         }
+       
+    }
+
+    private void Changebox()
+    {
+
+        fatto = false;
+
+        _targetFeedback = _targetFeedback2;
+        
+       // _targetFeedback2 = null;
+        
     }
 
 }
