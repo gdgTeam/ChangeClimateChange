@@ -26,8 +26,8 @@ namespace roundbeargames_tutorial
         public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
             animator.SetLayerWeight(3, 1);
-            posX = control.gameObject.transform.position.x;
-            posZ = control.gameObject.transform.position.z;
+            posX = GameObject.Find("mixamorig:RightHand").transform.position.x;
+            posZ = GameObject.Find("mixamorig:RightHand").transform.position.z;
             metallo.transform.position = new Vector3(posX, metallo.transform.position.y, posZ);
         }
     }

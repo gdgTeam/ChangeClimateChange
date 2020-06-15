@@ -22,6 +22,7 @@ namespace roundbeargames_tutorial
             rbPersonaggio.isKinematic = true;
             rbPianta.isKinematic = true;
             barraMetallo.transform.SetParent(GameObject.Find("mixamorig:RightHand").transform);
+            control.pickedMetal = true;
         }
 
         public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)

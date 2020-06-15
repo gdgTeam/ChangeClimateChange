@@ -17,6 +17,7 @@ namespace roundbeargames_tutorial
         {
             control = characterState.GetCharacterControl(animator);
             control.sparaOk = false;
+            control.protectPlant = false;
             piantinaMano = GameObject.Find("zaino+pianta");
             rbPersonaggio = control.transform.GetComponent<Rigidbody>();
             rbPianta = piantinaMano.transform.GetComponent<Rigidbody>();

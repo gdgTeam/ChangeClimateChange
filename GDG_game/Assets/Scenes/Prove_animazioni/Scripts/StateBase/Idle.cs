@@ -25,6 +25,9 @@ namespace roundbeargames_tutorial
         public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
             CharacterControl control = characterState.GetCharacterControl(animator);
+
+            CheckFrontPick(control, animator);
+            CheckPickMetallo(control, animator);
            
             if (control.Jump)
             {
@@ -61,7 +64,7 @@ namespace roundbeargames_tutorial
                 animator.SetBool(TransitionParameter.Interact.ToString(), true);
             }
 
-            if (control.Picking && CheckFrontPick(control, animator) && !control.plant)
+            if (control.Picking && !control.plant & control.PickPlant)
             {
                 animator.SetBool(TransitionParameter.PickUp.ToString(), true);
             }
@@ -70,7 +73,7 @@ namespace roundbeargames_tutorial
                 animator.SetBool(TransitionParameter.PickUp.ToString(), false);
             }
 
-            if(control.Picking && CheckPickMetallo(control, animator))
+            if(control.Picking && control.PickMetal)
             {
                 animator.SetBool(TransitionParameter.PickUpMetallo.ToString(), true);
             }
@@ -79,13 +82,22 @@ namespace roundbeargames_tutorial
                 animator.SetBool(TransitionParameter.PickUpMetallo.ToString(), false);
             }
 
-            if (control.PickingDown && control.plant)
+            if (control.PickingDown && control.plant && !control.PickMetal)
             {
                 animator.SetBool(TransitionParameter.PickDown.ToString(), true);
             }
             else
             {
                 animator.SetBool(TransitionParameter.PickDown.ToString(), false);
+            }
+
+            if(control.PickingDown && control.pickedMetal)
+            {
+                animator.SetBool(TransitionParameter.PickDownMetallo.ToString(), true);
+            }
+            else
+            {
+                animator.SetBool(TransitionParameter.PickDownMetallo.ToString(), false);
             }
         }
 
@@ -129,6 +141,10 @@ namespace roundbeargames_tutorial
                     //hit.collider.gameObject.transform.SetParent(GameObject.Find("RightHand").transform);
                     return true;
                 }
+                else
+                {
+                    control.PickPlant = false;
+                }
             }
 
             return false;
@@ -143,7 +159,12 @@ namespace roundbeargames_tutorial
                 if (Physics.Raycast(o.transform.position, control.transform.forward, out hit, PickDistance) && hit.collider.gameObject.tag == "PickCopertura")
                 {
                     //hit.collider.gameObject.transform.SetParent(GameObject.Find("RightHand").transform);
+                    control.PickMetal = true;
                     return true;
+                }
+                else
+                {
+                    control.PickMetal = false;
                 }
             }
 

@@ -17,15 +17,16 @@ namespace roundbeargames_tutorial
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
             control = characterState.GetCharacterControl(animator);
-            control.sparaOk = true;
-            piantina = GameObject.Find("zaino+pianta");
-            piantina.transform.parent = null;
-            rbPersonaggio = control.transform.GetComponent<Rigidbody>();
-            rbPianta = piantina.transform.GetComponent<Rigidbody>();
-            rbPersonaggio.isKinematic = true;
-            rbPianta.isKinematic = true;
             if(control.PickPlant == true)
             {
+                control.sparaOk = true;
+                piantina = GameObject.Find("zaino+pianta");
+                piantina.transform.parent = null;
+                control.protectPlant = true;
+                rbPersonaggio = control.transform.GetComponent<Rigidbody>();
+                rbPianta = piantina.transform.GetComponent<Rigidbody>();
+                rbPersonaggio.isKinematic = true;
+                rbPianta.isKinematic = true;
                 piantina.transform.SetParent(GameObject.Find("mixamorig:RightHand").transform);
             }
         }

@@ -2,17 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickDown_1 : MonoBehaviour
+namespace roundbeargames_tutorial
 {
-    // Start is called before the first frame update
-    void Start()
+    [CreateAssetMenu(fileName = "New State", menuName = "Roundbeargames/AbilityData/PickDownMetal_1")]
+    public class PickDownMetal_1 : StateData
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
+        {
+            animator.SetLayerWeight(3, 0);
+        }
+
+        public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
+        {
+
+        }
+
+        public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
+        {
+
+        }
     }
 }

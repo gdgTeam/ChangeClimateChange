@@ -40,6 +40,8 @@ namespace roundbeargames_tutorial
         public bool Picking;
         public bool PickingDown;
         public bool PickPlant;
+        public bool PickMetal;
+        public bool pickedMetal = false;
         public bool LookRight = true;
         public bool LookLeft;
         public bool plant = false;
@@ -50,7 +52,7 @@ namespace roundbeargames_tutorial
         public bool sparaOk = true;
         public bool interazioneLeva;
         public bool pickMetal;
-        public bool protectPlant;
+        public bool protectPlant = false;
         public Vector3 right = new Vector3(0f, 0f, 0f);
         public Vector3 left = new Vector3(0f, 180f, 0f);
         private bool protectShield;
@@ -317,7 +319,7 @@ namespace roundbeargames_tutorial
 
             
 
-            if (col.gameObject.name == "TriggerPioggiaAcida" && sparaOk)
+            if (col.gameObject.name == "TriggerPioggiaAcida" && sparaOk && !pickedMetal)
             {
                 Debug.Log("StayPioggia");
                 add = add + 0.01f;

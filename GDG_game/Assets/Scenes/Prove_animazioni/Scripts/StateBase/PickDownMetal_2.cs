@@ -21,18 +21,14 @@ namespace roundbeargames_tutorial
             rbPianta = barraMetallo.transform.GetComponent<Rigidbody>();
             rbPersonaggio.isKinematic = true;
             rbPianta.isKinematic = true;
-            /*MeshRenderer piantaSpallaMesh;
-            piantaSpallaMesh = piantinaSpalla.transform.GetComponent<MeshRenderer>();
-            piantaSpallaMesh.enabled = false;*/
             MeshRenderer piantinaManoMesh;
             BoxCollider piantinaManoCollider;
-            control.gameObject.transform.GetChild(3).transform.GetComponent<SkinnedMeshRenderer>().enabled = false;
-            control.gameObject.transform.GetChild(2).transform.GetComponent<SkinnedMeshRenderer>().enabled = false;
             piantinaManoMesh = barraMetallo.transform.GetComponent<MeshRenderer>();
             piantinaManoMesh.enabled = true;
             barraMetallo.transform.GetChild(0).transform.GetComponent<MeshRenderer>().enabled = true;
             piantinaManoCollider = barraMetallo.transform.GetComponent<BoxCollider>();
             piantinaManoCollider.enabled = false;
+            control.pickedMetal = false;
         }
 
         public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
@@ -49,9 +45,6 @@ namespace roundbeargames_tutorial
             barraMetallo.transform.position = new Vector3(control.transform.position.x, barraMetallo.transform.position.y, barraMetallo.transform.position.z);
             rbPersonaggio.isKinematic = false;
             rbPianta.isKinematic = false;
-            /*MeshRenderer piantaSpallaMesh;
-            piantaSpallaMesh = piantinaSpalla.transform.GetComponent<MeshRenderer>();
-            piantaSpallaMesh.enabled = true;*/
         }
     }
 }
