@@ -10,6 +10,7 @@ namespace roundbeargames_tutorial
         public bool MoveRight;
         public bool Stopping;
         public bool Turning;
+        public GameObject EdgeCollider;
 
         private Vector3 left;
         private Vector3 right;
@@ -29,10 +30,10 @@ namespace roundbeargames_tutorial
                 MoveLeft = true;
                 MoveRight = false;
             }
-            else if( this.gameObject.transform.rotation.eulerAngles == right)
+            else if(this.gameObject.transform.rotation.eulerAngles == right)
             {
                 MoveRight = true;
-                MoveLeft = true;
+                MoveLeft = false;
             }
         }
     }

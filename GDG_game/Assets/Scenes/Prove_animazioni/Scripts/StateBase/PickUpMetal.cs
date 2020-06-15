@@ -11,7 +11,6 @@ namespace roundbeargames_tutorial
         CharacterControl control;
         private Rigidbody rbPianta;
         private Rigidbody rbPersonaggio;
-        //public GameObject piantinaSpalla;
 
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
@@ -22,10 +21,7 @@ namespace roundbeargames_tutorial
             rbPianta = barraMetallo.transform.GetComponent<Rigidbody>();
             rbPersonaggio.isKinematic = true;
             rbPianta.isKinematic = true;
-            if (control.PickPlant == true)
-            {
-                barraMetallo.transform.SetParent(GameObject.Find("mixamorig:RightHand").transform);
-            }
+            barraMetallo.transform.SetParent(GameObject.Find("mixamorig:RightHand").transform);
         }
 
         public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
