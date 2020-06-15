@@ -7,10 +7,10 @@ using UnityEngine.AI;
 public class CharacterNavController : MonoBehaviour
 {
     //[SerializeField] private Camera _camera;
-    [SerializeField] private GameObject _targetFeedback;
+     public GameObject _targetFeedback;
 
     private NavMeshAgent _navMeshAgent;
-
+    private bool fatto=false;
 
     void Start()
     {
@@ -40,21 +40,27 @@ public class CharacterNavController : MonoBehaviour
 
         if (_targetFeedback != null)
             _targetFeedback.SetActive(!TargetReached());*/
+        if (_targetFeedback != null)
+        {
+            _navMeshAgent.SetDestination(_targetFeedback.transform.position);
+            if (TargetReached() == true || _targetFeedback == null)
+            {
+                this.GetComponent<Animator>().SetBool("Walk", false);
+                if (fatto == false)
+                    StartCoroutine(LanciaOggetto());
+            }
+            /* if (_navMeshAgent.isOnOffMeshLink)
+             {
+                 _navMeshAgent.autoTraverseOffMeshLink = false;
+                 Debug.Log("navMeshLink");
+             }*/
+            else
+            {
+                this.GetComponent<Animator>().SetBool("Walk", true);
+            }
+        }
 
-        _navMeshAgent.SetDestination(_targetFeedback.transform.position);
-        if (TargetReached()==true )
-        {
-            this.GetComponent<Animator>().SetBool("Walk", false);
-        }
-       /* if (_navMeshAgent.isOnOffMeshLink)
-        {
-            _navMeshAgent.autoTraverseOffMeshLink = false;
-            Debug.Log("navMeshLink");
-        }*/
-        else
-        {
-            this.GetComponent<Animator>().SetBool("Walk", true);
-        }
+        
     }
 
     private bool TargetReached()
@@ -65,6 +71,29 @@ public class CharacterNavController : MonoBehaviour
                     return true;
 
         return false;
+    }
+    IEnumerator LanciaOggetto()
+    {
+        if (_targetFeedback.transform.position.y> 2.69)
+        {
+            
+            yield return new WaitForSeconds(1f);
+            this.GetComponent<Animator>().SetBool("LanciaOggetto", true);
+            yield return new WaitForSeconds(3f);
+            this.GetComponent<Animator>().SetBool("LanciaOggetto", false);
+            this.GetComponent<Animator>().SetBool("LanciaSuRobot", true);
+            //Debug.Log("jhvhjvjhvjh");
+            _targetFeedback.GetComponent<Rigidbody>().AddForce(new Vector3(15f, 0f, 0f), ForceMode.Force);
+            yield return new WaitForSeconds(2f);
+           
+            this.GetComponent<Animator>().SetBool("LanciaSuRobot", false);
+            //fatto = true;
+           
+        }
+        else
+        {
+            _targetFeedback = null;
+        }
     }
 
 }
