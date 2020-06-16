@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Diagnostics;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -43,10 +46,55 @@ public class Bullet : MonoBehaviour
 
     private void Hit(Vector3 position, Vector3 direction, Vector3 reflected, Collider collider)
     {
+
         //qui posso fare qualcosa con l'oggetto che ho colpito (che sarebbe il collider.gameObject)
+
+        UnityEngine.Debug.Log("Hit");
         if(collider.gameObject.transform.tag == "Robot")
         {
+            UnityEngine.Debug.Log("HittingRobot");
+            RobotControl robotControl = collider.gameObject.GetComponent<RobotControl>();
+            Transform[] ts = collider.gameObject.transform.GetComponentsInChildren<Transform>();
+            if (robotControl.hit == 0)
+            {
+                foreach(Transform t in ts)
+                {
+                    if(t.gameObject.name == "Scintille")
+                    {
+                        t.gameObject.active = true;
+                    }
+                }
+                robotControl.hit = robotControl.hit + 1;
+            }
 
+            if (robotControl.hit == 1)
+            {
+                foreach (Transform t in ts)
+                {
+                    if (t.gameObject.name == "Scintille_1")
+                    {
+                        t.gameObject.active = true;
+                    }
+                }
+                robotControl.hit = robotControl.hit + 1;
+            }
+
+            if(robotControl.hit == 2)
+            {
+                foreach (Transform t in ts)
+                {
+                    if (t.gameObject.name == "WhiteSmoke")
+                    {
+                        t.gameObject.active = true;
+                    }
+                }
+                robotControl.hit = robotControl.hit + 1;
+            }
+        }
+
+        if(collider.gameObject.transform.tag == "CuboProva")
+        {
+            Destroy(collider.gameObject);
         }
         Destroy(gameObject);
     }
