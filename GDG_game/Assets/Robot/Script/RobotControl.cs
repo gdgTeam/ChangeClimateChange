@@ -11,10 +11,10 @@ namespace roundbeargames_tutorial
         public bool Stopping;
         public bool Turning;
         public GameObject EdgeCollider;
-
+        private Rigidbody RIGID_BODY;
         private Vector3 left;
         private Vector3 right;
-
+        public List<Collider> RagdollParts = new List<Collider>();
 
         void Start()
         {
@@ -34,6 +34,36 @@ namespace roundbeargames_tutorial
             {
                 MoveRight = true;
                 MoveLeft = false;
+            }
+            SetRagdollParts();
+        }
+        private void SetRagdollParts()
+        {
+            Collider[] colliders = this.gameObject.GetComponentsInChildren<Collider>();
+            foreach (Collider c in colliders)
+            {
+                if (c.gameObject != this.gameObject)
+                {
+                    c.isTrigger = true;
+                    RagdollParts.Add(c);
+                }
+
+            }
+        }
+        public void TurnOnRagdoll()
+        {
+            RIGID_BODY = this.gameObject.GetComponent<Rigidbody>();
+            RIGID_BODY.useGravity = false;
+            RIGID_BODY.velocity = Vector3.zero;
+            this.gameObject.GetComponent<BoxCollider>().enabled = false;
+            this.gameObject.GetComponent<Animator>().enabled = false;
+            this.gameObject.GetComponent<Animator>().avatar = null;
+            foreach (Collider c in RagdollParts)
+            {
+
+                c.enabled = true;
+                c.isTrigger = false;
+                c.attachedRigidbody.velocity = Vector3.zero;
             }
         }
     }

@@ -36,10 +36,12 @@ namespace roundbeargames_tutorial
         {
             RaycastHit hit;
             Debug.DrawRay(control.EdgeCollider.transform.position, control.transform.forward, Color.yellow);
-            if(Physics.Raycast(control.EdgeCollider.gameObject.transform.position, control.transform.forward, out hit, 100f))
+            
+            if (Physics.Raycast(control.EdgeCollider.gameObject.transform.position, control.transform.forward, out hit, 100f))
             {
                 if (hit.collider.gameObject.tag == "Player")
                 {
+                    Debug.Log("trovato");
                     return true;
                 }
             }
