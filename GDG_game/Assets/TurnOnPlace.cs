@@ -20,7 +20,7 @@ public class TurnOnPlace : MonoBehaviour
     {
        
         this.GetComponent<Animator>().SetBool("OnPlace", true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.6f);
         this.GetComponent<Animator>().SetBool("OnPlace", false);
         yield return new WaitForSeconds(4f);
         StartCoroutine(GiraSulPosto());

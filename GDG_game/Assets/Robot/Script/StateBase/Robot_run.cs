@@ -22,15 +22,41 @@ namespace roundbeargames_tutorial
         {
             //animator.transform.position = new Vector3(animator.transform.position.x, 3.65f, animator.transform.position.z);
             control = animator.GetComponentInParent<RobotControl>();
-            /*if (control.MoveRight)
-                control.transform.Translate(Vector3.forward * Speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
+            if (control.MoveRight)
+            {
+                Vector3 targetDirection = player.transform.position - control.transform.position;
+                targetDirection.y = 0f;
+                targetDirection.Normalize();
+                control.transform.Translate(targetDirection * 6.5f * Time.deltaTime);
+                Debug.Log(targetDirection);
+                if (targetDirection.x < 0.1f)
+                {
+                    animator.SetBool("CharacterDetected", false);
+                    animator.SetBool("Walk", false);
+                    player.GetComponent<Animator>().SetBool("FallToDie", true);
+                }
+            }
+
             if (control.MoveLeft)
-                control.transform.Translate(Vector3.forward * Speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
-*/
-            Vector3 targetDirection = control.transform.position - player.transform.position ;
-            targetDirection.y = 0f;
-            targetDirection.Normalize();
-            control.transform.Translate(targetDirection * 6.5f * Time.deltaTime);
+            {
+                Vector3 targetDirection = control.transform.position - player.transform.position;
+                targetDirection.y = 0f;
+                targetDirection.Normalize();
+                control.transform.Translate(targetDirection * 6.5f * Time.deltaTime);
+                Debug.Log(targetDirection);
+                if (targetDirection.x < 0.1f)
+                {
+                   animator.SetBool("CharacterDetected", false);
+                   animator.SetBool("Walk", false);
+                    player.GetComponent<Animator>().SetBool("FallToDie", true);
+                }
+            }
+
+           
+
+
+
+
         }
 
         public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
