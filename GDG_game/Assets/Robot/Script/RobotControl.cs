@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace roundbeargames_tutorial
-{
+
     public class RobotControl : MonoBehaviour
     {
         public bool Moving;
@@ -15,11 +14,13 @@ namespace roundbeargames_tutorial
         private Vector3 left;
         private Vector3 right;
         public List<Collider> RagdollParts = new List<Collider>();
+        public int hit;
 
         void Start()
         {
             left = new Vector3(0, 180f, 0);
             right = new Vector3(0, 0, 0);
+            hit = 0;
         }
 
         // Update is called once per frame
@@ -67,4 +68,4 @@ namespace roundbeargames_tutorial
             }
         }
     }
-}
+
