@@ -15,9 +15,11 @@ using UnityEngine;
         private Vector3 right;
         public List<Collider> RagdollParts = new List<Collider>();
         public int hit;
+    public GameObject player;
 
         void Start()
         {
+            player = GameObject.FindGameObjectWithTag("Player");
             left = new Vector3(0, 180f, 0);
             right = new Vector3(0, 0, 0);
             hit = 0;

@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListAbilityData:
-  - {fileID: 11400000, guid: 62223b2f4b81a4ff2a36b43be3e5efaf, type: 2}
+  - {fileID: 11400000, guid: 0cfd7a5522c47084f895efaf20a10118, type: 2}
 --- !u!1101 &-3143297242016557089
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -403,7 +403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ListAbilityData:
   - {fileID: 11400000, guid: 40c2d96491e304381900240f2324c134, type: 2}
-  - {fileID: 11400000, guid: 62223b2f4b81a4ff2a36b43be3e5efaf, type: 2}
+  - {fileID: 11400000, guid: 0cfd7a5522c47084f895efaf20a10118, type: 2}
 --- !u!1102 &454994130459000801
 AnimatorState:
   serializedVersion: 5
