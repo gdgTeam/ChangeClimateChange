@@ -15,11 +15,11 @@ using UnityEngine;
         private Vector3 right;
         public List<Collider> RagdollParts = new List<Collider>();
         public int hit;
-    public GameObject player;
-
+        public bool OnPlace =false;
+    public bool isTurning = false;
         void Start()
         {
-            player = GameObject.FindGameObjectWithTag("Player");
+            
             left = new Vector3(0, 180f, 0);
             right = new Vector3(0, 0, 0);
             hit = 0;
@@ -39,6 +39,11 @@ using UnityEngine;
                 MoveLeft = false;
             }
             SetRagdollParts();
+
+        if (OnPlace == true && !isTurning)
+        {
+            StartCoroutine(GiraSulPosto());
+        }
         }
         private void SetRagdollParts()
         {
@@ -69,5 +74,16 @@ using UnityEngine;
                 c.attachedRigidbody.velocity = Vector3.zero;
             }
         }
+    private IEnumerator GiraSulPosto()
+    {
+
+        isTurning = true;
+        this.GetComponent<Animator>().SetBool("OnPlace", true);
+        yield return new WaitForSeconds(0.6f);
+        this.GetComponent<Animator>().SetBool("OnPlace", false);
+        yield return new WaitForSeconds(4f);
+        isTurning = false;
+        
     }
+}
 
