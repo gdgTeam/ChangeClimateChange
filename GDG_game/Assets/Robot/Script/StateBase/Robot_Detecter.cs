@@ -9,11 +9,11 @@ namespace roundbeargames_tutorial
         public bool playerDetected;
         private RobotControl control;
         public GameObject player;
-        
+        bool preso=false;
 
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
-            
+            preso = false;
             // control = characterState.GetRobotControl(animator);
             control = animator.GetComponentInParent<RobotControl>();
             player = GameObject.FindGameObjectWithTag("Player");
@@ -24,6 +24,8 @@ namespace roundbeargames_tutorial
 
         public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
+           
+            Debug.Log(preso);
 
             control = animator.GetComponentInParent<RobotControl>();
            
@@ -31,13 +33,13 @@ namespace roundbeargames_tutorial
             
                 control = animator.GetComponentInParent<RobotControl>();
                 playerDetected = checkFront(control);
-            Debug.Log(playerDetected);
+
             if (playerDetected)
                
                     animator.SetBool("CharacterDetected", true);
             else if (!playerDetected)
             {
-                    Debug.Log("Jhbbhj");
+                    
                     animator.SetBool("CharacterDetected", false);
                     control.OnPlace = true;
                     animator.SetBool("Walk", false);
@@ -69,23 +71,38 @@ namespace roundbeargames_tutorial
         
         bool checkFront(RobotControl control)
         {
-            Debug.Log("check");
-
             foreach (GameObject o in control.FrontSpheres)
             {
-                Debug.Log(o);
-                Debug.DrawRay(o.transform.position, control.transform.forward * 0.2f, Color.yellow);
+                Debug.DrawRay(o.transform.position, control.transform.forward * 0.5f, Color.red);
                 RaycastHit hit;
-                if (Physics.Raycast(o.transform.position, control.transform.forward, out hit, 50f))
+                if (Physics.Raycast(o.transform.position,control.transform.forward, out hit, 10f))
                 {
 
                     if (hit.collider.gameObject.tag == "Player")
                     {
-                        Debug.Log("trovato");
-                        return true;
+
+                        bool interact = hit.collider.gameObject.GetComponent<CharacterControl>().Interact;
+                        bool movingR = hit.collider.gameObject.GetComponent<CharacterControl>().MoveRight;
+                        bool movingL = hit.collider.gameObject.GetComponent<CharacterControl>().MoveLeft;
+                        if (interact && !preso)
+                        {
+                            if (movingR || movingL)
+                            {
+                                preso = true;
+                                Debug.Log("trovato");
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+
+                        }
+                        else return true;
+                       
                     }
-                    
-                  
+
+                   
 
                 }
                 

@@ -27,11 +27,12 @@ namespace roundbeargames_tutorial
             if (control.MoveRight)
             {
                 Vector3 targetDirection = player.transform.position - control.transform.position;
+                Vector3 diff = control.transform.position - player.transform.position;
                 targetDirection.y = 0f;
                 targetDirection.Normalize();
                 control.transform.Translate(targetDirection * 6.5f * Time.deltaTime);
                 Debug.Log(targetDirection);
-                if (targetDirection.x < 0.1f)
+                if (diff.z < 1f || control.colliding)
                 {
                     animator.SetBool("CharacterDetected", false);
                     animator.SetBool("Walk", false);
@@ -42,11 +43,12 @@ namespace roundbeargames_tutorial
             if (control.MoveLeft)
             {
                 Vector3 targetDirection = control.transform.position - player.transform.position;
+                Vector3 diff= control.transform.position - player.transform.position;
                 targetDirection.y = 0f;
                 targetDirection.Normalize();
                 control.transform.Translate(targetDirection * 6.5f * Time.deltaTime);
-                Debug.Log(targetDirection);
-                if (targetDirection.x < 0.1f)
+                
+                if (diff.z < 1f || control.colliding)
                 {
                    animator.SetBool("CharacterDetected", false);
                    animator.SetBool("Walk", false);

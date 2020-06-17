@@ -20,6 +20,11 @@ using UnityEngine;
     public List<GameObject> BottomSpheres = new List<GameObject>();
     public List<GameObject> FrontSpheres = new List<GameObject>();
     public GameObject player;
+    public int dir;
+    public float offset;
+    public bool fatto;
+    public bool fatto2;
+    public bool colliding;
     void Start()
         {
 
@@ -27,7 +32,7 @@ using UnityEngine;
             left = new Vector3(0, 180f, 0);
             right = new Vector3(0, 0, 0);
             hit = 0;
-            SetCollidersSpheres();
+           // SetCollidersSpheres();
         }
 
         // Update is called once per frame
@@ -106,18 +111,19 @@ using UnityEngine;
         GameObject obj = Instantiate(this.EdgeCollider, pos, Quaternion.identity);
         return obj;
     }
-    private void SetCollidersSpheres()
+    public void SetCollidersSpheresRight()
     {
+
         BoxCollider box = this.GetComponent<BoxCollider>();
-        box.transform.position = new Vector3(player.transform.position.x, box.transform.position.y, box.transform.position.z);
+        //box.transform.position = new Vector3(player.transform.position.x, box.transform.position.y, box.transform.position.z);
         float bottom = box.bounds.center.y - box.bounds.extents.y;
         float top = box.bounds.center.y + box.bounds.extents.y;
         float front = box.bounds.center.z + box.bounds.extents.z;
         float back = box.bounds.center.z - box.bounds.extents.z;
-
-        GameObject bottomFront = CreateEdgeSphere(new Vector3(this.transform.position.x, bottom, front));
-        GameObject bottomBack = CreateEdgeSphere(new Vector3(this.transform.position.x, bottom, back));
-        GameObject topFront = CreateEdgeSphere(new Vector3(this.transform.position.x, top, front));
+        offset = Mathf.Abs(player.transform.position.x - this.transform.position.x);
+        GameObject bottomFront = CreateEdgeSphere(new Vector3(this.transform.position.x+dir*offset, bottom, front));
+        GameObject bottomBack = CreateEdgeSphere(new Vector3(this.transform.position.x+dir*offset, bottom, back));
+        GameObject topFront = CreateEdgeSphere(new Vector3(this.transform.position.x+dir*offset, top, front));
 
         bottomFront.transform.parent = this.transform;
         bottomBack.transform.parent = this.transform;
@@ -126,15 +132,58 @@ using UnityEngine;
         BottomSpheres.Add(bottomFront);
         BottomSpheres.Add(bottomBack);
 
-        FrontSpheres.Add(bottomFront);
-        FrontSpheres.Add(topFront);
+         FrontSpheres.Add(bottomFront);
+         FrontSpheres.Add(topFront);
 
         float horSec = (bottomFront.transform.position - bottomBack.transform.position).magnitude / 5f;
         CreateMiddleSpheres(bottomFront, -this.transform.forward, horSec, 4, BottomSpheres);
 
         float verSec = (bottomFront.transform.position - topFront.transform.position).magnitude / 10f;
         CreateMiddleSpheres(bottomFront, this.transform.up, verSec, 9, FrontSpheres);
+        fatto = true;
 
+    }
+    public void SetCollidersSpheresLeft()
+    {
+        
+        BoxCollider box = this.GetComponent<BoxCollider>();
+        //box.transform.position = new Vector3(player.transform.position.x, box.transform.position.y, box.transform.position.z);
+        float bottom = box.bounds.center.y - box.bounds.extents.y;
+        float top = box.bounds.center.y + box.bounds.extents.y;
+        float front = box.bounds.center.z + box.bounds.extents.z;
+        float back = box.bounds.center.z - box.bounds.extents.z;
+        offset = Mathf.Abs(player.transform.position.x - this.transform.position.x);
+        GameObject bottomFront = CreateEdgeSphere(new Vector3(this.transform.position.x+offset, bottom, front));
+        GameObject bottomBack = CreateEdgeSphere(new Vector3(this.transform.position.x+offset , bottom, back));
+        GameObject topFront = CreateEdgeSphere(new Vector3(this.transform.position.x+offset, top, front));
+
+        bottomFront.transform.parent = this.transform;
+        bottomBack.transform.parent = this.transform;
+        topFront.transform.parent = this.transform;
+
+        BottomSpheres.Add(bottomFront);
+        BottomSpheres.Add(bottomBack);
+
+         FrontSpheres.Add(bottomFront);
+         FrontSpheres.Add(topFront);
+
+        float horSec = (bottomFront.transform.position - bottomBack.transform.position).magnitude / 5f;
+        CreateMiddleSpheres(bottomFront, -this.transform.forward, horSec, 4, BottomSpheres);
+
+        float verSec = (bottomFront.transform.position - topFront.transform.position).magnitude / 10f;
+        CreateMiddleSpheres(bottomFront, this.transform.up, verSec, 9, FrontSpheres);
+        fatto2 = true;
+       
+
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.gameObject.tag == "Pushable")
+        {
+            colliding = true;
+        }
+        else
+            colliding = false;
     }
 }
 
