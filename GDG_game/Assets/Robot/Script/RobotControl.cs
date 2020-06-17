@@ -17,12 +17,17 @@ using UnityEngine;
         public int hit;
         public bool OnPlace =false;
     public bool isTurning = false;
-        void Start()
+    public List<GameObject> BottomSpheres = new List<GameObject>();
+    public List<GameObject> FrontSpheres = new List<GameObject>();
+    public GameObject player;
+    void Start()
         {
-            
+
+        player = GameObject.FindGameObjectWithTag("Player");
             left = new Vector3(0, 180f, 0);
             right = new Vector3(0, 0, 0);
             hit = 0;
+            SetCollidersSpheres();
         }
 
         // Update is called once per frame
@@ -84,6 +89,52 @@ using UnityEngine;
         yield return new WaitForSeconds(4f);
         isTurning = false;
         
+    }
+    public void CreateMiddleSpheres(GameObject start, Vector3 dir, float sec, int interations, List<GameObject> spheresList)
+    {
+        for (int i = 0; i < interations; i++)
+        {
+            Vector3 pos = start.transform.position + (dir * sec * (i + 1));
+
+            GameObject newObj = CreateEdgeSphere(pos);
+            newObj.transform.parent = this.transform;
+            spheresList.Add(newObj);
+        }
+    }
+    public GameObject CreateEdgeSphere(Vector3 pos)
+    {
+        GameObject obj = Instantiate(this.EdgeCollider, pos, Quaternion.identity);
+        return obj;
+    }
+    private void SetCollidersSpheres()
+    {
+        BoxCollider box = this.GetComponent<BoxCollider>();
+        box.transform.position = new Vector3(player.transform.position.x, box.transform.position.y, box.transform.position.z);
+        float bottom = box.bounds.center.y - box.bounds.extents.y;
+        float top = box.bounds.center.y + box.bounds.extents.y;
+        float front = box.bounds.center.z + box.bounds.extents.z;
+        float back = box.bounds.center.z - box.bounds.extents.z;
+
+        GameObject bottomFront = CreateEdgeSphere(new Vector3(this.transform.position.x, bottom, front));
+        GameObject bottomBack = CreateEdgeSphere(new Vector3(this.transform.position.x, bottom, back));
+        GameObject topFront = CreateEdgeSphere(new Vector3(this.transform.position.x, top, front));
+
+        bottomFront.transform.parent = this.transform;
+        bottomBack.transform.parent = this.transform;
+        topFront.transform.parent = this.transform;
+
+        BottomSpheres.Add(bottomFront);
+        BottomSpheres.Add(bottomBack);
+
+        FrontSpheres.Add(bottomFront);
+        FrontSpheres.Add(topFront);
+
+        float horSec = (bottomFront.transform.position - bottomBack.transform.position).magnitude / 5f;
+        CreateMiddleSpheres(bottomFront, -this.transform.forward, horSec, 4, BottomSpheres);
+
+        float verSec = (bottomFront.transform.position - topFront.transform.position).magnitude / 10f;
+        CreateMiddleSpheres(bottomFront, this.transform.up, verSec, 9, FrontSpheres);
+
     }
 }
 
