@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: "Assets/Scenes/Men\xF9.unity"
     guid: 96466fe42e8c2a54f996c7cd64e74635
   - enabled: 1
+    path: Assets/Scenes/Prove_animazioni/Animazioni.unity
+    guid: 641b804ce1d986e44adf280e2023b861
+  - enabled: 1
     path: Assets/Scenes/Scena_foresta.unity
     guid: 2f625771e918b3f4db32ac73c0229254
+  - enabled: 1
+    path: Assets/Scenes/ScenaDiProva/Scena/SampleScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}

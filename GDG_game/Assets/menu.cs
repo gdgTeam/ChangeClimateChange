@@ -10,7 +10,7 @@ public class menu : MonoBehaviour
     public void PlayGame()
     {
         click.Play();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); 
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void QuitGame()
