@@ -29,17 +29,20 @@ namespace roundbeargames_tutorial
             {
                 //animator.SetBool(TransitionParameter.Push.ToString(), true);
                 control.transform.Translate(Vector3.forward * Speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
-                if (tree)
-                {
-                    pushableTree.transform.Rotate(new Vector3(-10f, 0, 0) * Time.deltaTime, Space.Self);
-                    Debug.Log("rotazioneAlbero");
-                }
             }
 
             if (!control.Interact)
             {
-                //animator.SetBool(TransitionParameter.Push.ToString(), false);
-                return;
+                Debug.Log("Mollo tutto da PUSH");
+                animator.SetBool(TransitionParameter.Interact.ToString(), false);
+                //return;
+            }
+
+            if (!control.MoveRight && !control.MoveLeft)
+            {
+                Debug.Log("Non PUSHO più");
+                animator.SetBool(TransitionParameter.Push.ToString(), false);
+                //return;
             }
 
         }
