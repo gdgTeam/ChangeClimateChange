@@ -26,15 +26,21 @@ namespace roundbeargames_tutorial
             {
                 //animator.SetBool(TransitionParameter.Pull.ToString(), true);
                 control.transform.Translate(-Vector3.forward * Speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
+            }
 
+            if (!control.Interact)
+            {
+                Debug.Log("Mollo l'oggetto dal PULL");
+                animator.SetBool(TransitionParameter.Interact.ToString(), false);
+                //return;
             }
 
             if (!control.MoveRight && !control.MoveLeft)
             {
-                //animator.SetBool(TransitionParameter.Pull.ToString(), false);
-                return;
+                Debug.Log("Non PULLO più");
+                animator.SetBool(TransitionParameter.Pull.ToString(), false);
+                //return;
             }
-
         }
 
         public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
