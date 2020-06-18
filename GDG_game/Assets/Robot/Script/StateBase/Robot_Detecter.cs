@@ -9,45 +9,53 @@ namespace roundbeargames_tutorial
         public bool playerDetected;
         private RobotControl control;
         public GameObject player;
-        
-
+        bool preso;
+        LineRenderer lr;
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
-            
+           
+            preso = false;
+            playerDetected = false;
             // control = characterState.GetRobotControl(animator);
             control = animator.GetComponentInParent<RobotControl>();
             player = GameObject.FindGameObjectWithTag("Player");
-            playerDetected = false;
-           
+            playerDetected = checkFront(control);
+
             // control.EdgeCollider.transform.position = new Vector3(player.transform.position.x, control.EdgeCollider.transform.position.y, control.EdgeCollider.transform.position.z);
         }
 
         public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
 
+
+            Debug.Log("preso:" +  preso);
+            Debug.Log("pD :" + playerDetected);
             control = animator.GetComponentInParent<RobotControl>();
            
             // control.EdgeCollider.transform.position = new Vector3(player.transform.position.x, control.EdgeCollider.transform.position.y, control.transform.position.z);
             
                 control = animator.GetComponentInParent<RobotControl>();
                 playerDetected = checkFront(control);
-            //Debug.Log(playerDetected);
-            if (playerDetected)
-               
-                    animator.SetBool("CharacterDetected", true);
-            else if (!playerDetected)
+
+            if ( playerDetected||preso)
             {
-                    //Debug.Log("Jhbbhj");
-                    animator.SetBool("CharacterDetected", false);
-                    control.OnPlace = true;
-                    animator.SetBool("Walk", false);
-                }
+                
+                animator.SetBool("CharacterDetected", true);
+            }
+            else if (!playerDetected && !preso)
+            {
+
+                animator.SetBool("CharacterDetected", false);
+                control.OnPlace = true;
+                animator.SetBool("Walk", false);
+            }
                     
             
         }
 
         public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
+           
         }
 
 
@@ -69,28 +77,63 @@ namespace roundbeargames_tutorial
         
         bool checkFront(RobotControl control)
         {
-            //Debug.Log("check");
-
+            
+            
+           
+           // Debug.DrawRay(control.transform.position, control.transform.forward * 10f, Color.red);
             foreach (GameObject o in control.FrontSpheres)
             {
-                Debug.Log(o);
-                Debug.DrawRay(o.transform.position, control.transform.forward * 0.2f, Color.yellow);
+                
                 RaycastHit hit;
-                if (Physics.Raycast(o.transform.position, control.transform.forward, out hit, 50f))
+                if (Physics.Raycast(o.transform.position, control.transform.forward, out hit, 10f))
                 {
-
-                    if (hit.collider.gameObject.tag == "Player")
-                    {
-                        Debug.Log("trovato");
-                        return true;
-                    }
                     
-                  
+                   
+                    if (!preso)
+                    {
+                        
+
+                        if (hit.collider.gameObject.tag == "Player")
+                        {
+
+                           
+                            bool interact = hit.collider.gameObject.GetComponent<CharacterControl>().Interact;
+                            bool movingR = hit.collider.gameObject.GetComponent<CharacterControl>().MoveRight;
+                            bool movingL = hit.collider.gameObject.GetComponent<CharacterControl>().MoveLeft;
+                            if (interact)
+                            {
+                               
+                                if (movingR || movingL)
+                                {
+                                    preso = true;
+                                   
+                                    return true;
+                                }
+                                else
+                                {
+
+                                    return false;
+                                }
+
+                            }
+                            else
+                            {
+                                preso = true;
+                                return true;
+                            }
+
+                        }
+
+
+
+                    }
+                   
 
                 }
                 
             }
             return false;
+
         }
     }
 }

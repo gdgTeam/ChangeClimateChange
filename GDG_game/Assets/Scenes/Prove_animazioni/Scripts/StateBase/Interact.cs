@@ -15,8 +15,6 @@ namespace roundbeargames_tutorial
         private GameObject pushableTree;
         private Vector3 rotation;
 
-
-
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
             //PushDistance = 0.5f;
@@ -28,23 +26,32 @@ namespace roundbeargames_tutorial
         public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
             CharacterControl control = characterState.GetCharacterControl(animator);
+            rotation = control.transform.rotation.eulerAngles;
 
-            Debug.Log("Rotation: " + rotation);
-            Debug.Log("Right: " + control.right);
-            Debug.Log("MoveRight: " + control.MoveRight);
-            if ((control.MoveRight && rotation==control.right) || (control.MoveLeft && rotation==control.left))
+            if (control.MoveRight && !control.girato)
             {
                 Debug.Log("IF");
                 animator.SetBool(TransitionParameter.Push.ToString(), true);
                 animator.SetBool(TransitionParameter.Pull.ToString(), false);
             }
-            else if((control.MoveRight && rotation==control.left) || (control.MoveLeft && rotation==control.right))
+            else if(control.MoveLeft && control.girato)
+            {
+                
+                animator.SetBool(TransitionParameter.Push.ToString(), true);
+                animator.SetBool(TransitionParameter.Pull.ToString(), false);
+            }
+            else if(control.MoveRight && control.girato)
+            {
+                animator.SetBool(TransitionParameter.Pull.ToString(), true);
+                animator.SetBool(TransitionParameter.Push.ToString(), false);
+            }
+            else if(control.MoveLeft && !control.girato)
             {
                 animator.SetBool(TransitionParameter.Pull.ToString(), true);
                 animator.SetBool(TransitionParameter.Push.ToString(), false);
             }
             else if(!control.MoveRight && !control.MoveLeft)
-            {
+            {
                 Debug.Log("ELSEIF");
                 animator.SetBool(TransitionParameter.Push.ToString(), false);
                 animator.SetBool(TransitionParameter.Pull.ToString(), false);
@@ -82,4 +89,4 @@ namespace roundbeargames_tutorial
         }
 
     }
-}
+}
