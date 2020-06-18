@@ -97,7 +97,7 @@ namespace roundbeargames_tutorial
         Material[] piantinaMaterials;
         Material[] zainettoMaterial;
         public float add;
-
+        public float posx;
         [SerializeField] private AudioSource soundCorazza;
 
         
@@ -115,6 +115,7 @@ namespace roundbeargames_tutorial
 
         private void Start()
         {
+            posx = this.transform.position.x;
             scale = this.transform.localScale;
             mainCamera = Camera.main;
             Cursor.SetCursor(mouseStandard, hotspot, cursorMode);

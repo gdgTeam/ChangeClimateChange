@@ -178,12 +178,15 @@ using UnityEngine;
     }
     private void OnCollisionEnter(Collision collision)
     {
+       
         if (collision.collider.gameObject.tag == "Pushable")
         {
+            Debug.Log("collido");
             colliding = true;
         }
         else
             colliding = false;
+            
     }
 }
 
