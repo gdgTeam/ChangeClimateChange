@@ -50,6 +50,7 @@ namespace roundbeargames_tutorial
                 
                 if (diff.z < 1f || control.colliding)
                 {
+
                    animator.SetBool("CharacterDetected", false);
                    animator.SetBool("Walk", false);
                     player.GetComponent<Animator>().SetBool("FallToDie", true);

@@ -17,7 +17,7 @@ public class OnTriggerRobots : MonoBehaviour
     {
         
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         Debug.Log(other);
         if (other.gameObject.tag=="Player")

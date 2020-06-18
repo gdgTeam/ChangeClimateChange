@@ -37,7 +37,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Walk
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 1783189366150013900}
+  m_DstState: {fileID: 0}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
@@ -114,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ListAbilityData:
   - {fileID: 11400000, guid: 0ec65b94dd8751748a472c1b3193e87c, type: 2}
+  - {fileID: 11400000, guid: 0cfd7a5522c47084f895efaf20a10118, type: 2}
 --- !u!1101 &-6810753460030792903
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
