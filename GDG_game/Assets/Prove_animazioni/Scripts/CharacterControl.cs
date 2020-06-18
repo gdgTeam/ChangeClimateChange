@@ -462,7 +462,8 @@ namespace roundbeargames_tutorial
                 var go = Instantiate(bulletPrefab);
                 go.transform.position = muzzleTransform.position;
                 var bullet = go.GetComponent<Bullet>();
-                bullet.fire(go.transform.position, muzzleTransform.eulerAngles, gameObject.layer);
+                //bullet.fire(go.transform.position, muzzleTransform.eulerAngles, gameObject.layer);
+                bullet.fire_prova(go.transform.position, targetTransform.position);
             }
         }
 
