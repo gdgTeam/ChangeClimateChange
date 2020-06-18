@@ -13,6 +13,8 @@ namespace roundbeargames_tutorial
         public void Start()
         {
             player = GameObject.FindGameObjectWithTag("Player");
+            this.transform.position = new Vector3(player.transform.position.x, this.transform.position.y, this.transform.position.z);
+          
         }
         public static bool IsLedge (GameObject obj)
         {
@@ -25,7 +27,7 @@ namespace roundbeargames_tutorial
 
         public void Update()
         {
-            Offset.x =  player.GetComponent<CharacterControl>().posx - this.transform.position.x;
+            Offset.x =  0;
         }
     }
 

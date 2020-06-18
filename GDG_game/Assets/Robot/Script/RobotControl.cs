@@ -25,14 +25,15 @@ using UnityEngine;
     public bool fatto;
     public bool fatto2;
     public bool colliding;
+   // public LineRenderer lr;
     void Start()
         {
-
+       
         player = GameObject.FindGameObjectWithTag("Player");
-            left = new Vector3(0, 180f, 0);
-            right = new Vector3(0, 0, 0);
-            hit = 0;
-           // SetCollidersSpheres();
+        left = new Vector3(0, 180f, 0);
+        right = new Vector3(0, 0, 0);
+        hit = 0;
+        // SetCollidersSpheres();
         }
 
         // Update is called once per frame
@@ -49,7 +50,13 @@ using UnityEngine;
                 MoveLeft = false;
             }
             SetRagdollParts();
-
+       /* if (lr != null)
+        {
+           
+            lr.SetPosition(0, this.transform.position);
+            lr.SetPosition(1, this.transform.forward * 10f);
+        }
+        */
         if (OnPlace == true && !isTurning)
         {
             StartCoroutine(GiraSulPosto());
