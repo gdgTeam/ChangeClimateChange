@@ -29,8 +29,12 @@ namespace roundbeargames_tutorial
         {
             CharacterControl control = characterState.GetCharacterControl(animator);
 
+            Debug.Log("Rotation: " + rotation);
+            Debug.Log("Right: " + control.right);
+            Debug.Log("MoveRight: " + control.MoveRight);
             if ((control.MoveRight && rotation==control.right) || (control.MoveLeft && rotation==control.left))
             {
+                Debug.Log("IF");
                 animator.SetBool(TransitionParameter.Push.ToString(), true);
                 animator.SetBool(TransitionParameter.Pull.ToString(), false);
             }
@@ -41,6 +45,7 @@ namespace roundbeargames_tutorial
             }
             else if(!control.MoveRight && !control.MoveLeft)
             {
+                Debug.Log("ELSEIF");
                 animator.SetBool(TransitionParameter.Push.ToString(), false);
                 animator.SetBool(TransitionParameter.Pull.ToString(), false);
             }

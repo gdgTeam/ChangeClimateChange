@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad790399241924c12b6d432a309fae70, type: 3}
   m_Name: Idle
   m_EditorClassIdentifier: 
-  BlockDistance: 0.5
+  BlockDistance: 0.7
   PickDistance: 0.2
+  plant: 0
   hand: {fileID: 0}

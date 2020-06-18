@@ -31,13 +31,13 @@ namespace roundbeargames_tutorial
             
                 control = animator.GetComponentInParent<RobotControl>();
                 playerDetected = checkFront(control);
-            Debug.Log(playerDetected);
+            //Debug.Log(playerDetected);
             if (playerDetected)
                
                     animator.SetBool("CharacterDetected", true);
             else if (!playerDetected)
             {
-                    Debug.Log("Jhbbhj");
+                    //Debug.Log("Jhbbhj");
                     animator.SetBool("CharacterDetected", false);
                     control.OnPlace = true;
                     animator.SetBool("Walk", false);
@@ -69,7 +69,7 @@ namespace roundbeargames_tutorial
         
         bool checkFront(RobotControl control)
         {
-            Debug.Log("check");
+            //Debug.Log("check");
 
             foreach (GameObject o in control.FrontSpheres)
             {

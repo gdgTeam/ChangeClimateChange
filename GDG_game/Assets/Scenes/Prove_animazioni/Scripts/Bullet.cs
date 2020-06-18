@@ -50,7 +50,7 @@ using UnityEngine;
             //qui posso fare qualcosa con l'oggetto che ho colpito (che sarebbe il collider.gameObject)
 
             
-            if (collider.gameObject.transform.tag == "Robot")
+            /*if (collider.gameObject.transform.tag == "Robot")
             {
                 UnityEngine.Debug.Log("HittingRobot");
                 RobotControl robotControl = collider.gameObject.GetComponent<RobotControl>();
@@ -96,7 +96,7 @@ using UnityEngine;
             {
                 Destroy(collider.gameObject);
             }
-            Destroy(gameObject);
+            Destroy(gameObject);*/
         }
 
         public void fire(Vector3 position, Vector3 euler, int layer)
@@ -118,12 +118,9 @@ using UnityEngine;
 
         if (collider.gameObject.transform.tag == "Robot")
         {
-            UnityEngine.Debug.Log("HittingRobot");
             Transform hips = collider.gameObject.transform.GetChild(0);
             RobotControl robotControl = collider.gameObject.GetComponent<RobotControl>();
             UnityEngine.Debug.Log(robotControl.hit);
-            Transform[] ts = hips.GetComponentsInChildren<Transform>();
-            UnityEngine.Debug.Log("Dimensione ts: " + ts.Length);
             if (robotControl.hit == 0)
             {
                 hips.GetChild(3).gameObject.active = true;

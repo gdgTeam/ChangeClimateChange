@@ -21968,12 +21968,12 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: dd8bf6a26884a4536a13c83f832523d7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 83.28
+      value: 84.14
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: dd8bf6a26884a4536a13c83f832523d7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.09
+      value: 4.28
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: dd8bf6a26884a4536a13c83f832523d7,
         type: 3}
@@ -21988,7 +21988,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: dd8bf6a26884a4536a13c83f832523d7,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.17364816
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: dd8bf6a26884a4536a13c83f832523d7,
         type: 3}
@@ -21998,7 +21998,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: dd8bf6a26884a4536a13c83f832523d7,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9848078
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: dd8bf6a26884a4536a13c83f832523d7,
         type: 3}
@@ -22013,7 +22013,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: dd8bf6a26884a4536a13c83f832523d7,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: dd8bf6a26884a4536a13c83f832523d7,
         type: 3}
@@ -22023,17 +22023,17 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: dd8bf6a26884a4536a13c83f832523d7,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.0490775
+      value: 2.6939223
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: dd8bf6a26884a4536a13c83f832523d7,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.0490775
+      value: 2.6939223
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: dd8bf6a26884a4536a13c83f832523d7,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.0490775
+      value: 2.6939223
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: dd8bf6a26884a4536a13c83f832523d7,
         type: 3}
@@ -22065,8 +22065,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6253585, y: 0.65, z: 0.61463624}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.6253585, y: 0.65, z: 0.47148794}
+  m_Center: {x: 0, y: 0, z: 0.071574144}
 --- !u!1 &456051824
 GameObject:
   m_ObjectHideFlags: 0
