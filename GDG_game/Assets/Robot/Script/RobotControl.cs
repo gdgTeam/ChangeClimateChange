@@ -93,7 +93,6 @@ using UnityEngine;
         }
     private IEnumerator GiraSulPosto()
     {
-
         isTurning = true;
         this.GetComponent<Animator>().SetBool("OnPlace", true);
         yield return new WaitForSeconds(0.6f);

@@ -13,7 +13,7 @@ namespace roundbeargames_tutorial
         }
 
         // Update is called once per frame
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerExit(Collider other)
         {
             if (other.gameObject.tag == "Scimmia")
             {
