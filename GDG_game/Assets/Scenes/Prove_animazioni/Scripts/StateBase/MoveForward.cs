@@ -11,11 +11,12 @@ namespace roundbeargames_tutorial
         public float Speed;
         public float BlockDistance;
         private bool Self;
+        public GameObject audioManager;
        
 
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
-
+            AudioManager am = audioManager.GetComponent<AudioManager>();
         }
 
         public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
