@@ -7,15 +7,18 @@ public class menu : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private AudioSource click;
+    public GameObject cameraMenu;
+    public GameObject menuCan;
+
     public void PlayGame()
     {
-        click.Play();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+        cameraMenu.SetActive(false);
+        menuCan.SetActive(false);
     }
 
     public void QuitGame()
     {
-        click.Play();
         Application.Quit();
     }
 

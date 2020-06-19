@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Hosting;
 using System.Threading;
 using UnityEngine;
 
 public class Pausa : MonoBehaviour
 {
-    public static bool GameIsPaused = false;
+    public bool GameIsPaused = false;
     public GameObject pauseMenuUI;
+    public GameObject options;
+    public GameObject menuIniziale;
 
     // Start is called before the first frame update
     void Start()
@@ -19,28 +22,44 @@ public class Pausa : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (GameIsPaused)
+
+            if (menuIniziale.active == false)
             {
-                Resume();
-            }
-            else
-            {
-                Pause();
+                if (GameIsPaused)
+                {
+                    Resume();
+                }
+                else
+                {
+                    Pause();
+                }
             }
         }
     }
 
-    void Resume()
+    public void Resume()
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        GameIsPaused = false;
+        GameIsPaused = false;       
     }
 
-    void Pause()
+    public void Pause()
     {
         pauseMenuUI.SetActive(true);
+        options.SetActive(false);
         Time.timeScale = 0f;
         GameIsPaused = true;
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
+    public void Opzioni()
+    {
+        options.SetActive(true);
+        pauseMenuUI.SetActive(false);
     }
 }
