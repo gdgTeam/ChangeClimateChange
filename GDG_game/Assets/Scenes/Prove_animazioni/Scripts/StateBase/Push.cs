@@ -27,8 +27,15 @@ namespace roundbeargames_tutorial
 
             if (control.Interact && (control.MoveLeft || control.MoveRight))
             {
-                //animator.SetBool(TransitionParameter.Push.ToString(), true);
-                control.transform.Translate(Vector3.forward * Speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
+                if ((control.girato && control.MoveLeft) || (!control.girato && control.MoveRight))
+                {
+                    control.transform.
+                        Translate(Vector3.forward * Speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
+                }
+                else
+                {
+                    animator.SetBool(TransitionParameter.Push.ToString(), false);
+                }
             }
 
             if (!control.Interact)

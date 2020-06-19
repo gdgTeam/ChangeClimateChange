@@ -22,10 +22,17 @@ namespace roundbeargames_tutorial
         {
             CharacterControl control = characterState.GetCharacterControl(animator);
 
-            if (control.Interact && (control.MoveLeft || control.MoveRight))
-            {
-                //animator.SetBool(TransitionParameter.Pull.ToString(), true);
-                control.transform.Translate(-Vector3.forward * Speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
+            if (control.Interact && (control.MoveLeft || control.MoveRight)) { 
+
+                if ((control.girato && control.MoveRight) || (!control.girato && control.MoveLeft)) {
+                    //animator.SetBool(TransitionParameter.Pull.ToString(), true);
+                    control.transform.
+                        Translate(-Vector3.forward * Speed * SpeedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime);
+                }
+                else
+                {
+                    animator.SetBool(TransitionParameter.Pull.ToString(), false);
+                }
             }
 
             if (!control.Interact)
@@ -54,7 +61,8 @@ namespace roundbeargames_tutorial
             {
                 Debug.DrawRay(o.transform.position, control.transform.forward * 0.3f, Color.yellow);
                 RaycastHit hit;
-                if (Physics.Raycast(o.transform.position, control.transform.forward, out hit, PushDistance) && hit.collider.gameObject.tag == "PushableTree")
+                if (Physics.Raycast(o.transform.position, control.transform.forward, out hit, PushDistance)
+                    && hit.collider.gameObject.tag == "PushableTree")
                 {
                     return true;
                 }

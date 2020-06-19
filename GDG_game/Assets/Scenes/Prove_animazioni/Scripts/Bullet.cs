@@ -26,16 +26,16 @@ using UnityEngine;
             if (Physics.Raycast(transform.position, transform.right, out hit, velocity * Time.deltaTime, ~(1<<firedByLayer)))
             {
                 transform.position = hit.point;
-                Vector3 reflected = Vector3.Reflect(transform.forward, hit.normal);
+                //Vector3 reflected = Vector3.Reflect(transform.forward, hit.normal);
                 Vector3 direction = transform.forward;
-                Vector3 vop = Vector3.ProjectOnPlane(reflected, Vector3.forward);
-                transform.forward = vop;
-                transform.rotation = Quaternion.LookRotation(vop, Vector3.forward);
+                //Vector3 vop = Vector3.ProjectOnPlane(reflected, Vector3.forward);
+                //transform.forward = vop;
+                //transform.rotation = Quaternion.LookRotation(vop, Vector3.forward);
                 //Hit(transform.position, direction, reflected, hit.collider);
             }
             else
             {
-                transform.Translate(-Vector3.forward * velocity * Time.deltaTime);
+                transform.Translate(Vector3.forward * velocity * Time.deltaTime);
             }
 
             if (Time.time > lifeTimer + life)
@@ -110,6 +110,16 @@ using UnityEngine;
             transform.forward = vop;
             transform.rotation = Quaternion.LookRotation(vop, Vector3.forward);
         }
+
+    public void fire_prova(Vector3 startPosition, Vector3 targetPosition)
+    {
+        lifeTimer = Time.time;
+        transform.position = startPosition;
+        targetPosition = new Vector3(targetPosition.x + 0.5f, targetPosition.y, targetPosition.z);
+        Vector3 dir = (targetPosition - startPosition).normalized;
+        this.transform.forward = dir;
+        UnityEngine.Debug.DrawRay(this.transform.position, this.transform.forward, Color.cyan);
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
