@@ -107,6 +107,7 @@ namespace roundbeargames_tutorial
         public GameObject salto;
         public GameObject triggerSpostamento;
         public GameObject spingi;
+        public GameObject audioManager;
 
         
         public Rigidbody RIGID_BODY
@@ -251,7 +252,14 @@ namespace roundbeargames_tutorial
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, mouseAimMask))
             {
-                targetTransform.position = new Vector3(this.transform.position.x-0.5f, hit.point.y ,hit.point.z);
+                if (!girato && hit.point.z > this.transform.position.z)
+                {
+                    targetTransform.position = new Vector3(this.transform.position.x - 0.5f, hit.point.y, hit.point.z);
+                }
+                else if(girato && hit.point.z < this.transform.position.z ){
+                    targetTransform.position = new Vector3(this.transform.position.x - 0.5f, hit.point.y, hit.point.z);
+                }
+
                 if (hit.collider.gameObject.tag == "Grappable" && isSwinging == false)
                 {
                     Pointed = true;
@@ -539,6 +547,12 @@ namespace roundbeargames_tutorial
         public void OnExit()
         {
             add = 0;
+        }
+
+        public AudioManager GetAudioManager()
+        {
+            AudioManager am = audioManager.GetComponent<AudioManager>();
+            return am;
         }
     }
 }

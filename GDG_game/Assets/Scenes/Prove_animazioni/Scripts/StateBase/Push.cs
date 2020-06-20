@@ -13,12 +13,16 @@ namespace roundbeargames_tutorial
         public float PushDistance;
         private bool tree = false;
         private GameObject pushableTree;
+        private AudioManager am;
 
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
             PushDistance = 0.5f;
             CharacterControl control = characterState.GetCharacterControl(animator);
             tree = CheckObjectFront(control, animator);
+            am = control.GetAudioManager();
+            am.Play("Push");
+            
         }
 
         public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
@@ -40,14 +44,12 @@ namespace roundbeargames_tutorial
 
             if (!control.Interact)
             {
-                Debug.Log("Mollo tutto da PUSH");
                 animator.SetBool(TransitionParameter.Interact.ToString(), false);
                 //return;
             }
 
             if (!control.MoveRight && !control.MoveLeft)
             {
-                Debug.Log("Non PUSHO più");
                 animator.SetBool(TransitionParameter.Push.ToString(), false);
                 //return;
             }
@@ -56,7 +58,7 @@ namespace roundbeargames_tutorial
 
         public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
-
+            am.StopPlaying("Push");
         }
 
         bool CheckObjectFront(CharacterControl control, Animator animator)
