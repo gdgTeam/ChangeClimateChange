@@ -10,11 +10,12 @@ public class Pausa : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject options;
     public GameObject menuIniziale;
+    public GameObject player;
+    public Animator animatorPlayer;
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -35,18 +36,26 @@ public class Pausa : MonoBehaviour
                 }
             }
         }
+
+        if(player == null)
+        {
+            player = GameObject.FindWithTag("Player");
+            animatorPlayer = player.transform.GetComponent<Animator>();
+        }
     }
 
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        GameIsPaused = false;       
+        GameIsPaused = false;
+        animatorPlayer.enabled = true;
     }
 
     public void Pause()
     {
         pauseMenuUI.SetActive(true);
+        animatorPlayer.enabled = false;
         options.SetActive(false);
         Time.timeScale = 0f;
         GameIsPaused = true;
