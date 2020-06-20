@@ -66,10 +66,12 @@ namespace roundbeargames_tutorial
             if (Input.GetKey(KeyCode.Space))
             {
                 VirtualInputManager.Instance.Jump = true;
+                control.saltando = true;
             }
             else
             {
                 VirtualInputManager.Instance.Jump = false;
+                control.saltando = false;
             }
 
             if (Input.GetKey(KeyCode.E))

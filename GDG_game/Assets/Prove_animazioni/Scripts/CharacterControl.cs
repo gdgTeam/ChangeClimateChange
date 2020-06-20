@@ -99,6 +99,14 @@ namespace roundbeargames_tutorial
         public float add;
         public float posx;
         [SerializeField] private AudioSource soundCorazza;
+        public bool saltando;
+        public GameObject muoviDestra;
+        public GameObject triggerSx;
+        public GameObject muoviSinistra;
+        public GameObject triggerSalto;
+        public GameObject salto;
+        public GameObject triggerSpostamento;
+        public GameObject spingi;
         public GameObject audioManager;
 
         
@@ -365,6 +373,45 @@ namespace roundbeargames_tutorial
                 {
                     OnExit();
                 }
+            }
+
+            if(col.gameObject.name == "TriggerMuoviaDestra")
+            {
+                muoviDestra.active = true;
+                if (MoveRight == true)
+                {
+                    Destroy(col.gameObject);
+                    muoviDestra.active = false;
+                    triggerSx.active = true;
+                }
+
+            }
+
+            if (col.gameObject == triggerSx)
+            {
+                muoviSinistra.active = true;
+                if(MoveLeft == true)
+                {
+                    Destroy(col.gameObject);
+                    muoviSinistra.active = false;
+                    triggerSalto.active = true;
+                }
+            }
+
+            if(col.gameObject == triggerSalto)
+            {
+                salto.active = true;
+                if(saltando == true)
+                {
+                    Destroy(col.gameObject);
+                    salto.active = false;
+                    triggerSpostamento.active = true;
+                }
+            }
+
+            if(col.gameObject == triggerSpostamento)
+            {
+
             }
 
 
