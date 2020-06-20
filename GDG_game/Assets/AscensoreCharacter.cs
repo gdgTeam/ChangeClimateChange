@@ -57,57 +57,62 @@ namespace roundbeargames_tutorial
 
         private void Update()
         {
-            int nuovoPiano = checkInteractionAscensore();
-            if (nuovoPiano != -1)
+            if (characterOn)
             {
-                //faccio scendere o salire l'ascensore
-                switch (nuovoPiano)
+                int nuovoPiano = checkInteractionAscensore();
+                if (nuovoPiano != -1)
                 {
-                    case 0:
-                        newPiano = piano_0;
-                        nuovoPiano = -1;
-                        break;
-                    case 1:
-                        newPiano = piano_1;
-                        nuovoPiano = -1;
-                        break;
-                    case 2:
-                        newPiano = piano_2;
-                        nuovoPiano = -1;
-                        break;
-                    case 3:
-                        newPiano = piano_3;
-                        nuovoPiano = -1;
-                        break;
-                    case 4:
-                        newPiano = piano_4;
-                        nuovoPiano = -1;
-                        break;
-                }
-            }
-            else
-            {
-                //wait = false;
-            }
-            if (wait)
-            {
-                if (scendi && Ascensore.transform.localPosition.y > newPiano)
-                {
-                    Debug.Log("sto scendendoooooo");
-                    muoviAscensore(0.2f);
-                }
-                else if (sali && Ascensore.transform.localPosition.y < newPiano)
-                {
-                    Debug.Log("salgooooo");
-                    muoviAscensore(-0.2f);
+                    //faccio scendere o salire l'ascensore
+                    switch (nuovoPiano)
+                    {
+                        case 0:
+                            newPiano = piano_0;
+                            this.GetComponent<AudioSource>().Play();
+                            nuovoPiano = -1;
+                            break;
+                        case 1:
+                            newPiano = piano_1;
+                            this.GetComponent<AudioSource>().Play();
+                            nuovoPiano = -1;
+                            break;
+                        case 2:
+                            newPiano = piano_2;
+                            this.GetComponent<AudioSource>().Play();
+                            nuovoPiano = -1;
+                            break;
+                        case 3:
+                            newPiano = piano_3;
+                            this.GetComponent<AudioSource>().Play();
+                            nuovoPiano = -1;
+                            break;
+                        case 4:
+                            newPiano = piano_4;
+                            this.GetComponent<AudioSource>().Play();
+                            nuovoPiano = -1;
+                            break;
+                    }
                 }
                 else
                 {
-                    Debug.Log("sono dentrooooooo");
-                    Debug.Log(sali);
-                    sali = false;
-                    scendi = false;
-                    wait = false;
+                    //wait = false;
+                }
+                if (wait)
+                {
+                    if (scendi && Ascensore.transform.localPosition.y > newPiano)
+                    {
+                        muoviAscensore(0.2f);
+                    }
+                    else if (sali && Ascensore.transform.localPosition.y < newPiano)
+                    {
+                        muoviAscensore(-0.2f);
+                    }
+                    else
+                    {
+                        this.GetComponent<AudioSource>().Stop();
+                        sali = false;
+                        scendi = false;
+                        wait = false;
+                    }
                 }
             }
         }
