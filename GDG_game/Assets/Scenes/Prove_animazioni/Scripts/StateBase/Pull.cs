@@ -11,11 +11,14 @@ namespace roundbeargames_tutorial
         public AnimationCurve SpeedGraph;
         public float Speed;
         public float PushDistance;
+        private AudioManager am;
 
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
             PushDistance = 0f;
             CharacterControl control = characterState.GetCharacterControl(animator);
+            am = control.GetAudioManager();
+            am.Play("Push");
         }
 
         public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
@@ -37,14 +40,12 @@ namespace roundbeargames_tutorial
 
             if (!control.Interact)
             {
-                Debug.Log("Mollo l'oggetto dal PULL");
                 animator.SetBool(TransitionParameter.Interact.ToString(), false);
                 //return;
             }
 
             if (!control.MoveRight && !control.MoveLeft)
             {
-                Debug.Log("Non PULLO più");
                 animator.SetBool(TransitionParameter.Pull.ToString(), false);
                 //return;
             }
@@ -52,6 +53,7 @@ namespace roundbeargames_tutorial
 
         public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
+            am.StopPlaying("Push");
 
         }
 

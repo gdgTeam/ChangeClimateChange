@@ -68,9 +68,9 @@ public class FootSteps : MonoBehaviour
 
     private void Push()
     {
-        AudioClip clip = GetRandomClipP();
+      /*  AudioClip clip = GetRandomClipP();
 
-        audioSourcePush.PlayOneShot(clip);
+        audioSourcePush.PlayOneShot(clip);*/
     }
 
     private AudioClip GetRandomClipP()
