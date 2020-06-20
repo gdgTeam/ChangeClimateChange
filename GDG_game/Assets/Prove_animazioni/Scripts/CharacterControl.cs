@@ -314,6 +314,12 @@ namespace roundbeargames_tutorial
                 triggerPioggiaAcida.active = true;
              }
 
+            if (col.gameObject.name == "TriggerFinePioggia")
+            {
+                pioggia.active = false;
+                triggerPioggiaAcida.active = false;
+            }
+
         }
 
         private void OnTriggerStay(Collider col)
@@ -339,6 +345,22 @@ namespace roundbeargames_tutorial
                 piantinaMaterials[2].SetFloat("Vector1_ACBAB4A6", add);
                 piantinaMaterials[3].SetFloat("Vector1_ACBAB4A6", add);
                 zainettoMaterial[0].SetFloat("Vector1_9ACB71BD", add);
+                if (add >= 1) //temporaneo
+                {
+                    OnExit();
+                }
+            }
+
+            if(col.gameObject.name == "TriggerAcqua" && sparaOk)
+            {
+                add = add + 0.005f;
+                piantinaMaterials = piantina.gameObject.GetComponent<SkinnedMeshRenderer>().materials;
+                zainettoMaterial = zainetto.gameObject.GetComponent<SkinnedMeshRenderer>().materials;
+                piantinaMaterials[0].SetFloat("Vector1_ACBAB4A6", add);
+                piantinaMaterials[1].SetFloat("Vector1_ACBAB4A6", add);
+                piantinaMaterials[2].SetFloat("Vector1_ACBAB4A6", add);
+                piantinaMaterials[3].SetFloat("Vector1_ACBAB4A6", add);
+                //zainettoMaterial[0].SetFloat("Vector1_9ACB71BD", add);
                 if (add >= 1) //temporaneo
                 {
                     OnExit();

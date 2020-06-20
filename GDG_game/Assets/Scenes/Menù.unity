@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3455,3 +3455,5 @@ MonoBehaviour:
   pauseMenuUI: {fileID: 302621275}
   options: {fileID: 86585936}
   menuIniziale: {fileID: 991386781}
+  player: {fileID: 0}
+  animatorPlayer: {fileID: 0}
