@@ -306,6 +306,12 @@ namespace roundbeargames_tutorial
                 triggerPioggiaAcida.active = true;
              }
 
+            if (col.gameObject.name == "TriggerFinePioggia")
+            {
+                pioggia.active = false;
+                triggerPioggiaAcida.active = false;
+            }
+
         }
 
         private void OnTriggerStay(Collider col)
