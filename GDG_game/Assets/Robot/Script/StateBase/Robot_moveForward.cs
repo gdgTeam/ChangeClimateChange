@@ -13,8 +13,8 @@ namespace roundbeargames_tutorial
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
             control = animator.GetComponentInParent<RobotControl>();
-            GameObject robot = control.gameObject;
-            robot.GetComponent<AudioSource>().Play();
+            /*GameObject robot = control.gameObject;
+            robot.GetComponent<AudioSource>().Play();*/
         }
 
         public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
@@ -30,7 +30,7 @@ namespace roundbeargames_tutorial
         public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
             animator.SetBool("Turn", true);
-            control.gameObject.GetComponent<AudioSource>().Stop();
+            //control.gameObject.GetComponent<AudioSource>().Stop();
         }
     }
 }

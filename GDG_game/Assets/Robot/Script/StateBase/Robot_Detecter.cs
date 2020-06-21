@@ -46,8 +46,8 @@ namespace roundbeargames_tutorial
             {
 
                 animator.SetBool("CharacterDetected", false);
-                control.OnPlace = true;
-                animator.SetBool("Walk", false);
+                //control.OnPlace = true;
+                //animator.SetBool("Walk", false);
             }
                     
             

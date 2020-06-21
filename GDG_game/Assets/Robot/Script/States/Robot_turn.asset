@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Robot_turn
   m_EditorClassIdentifier: 
   SpeedRotation: 2.8
+  clip: {fileID: 8300000, guid: af643a029bb7849dfb180d575b5f4d85, type: 3}

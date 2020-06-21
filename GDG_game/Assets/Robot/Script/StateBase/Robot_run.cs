@@ -11,11 +11,17 @@ namespace roundbeargames_tutorial
         public float Speed;
         public AnimationCurve SpeedGraph;
         private GameObject player;
+        public AudioClip clip;
+        private AudioSource audio;
 
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
            // player = control.player;
             player = GameObject.FindGameObjectWithTag("Player");
+            audio = animator.GetComponentInParent<RobotControl>().gameObject.GetComponent<AudioSource>();
+            audio.clip = clip;
+            audio.loop = true;
+            audio.Play();
            // animator.transform.position = new Vector3(animator.transform.position.x, 3.65f, animator.transform.position.z);
         }
 
@@ -66,6 +72,7 @@ namespace roundbeargames_tutorial
 
         public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
+            audio.Stop();
 
         }
     }

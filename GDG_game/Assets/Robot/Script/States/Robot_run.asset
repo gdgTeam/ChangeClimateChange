@@ -37,3 +37,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  clip: {fileID: 8300000, guid: c20d7e9a7ccc5415699e5116ca84ddd4, type: 3}

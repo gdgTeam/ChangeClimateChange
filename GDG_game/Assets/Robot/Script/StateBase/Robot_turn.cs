@@ -9,10 +9,16 @@ namespace roundbeargames_tutorial
     {
         private RobotControl control;
         public float SpeedRotation;
+        public AudioClip clip;
+        private AudioSource audio;
 
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
-
+            control = animator.GetComponentInParent<RobotControl>();
+            audio = control.gameObject.GetComponent<AudioSource>();
+            audio.clip = clip;
+            audio.Play();
+            
         }
 
         public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
@@ -44,6 +50,7 @@ namespace roundbeargames_tutorial
             else
                 control.transform.rotation = Quaternion.Euler(0, 0, 0);
 
+            audio.Stop();
             animator.SetBool("Turn", false);
             //animator.SetBool("Walk", true);
         }
