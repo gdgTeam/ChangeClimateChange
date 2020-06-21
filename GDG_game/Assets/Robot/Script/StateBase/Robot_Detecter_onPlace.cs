@@ -4,7 +4,7 @@ using UnityEngine;
 namespace roundbeargames_tutorial
 {
     [CreateAssetMenu(fileName = "New State", menuName = "Roundbeargames/AbilityData/Robot_Detecter_onPlace")]
-    public class Robot_Detecter_onPlsce : StateData
+    public class Robot_Detecter_onPlace : StateData
     {
         public bool playerDetected;
         private RobotControl control;
