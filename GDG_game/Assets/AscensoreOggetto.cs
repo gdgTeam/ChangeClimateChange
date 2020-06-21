@@ -52,6 +52,7 @@ namespace roundbeargames_tutorial {
                         nuovaAltezza = ascensoreOggetto.localPosition.y -
                             (translation * (control.pianoAscensoreOggetto - nuovoPiano));
                         control.pianoAscensoreOggetto = nuovoPiano;
+                        ascensoreOggetto.gameObject.GetComponent<AudioSource>().Play();
                         altezzaCalcolata = true;
                         scendi = true;
                         
@@ -67,6 +68,7 @@ namespace roundbeargames_tutorial {
                         nuovaAltezza = ascensoreOggetto.localPosition.y +
                             (translation * (nuovoPiano - control.pianoAscensoreOggetto));
                         control.pianoAscensoreOggetto = nuovoPiano;
+                        ascensoreOggetto.gameObject.GetComponent<AudioSource>().Play();
                         altezzaCalcolata = true;
                         sali = true;
                         if (colliderAscensoreSup.GetComponent<TriggerCassa>().cassa || colliderAscensoreInf.GetComponent<TriggerCassa>().cassa)
@@ -93,6 +95,7 @@ namespace roundbeargames_tutorial {
                     }
                     else
                     {
+                        ascensoreOggetto.gameObject.GetComponent<AudioSource>().Stop();
                         sirena.GetComponent<MeshRenderer>().material = verde;
                         altezzaCalcolata = false;
                         sali = false;
