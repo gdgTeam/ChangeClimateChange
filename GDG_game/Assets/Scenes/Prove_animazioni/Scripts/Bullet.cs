@@ -36,6 +36,7 @@ using UnityEngine;
             else
             {
                 transform.Translate(Vector3.forward * velocity * Time.deltaTime);
+                StartCoroutine("attivazioneCollider");
             }
 
             if (Time.time > lifeTimer + life)
@@ -158,5 +159,11 @@ using UnityEngine;
         if(collider.gameObject.transform.tag != "Player")
             Destroy(gameObject);
 
+    }
+
+    IEnumerator attivazioneCollider()
+    {
+        yield return new WaitForSeconds(0.3f);
+        this.gameObject.GetComponent<SphereCollider>().enabled = true;
     }
 }
