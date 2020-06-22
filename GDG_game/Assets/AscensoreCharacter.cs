@@ -141,9 +141,18 @@ namespace roundbeargames_tutorial
             return -1;
         }
 
-        private void muoviAscensore(float passo)
+        public void muoviAscensore(float passo)
         {
             Ascensore.transform.Translate(0, passo, 0);
+        }
+
+        public void resetAll()
+        {
+            //Ascensore.transform.localPosition = new Vector3(0, piano_0, 0);
+            pianoCorrente = 0;
+            wait = false;
+            scendi = false;
+            sali = false;
         }
 	}
 }
