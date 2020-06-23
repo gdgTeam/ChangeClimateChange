@@ -310,6 +310,10 @@ namespace roundbeargames_tutorial
                 else if(girato && hit.point.z < this.transform.position.z ){
                     targetTransform.position = new Vector3(this.transform.position.x - 0.5f, hit.point.y, hit.point.z);
                 }
+                else
+                {
+                    targetTransform.position = new Vector3(this.transform.position.x - 0.5f, hit.point.y, this.transform.position.z);
+                }
 
                 if (hit.collider.gameObject.tag == "Grappable" && isSwinging == false)
                 {

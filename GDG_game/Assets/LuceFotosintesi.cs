@@ -30,6 +30,7 @@ public class LuceFotosintesi : MonoBehaviour
             Player.GetComponent<Animator>().SetBool("Fotosintesi", true);
         }
 
+        this.gameObject.GetComponent<AudioSource>().Play();
         StartCoroutine("Standing");
 
         for (int i = 0; i < fog.Length; i++)
