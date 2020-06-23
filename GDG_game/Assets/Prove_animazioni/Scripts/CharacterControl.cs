@@ -678,6 +678,8 @@ namespace roundbeargames_tutorial
                 //look at target
                 SkinnedMeshAnimator.SetLookAtWeight(1);
                 SkinnedMeshAnimator.SetLookAtPosition(targetTransform.position);
+                /*this.GetComponent<Animator>().SetLayerWeight(0, 0);
+                this.GetComponent<Animator>().SetLayerWeight(2, 1);*/
             }   
 
         }
