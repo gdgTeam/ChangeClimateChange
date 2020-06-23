@@ -43,7 +43,7 @@ namespace roundbeargames_tutorial
                 {
 
                     var main = fog[i].GetComponent<ParticleSystem>().main;
-                    main.startColor = new Color(1f, 1f, 1f, .2f);
+                    main.startColor = new Color(1f, 1f, 1f, .1f);
                 }
             }
         }
