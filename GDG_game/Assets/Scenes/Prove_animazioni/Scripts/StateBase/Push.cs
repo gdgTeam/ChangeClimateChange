@@ -12,7 +12,7 @@ namespace roundbeargames_tutorial
         public float Speed;
         public float PushDistance;
         private bool tree = false;
-        private GameObject pushableTree;
+        private GameObject pushableCassa;
         private AudioManager am;
 
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
@@ -22,6 +22,10 @@ namespace roundbeargames_tutorial
             tree = CheckObjectFront(control, animator);
             am = control.GetAudioManager();
             am.Play("Push");
+            if (CheckObjectFront(control, animator))
+            {
+                pushableCassa.GetComponent<Rigidbody>().isKinematic = false;
+            }
             
         }
 
@@ -59,6 +63,8 @@ namespace roundbeargames_tutorial
         public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
             am.StopPlaying("Push");
+            if (pushableCassa != null)
+                pushableCassa.GetComponent<Rigidbody>().isKinematic = true;
         }
 
         bool CheckObjectFront(CharacterControl control, Animator animator)
@@ -67,11 +73,10 @@ namespace roundbeargames_tutorial
             {
                 Debug.DrawRay(o.transform.position, control.transform.forward * 0.3f, Color.yellow);
                 RaycastHit hit;
-                if (Physics.Raycast(o.transform.position, control.transform.forward, out hit, PushDistance) && hit.collider.gameObject.tag == "PushableTree")
+                if (Physics.Raycast(o.transform.position, control.transform.forward, out hit, PushDistance) && hit.collider.gameObject.tag == "PushableCassa")
                 {
                     
-                    pushableTree = hit.collider.gameObject;
-                    Debug.Log(hit.collider.gameObject);
+                    pushableCassa = hit.collider.gameObject;
                     return true;
                 }
             }

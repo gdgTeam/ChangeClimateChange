@@ -165,12 +165,14 @@ namespace roundbeargames_tutorial
 
             if (control.controllaSparo)
             {
-                if (Input.GetKey(KeyCode.LeftShift))
+                if (Input.GetKeyDown(KeyCode.LeftShift) && control.sparando == false)
                 {
+                    control.sparando = true;
                     VirtualInputManager.Instance.Fire = true;
                 }
-                else
+                else if(Input.GetKeyDown(KeyCode.LeftShift) && control.sparando == true)
                 {
+                    control.sparando = false;
                     VirtualInputManager.Instance.Fire = false;
                 }
             }

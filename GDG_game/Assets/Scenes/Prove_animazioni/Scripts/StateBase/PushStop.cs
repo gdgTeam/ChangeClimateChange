@@ -34,7 +34,7 @@ namespace roundbeargames_tutorial
                 {
                     return t.gameObject;
                 }
-                else if (t.gameObject.tag == "PushableTree")
+                else if (t.gameObject.tag == "PushableCassa")
                 {
                     return t.gameObject;
                 }

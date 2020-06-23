@@ -4,6 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Bullet
   - Fog
   - GoAhead
@@ -22,6 +23,23 @@ TagManager:
   - GM
   - PickCopertura
   - CheckPoint
+=======
+  - Pioggia
+  - trigger
+  - Pushable
+  - GoAhead
+  - ChiamataAscensore
+  - Stairs
+  - Grappable
+  - GM
+  - Bullet
+  - Robot
+  - Pickable
+  - PickCopertura
+  - Fog
+  - Fire
+  - PushableCassa
+>>>>>>> AvanzamentoForesta
   layers:
   - Default
   - TransparentFX

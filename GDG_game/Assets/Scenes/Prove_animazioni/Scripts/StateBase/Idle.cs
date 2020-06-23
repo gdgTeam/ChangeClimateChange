@@ -115,7 +115,7 @@ namespace roundbeargames_tutorial
             {
                 Debug.DrawRay(o.transform.position, control.transform.forward * 0.3f, Color.yellow);
                 RaycastHit hit;
-                if (Physics.Raycast(o.transform.position, control.transform.forward, out hit, BlockDistance) && (hit.collider.gameObject.tag == "Pushable" || hit.collider.gameObject.tag == "PushableTree"))
+                if (Physics.Raycast(o.transform.position, control.transform.forward, out hit, BlockDistance) && (hit.collider.gameObject.tag == "Pushable" || hit.collider.gameObject.tag == "PushableCassa"))
                 {
                     hit.collider.gameObject.transform.SetParent(animator.gameObject.transform);
                     return true;

@@ -13,6 +13,8 @@ public class menu : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync(3, LoadSceneMode.Additive);
         cameraMenu.SetActive(false);
         menuCan.SetActive(false);
     }
