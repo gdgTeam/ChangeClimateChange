@@ -50,6 +50,7 @@ namespace roundbeargames_tutorial
         public bool Shielding;
         public bool ShieldLast = true;
         public bool sparaOk = true;
+        public bool LayerIK;
         public bool interazioneLeva;
         public bool pickMetal;
         public bool protectPlant = false;
@@ -100,6 +101,16 @@ namespace roundbeargames_tutorial
         public float posx;
         [SerializeField] private AudioSource soundCorazza;
         public bool saltando;
+        public bool spingendo;
+        public bool prendendo;
+        public bool corazzando;
+        public bool posando;
+        public bool lianando;
+        public bool sparando;
+        public bool controllaPosaPianta = false;
+        public bool controllaCorazza = false;
+        public bool controllaLiana = false;
+        public bool controllaSparo = false;
         public GameObject muoviDestra;
         public GameObject triggerSx;
         public GameObject muoviSinistra;
@@ -107,6 +118,19 @@ namespace roundbeargames_tutorial
         public GameObject salto;
         public GameObject triggerSpostamento;
         public GameObject spingi;
+        public GameObject triggerCorazza;
+        public GameObject triggerPianta;
+        public GameObject triggerPosaPianta;
+        public GameObject triggerLiana;
+        public GameObject triggerAscensore;
+        public GameObject triggerGermogli;
+        public GameObject prendiPianta;
+        public GameObject suggCorazza;
+        public GameObject suggPosaPianta;
+        public GameObject suggLiana;
+        public GameObject suggAscensore;
+        public GameObject suggChiamataAscensore;
+        public GameObject suggGermogli;
         public GameObject audioManager;
 
         
@@ -276,9 +300,17 @@ namespace roundbeargames_tutorial
                 }
             }
 
-            if (Input.GetButtonDown("Fire1"))
+            if (LayerIK)
             {
-                fire();
+                GestisciIK();
+            }
+
+            if (controllaSparo && LayerIK)
+            {
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    fire();
+                }
             }
 
         }
@@ -323,7 +355,7 @@ namespace roundbeargames_tutorial
                 triggerPioggiaAcida.active = true;
              }
 
-            if (col.gameObject.name == "TriggerFinePioggia")
+            if (col.gameObject.name == "TriggerFinePioggia" && sparaOk && pickedMetal)
             {
                 pioggia.active = false;
                 triggerPioggiaAcida.active = false;
@@ -406,13 +438,81 @@ namespace roundbeargames_tutorial
                 {
                     Destroy(col.gameObject);
                     salto.active = false;
+                    triggerPianta.active = true;
+                }
+            }
+
+            if(col.gameObject == triggerPianta)
+            {
+                prendiPianta.active = true;
+                if(prendendo == true)
+                {
+                    Destroy(col.gameObject);
+                    prendiPianta.active = false;
                     triggerSpostamento.active = true;
                 }
             }
 
             if(col.gameObject == triggerSpostamento)
             {
+                spingi.active = true;
+                if (spingendo == true)
+                {
+                    Destroy(col.gameObject);
+                    spingi.active = false;
+                    triggerCorazza.active = true;
+                }
+            }
 
+            if(col.gameObject == triggerCorazza)
+            {
+                controllaCorazza = true;
+                suggCorazza.active = true;
+                if(corazzando == true)
+                {
+                    Destroy(col.gameObject);
+                    suggCorazza.active = false;
+                }
+            }
+
+            if(col.gameObject == triggerPosaPianta)
+            {
+                controllaPosaPianta = true;
+                suggPosaPianta.active = true;
+                if (posando == true)
+                {
+                    Destroy(col.gameObject);
+                    suggPosaPianta.active = false;
+                }
+            }
+            
+            if (col.gameObject == triggerLiana)
+            {
+                controllaLiana = true;
+                suggLiana.active = true;
+                if(lianando == true)
+                {
+                    Destroy(col.gameObject);
+                    suggLiana.active = false;
+                }
+            }
+
+            if(col.gameObject == triggerAscensore)
+            {
+                suggAscensore.active = true;
+            }
+            else
+            {
+                suggAscensore.active = false;
+            }
+
+            if(col.gameObject.tag == "ChiamataAscensore")
+            {
+                suggChiamataAscensore.active = true;
+            }
+            else
+            {
+                suggChiamataAscensore.active = false;
             }
 
 
@@ -543,6 +643,11 @@ namespace roundbeargames_tutorial
                 //bullet.fire(go.transform.position, muzzleTransform.eulerAngles, gameObject.layer);
                 bullet.fire_prova(go.transform.position, targetTransform.position);
             }
+        }
+
+        public void GestisciIK()
+        {
+
         }
 
         public void OnExit()

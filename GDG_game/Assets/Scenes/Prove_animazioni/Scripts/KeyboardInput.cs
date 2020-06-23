@@ -76,11 +76,13 @@ namespace roundbeargames_tutorial
 
             if (Input.GetKey(KeyCode.E))
             {
+                control.spingendo = true;
                 //VirtualInputManager.Instance.Pushing = true;
                 VirtualInputManager.Instance.Interact = true;
             }
             else
             {
+                control.spingendo = false;
                 //VirtualInputManager.Instance.Pushing = false;
                 VirtualInputManager.Instance.Interact = false;
             }
@@ -90,51 +92,100 @@ namespace roundbeargames_tutorial
                 Debug.Log("Qui");
                 if (control.PickPlant == true || control.PickMetal == true)
                 {
+                    control.prendendo = true;
                     VirtualInputManager.Instance.Picking = true;
                 }
             }
             else
             {
+                control.prendendo = false;
                 VirtualInputManager.Instance.Picking = false;
             }
 
-            if (Input.GetKey(KeyCode.Q) && !VirtualInputManager.Instance.Picking)
+            if (control.controllaPosaPianta)
             {
-                if (control.protectPlant || control.pickedMetal)
+                if (Input.GetKey(KeyCode.Q) && !VirtualInputManager.Instance.Picking)
                 {
-                    VirtualInputManager.Instance.PickingDown = true;
+                    if (control.protectPlant || control.pickedMetal)
+                    {
+                        control.posando = true;
+                        VirtualInputManager.Instance.PickingDown = true;
+                    }
+                }
+                else
+                {
+                    control.posando = false;
+                    VirtualInputManager.Instance.PickingDown = false;
                 }
             }
             else
             {
+                control.posando = false;
                 VirtualInputManager.Instance.PickingDown = false;
             }
-
-            if (Input.GetMouseButtonDown(2) && protectShield && control.protectPlant)
+            if (control.controllaCorazza)
             {
-                protectShield = false;
-                VirtualInputManager.Instance.Shielding = true;
-                VirtualInputManager.Instance.ShieldLast = true;
-                StartCoroutine("Shield");
+                if (Input.GetMouseButtonDown(2) && protectShield && control.protectPlant)
+                {
+                    control.corazzando = true;
+                    protectShield = false;
+                    VirtualInputManager.Instance.Shielding = true;
+                    VirtualInputManager.Instance.ShieldLast = true;
+                    StartCoroutine("Shield");
+                }
+                else
+                {
+                    control.corazzando = false;
+                }
             }
-            if (Input.GetMouseButtonDown(1) && control.Pointed == true && control.protectPlant)
+            else
             {
-
-                VirtualInputManager.Instance.Spiderman = true;
-
+                control.corazzando = false;
             }
-             if (Input.GetMouseButtonUp(1) && control.protectPlant)
-              {
+            if (control.controllaLiana)
+            {
+                if (Input.GetMouseButtonDown(1) && control.Pointed == true && control.protectPlant)
+                {
+                    control.lianando = true;
+                    VirtualInputManager.Instance.Spiderman = true;
+
+                }
+                if (Input.GetMouseButtonUp(1) && control.protectPlant)
+                {
+                    control.lianando = false;
+                    VirtualInputManager.Instance.Spiderman = false;
+
+                }
+            }
+            else
+            {
+                control.lianando = false;
                 VirtualInputManager.Instance.Spiderman = false;
+            }
 
-               }
+            if (control.controllaSparo)
+            {
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    VirtualInputManager.Instance.Fire = true;
+                }
+                else
+                {
+                    VirtualInputManager.Instance.Fire = false;
+                }
+            }
+            else
+            {
+                control.sparando = false;
+                VirtualInputManager.Instance.Fire = false;
+            }
 
          }
   
 
             IEnumerator Shield()
             {
-                yield return new WaitForSeconds(4.5f);
+                yield return new WaitForSeconds(5.5f);
                 VirtualInputManager.Instance.ShieldLast = false;
                 yield return new WaitForSeconds(0.25f);
                 VirtualInputManager.Instance.ShieldLast = true;

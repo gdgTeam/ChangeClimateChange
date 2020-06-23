@@ -20,6 +20,7 @@ namespace roundbeargames_tutorial
         public bool PickingDown;
         public bool Spiderman;
         public bool Interact;
+        public bool Fire;
 
         public bool LookRight;
         public bool LookLeft;
