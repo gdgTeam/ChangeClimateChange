@@ -161,6 +161,31 @@ namespace roundbeargames_tutorial
         private void Update()
         {
 
+            if (corazzando == true && suggCorazza.active)
+            {
+                Destroy(triggerCorazza);
+                suggCorazza.active = false;
+            }
+
+            if (spingendo == true && spingi.active)
+            {
+                Destroy(triggerSpostamento);
+                spingi.active = false;
+                triggerCorazza.active = true;
+            }
+
+            if (prendendo == true && prendiPianta.active)
+            {
+                Destroy(triggerPianta);
+                prendiPianta.active = false;
+                triggerSpostamento.active = true;
+            }
+
+            if (sparando == true && suggGermogli.active)
+            {
+                suggGermogli.active = false;
+                Destroy(triggerGermogli);
+            }
 
             if (ledgeChecker.IsGrabbingLedge == true)
             {
@@ -301,10 +326,6 @@ namespace roundbeargames_tutorial
                 }
             }
 
-            if (LayerIK)
-            {
-                GestisciIK();
-            }
 
             if (controllaSparo && LayerIK)
             {
@@ -525,6 +546,16 @@ namespace roundbeargames_tutorial
                 suggChiamataAscensore.active = false;
             }
 
+            if(col.gameObject == triggerGermogli)
+            {
+                suggGermogli.active = true;
+                controllaSparo = true;
+                if (sparando == true)
+                {
+                    suggGermogli.active = false;
+                    Destroy(triggerGermogli);
+                }
+            }
 
         }
 
@@ -633,14 +664,16 @@ namespace roundbeargames_tutorial
 
         private void OnAnimatorIK()
         {
-            //mira al target con IK
-            SkinnedMeshAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
-            SkinnedMeshAnimator.SetIKPosition(AvatarIKGoal.RightHand, targetTransform.position);
+            if (LayerIK)
+            {
+                //mira al target con IK
+                SkinnedMeshAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
+                SkinnedMeshAnimator.SetIKPosition(AvatarIKGoal.RightHand, targetTransform.position);
 
-            //look at target
-            SkinnedMeshAnimator.SetLookAtWeight(1);
-            SkinnedMeshAnimator.SetLookAtPosition(targetTransform.position);
-            
+                //look at target
+                SkinnedMeshAnimator.SetLookAtWeight(1);
+                SkinnedMeshAnimator.SetLookAtPosition(targetTransform.position);
+            }   
         }
 
         private void fire()
