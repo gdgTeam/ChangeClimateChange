@@ -11,7 +11,7 @@ namespace roundbeargames_tutorial
 
         private void OnTriggerStay(Collider other)
         {
-            if (other.tag == "Pushable")
+            if (other.tag == "PushableCassa")
             {
                 cassa = true;
             }
@@ -19,7 +19,7 @@ namespace roundbeargames_tutorial
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.tag == "Pushable")
+            if (other.tag == "PushableCassa")
             {
                 cassa = false;
             }

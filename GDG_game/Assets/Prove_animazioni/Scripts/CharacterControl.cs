@@ -155,6 +155,7 @@ namespace roundbeargames_tutorial
             Cursor.SetCursor(mouseStandard, hotspot, cursorMode);
             soundCorazza = GetComponent<AudioSource>();
             pianoAscensoreOggetto = 2;
+            FindObjectOfType<AudioManager>().Play("audio_foresta");
            // TurnOFFRagdoll();
         }
 
