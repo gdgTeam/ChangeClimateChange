@@ -9,7 +9,9 @@ namespace roundbeargames_tutorial
     public class LancioCorda : StateData
     {
         public CharacterControl control;
+        public AudioClip clip;
         private LineRenderer rope;
+        
         //public GameObject pianta;
 
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
@@ -23,8 +25,6 @@ namespace roundbeargames_tutorial
             control.liana.GetComponent<MeshRenderer>().enabled = true;
             control.liana.GetComponent<Animator>().enabled = true;
             control.liana.GetComponent<Animator>().SetBool("Liana", true);
-
-
 
         }
 
@@ -45,7 +45,15 @@ namespace roundbeargames_tutorial
             rope.enabled = true;
             control.transform.GetComponent<DistanceJoint3D>().enabled = true;
             rope.SetPosition(0, control.spine.transform.position);
-            Vector3 ancoraggio = new Vector3(control.transform.position.x, control.transform.GetComponent<DistanceJoint3D>().ConnectedRigidbody.transform.position.y, control.transform.GetComponent<DistanceJoint3D>().ConnectedRigidbody.transform.position.z);
+            Vector3 ancoraggio = new Vector3(control.transform.position.x,
+               control.transform.GetComponent<DistanceJoint3D>().ConnectedRigidbody.transform.position.y,
+               control.transform.GetComponent<DistanceJoint3D>().ConnectedRigidbody.transform.position.z);
+            /*GameObject connRB = control.transform.GetComponent<DistanceJoint3D>().ConnectedRigidbody.gameObject;
+            connRB.AddComponent<AudioSource>().playOnAwake = false ;
+            connRB.GetComponent<AudioSource>().clip = clip;
+            connRB.GetComponent<AudioSource>().volume = 0.1f;
+            Debug.Log("Rope lanciata");
+            connRB.GetComponent<AudioSource>().Play();*/
             rope.SetPosition(1, ancoraggio);
             
         }

@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Swinging
   m_EditorClassIdentifier: 
   control: {fileID: 0}
+  clip: {fileID: 8300000, guid: 79e37d5ee8533413ab256bd9a463bed7, type: 3}
