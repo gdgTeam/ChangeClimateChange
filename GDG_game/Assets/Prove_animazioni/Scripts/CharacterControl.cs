@@ -667,6 +667,7 @@ namespace roundbeargames_tutorial
         }
 
         private void OnAnimatorIK()
+
         {
             if (LayerIK)
             {
@@ -678,6 +679,7 @@ namespace roundbeargames_tutorial
                 SkinnedMeshAnimator.SetLookAtWeight(1);
                 SkinnedMeshAnimator.SetLookAtPosition(targetTransform.position);
             }   
+
         }
 
         private void fire()

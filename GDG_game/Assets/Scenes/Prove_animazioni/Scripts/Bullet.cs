@@ -16,7 +16,8 @@ using UnityEngine;
 
         void Start()
         {
-            
+            this.gameObject.GetComponent<SphereCollider>().enabled = false;
+            StartCoroutine("attivazioneCollider");
         }
 
         // Update is called once per frame
@@ -36,7 +37,6 @@ using UnityEngine;
             else
             {
                 transform.Translate(Vector3.forward * velocity * Time.deltaTime);
-                StartCoroutine("attivazioneCollider");
             }
 
             if (Time.time > lifeTimer + life)
@@ -148,6 +148,7 @@ using UnityEngine;
             {
                 hips.GetChild(5).gameObject.active = true;
                 robotControl.hit = robotControl.hit + 1;
+                robotControl.GetComponent<Animator>().SetBool("Die", true);
             }
         }
 
@@ -163,7 +164,8 @@ using UnityEngine;
 
     IEnumerator attivazioneCollider()
     {
-        yield return new WaitForSeconds(0.3f);
+        UnityEngine.Debug.Log("Coroutine");
+        yield return new WaitForSeconds(0.05f);
         this.gameObject.GetComponent<SphereCollider>().enabled = true;
     }
 }
