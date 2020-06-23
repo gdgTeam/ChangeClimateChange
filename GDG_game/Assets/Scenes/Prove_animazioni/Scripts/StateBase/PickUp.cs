@@ -52,6 +52,7 @@ namespace roundbeargames_tutorial
             control.plant = true;
             rbPersonaggio.isKinematic = false;
             control.checkPickFalse = true;
+            piantina.GetComponent<AudioSource>().Play();
             /*MeshRenderer piantaSpallaMesh;
             piantaSpallaMesh = piantinaSpalla.transform.GetComponent<MeshRenderer>();
             piantaSpallaMesh.enabled = true;*/

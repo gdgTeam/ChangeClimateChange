@@ -200,7 +200,8 @@ namespace roundbeargames_tutorial
                 protectShield = false;
                 MeshRenderer meshCorazza = Corazza.transform.GetComponent<MeshRenderer>();
                 meshCorazza.enabled = true;
-                soundCorazza.Play();
+                Corazza.GetComponent<AudioSource>().Play();
+                //soundCorazza.Play();
             }
             if (!Shielding && !protectShield)
             {

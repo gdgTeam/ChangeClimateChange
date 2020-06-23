@@ -19,6 +19,7 @@ namespace roundbeargames_tutorial
             control.sparaOk = false;
             control.protectPlant = false;
             piantinaMano = GameObject.Find("zaino+pianta");
+            piantinaMano.GetComponent<AudioSource>().Play();
             rbPersonaggio = control.transform.GetComponent<Rigidbody>();
             rbPianta = piantinaMano.transform.GetComponent<Rigidbody>();
             rbPersonaggio.isKinematic = true;
