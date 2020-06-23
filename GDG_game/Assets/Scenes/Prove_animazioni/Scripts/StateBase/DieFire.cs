@@ -52,7 +52,7 @@ namespace roundbeargames_tutorial
         public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
             CharacterControl control = characterState.GetCharacterControl(animator);
-            add = 0;
+            add = -0.1f;
             skin = -0.2f;
             myMaterials[0].SetFloat("Vector1_541598BE", skin); //pelle
             myMaterials[1].SetFloat("Vector1_10EF681C", add); //internoFelpa
@@ -67,6 +67,7 @@ namespace roundbeargames_tutorial
             piantinaMaterials[3].SetFloat("Vector1_ACBAB4A6", add);
             zainettoMaterial[0].SetFloat("Vector1_9ACB71BD", add);
             control.Die = true;
+            animator.SetBool(TransitionParameter.Die.ToString(), false);
         }
 
     }
