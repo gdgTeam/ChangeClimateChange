@@ -9,20 +9,28 @@ namespace roundbeargames_tutorial
     {
         public CharacterControl control;
         private LineRenderer rope;
-       
-      
+        public AudioClip clip;
 
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
             animator.SetBool("LancioCorda", false);
             control = characterState.GetCharacterControl(animator);
             control.isSwinging = true;
-            
+
+            GameObject connRB = control.transform.GetComponent<DistanceJoint3D>().ConnectedRigidbody.gameObject;
+            connRB.AddComponent<AudioSource>().playOnAwake = false;
+            connRB.GetComponent<AudioSource>().clip = clip;
+            connRB.GetComponent<AudioSource>().volume = 0.1f;
+            Debug.Log("Rope lanciata");
+            connRB.GetComponent<AudioSource>().Play();
+
             rope = control.transform.GetComponent<LineRenderer>();
             {
                 rope.enabled = true;
                 rope.SetPosition(0, control.spine.transform.position);
-                Vector3 ancoraggio = new Vector3(control.transform.position.x, control.transform.GetComponent<DistanceJoint3D>().ConnectedRigidbody.transform.position.y, control.transform.GetComponent<DistanceJoint3D>().ConnectedRigidbody.transform.position.z);
+                Vector3 ancoraggio = new Vector3(control.transform.position.x,
+                    control.transform.GetComponent<DistanceJoint3D>().ConnectedRigidbody.transform.position.y,
+                    control.transform.GetComponent<DistanceJoint3D>().ConnectedRigidbody.transform.position.z);
                 rope.SetPosition(1, ancoraggio);
             }
 
