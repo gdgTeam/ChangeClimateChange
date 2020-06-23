@@ -133,7 +133,7 @@ namespace roundbeargames_tutorial {
             {
                 player = other.gameObject;
                 control = other.gameObject.GetComponent<CharacterControl>();
-                if (!control.Pushing)
+                if (!control.Interact)
                 {
                     interruttore = this.name;
                     nuovoPiano = checkInterruttoreAscensore();

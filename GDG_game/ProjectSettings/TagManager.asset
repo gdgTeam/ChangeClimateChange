@@ -4,7 +4,21 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Pioggia
+  - trigger
+  - Pushable
+  - GoAhead
+  - ChiamataAscensore
+  - Stairs
+  - Grappable
+  - GM
   - Bullet
+  - Robot
+  - Pickable
+  - PickCopertura
+  - Fog
+  - Fire
+  - PushableCassa
   layers:
   - Default
   - TransparentFX
