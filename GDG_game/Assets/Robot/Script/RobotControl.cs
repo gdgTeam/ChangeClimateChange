@@ -45,12 +45,18 @@ using UnityEngine;
             {
                 MoveLeft = true;
                 MoveRight = false;
-            }
+            if (fatto4 == false)
+                SetCollidersSpheresRight();
+
+        }
             else if(this.gameObject.transform.rotation.eulerAngles == right)
             {
                 MoveRight = true;
                 MoveLeft = false;
-            }
+            if (fatto3 == false)
+                SetCollidersSpheresLeft();
+           
+        }
             SetRagdollParts();
        /* if (lr != null)
         {
@@ -149,7 +155,7 @@ using UnityEngine;
         float verSec = (bottomFront.transform.position - topFront.transform.position).magnitude / 10f;
         CreateMiddleSpheres(bottomFront, this.transform.up, verSec, 9, FrontSpheres);
         fatto = true;
-        fatto3 = true;
+        fatto4 = true;
     }
     public void SetCollidersSpheresLeft()
     {
@@ -181,7 +187,7 @@ using UnityEngine;
         float verSec = (bottomFront.transform.position - topFront.transform.position).magnitude / 10f;
         CreateMiddleSpheres(bottomFront, this.transform.up, verSec, 9, FrontSpheres);
         fatto2 = true;
-        fatto4 = true;
+        fatto3 = true;
        
 
     }
