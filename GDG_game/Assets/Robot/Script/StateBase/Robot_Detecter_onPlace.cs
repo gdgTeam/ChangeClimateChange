@@ -28,8 +28,8 @@ namespace roundbeargames_tutorial
         {
 
 
-            Debug.Log("preso:" + preso);
-            Debug.Log("pD :" + playerDetected);
+
+           
             control = animator.GetComponentInParent<RobotControl>();
 
             // control.EdgeCollider.transform.position = new Vector3(player.transform.position.x, control.EdgeCollider.transform.position.y, control.transform.position.z);
@@ -87,7 +87,7 @@ namespace roundbeargames_tutorial
                 RaycastHit hit;
                 if (Physics.Raycast(o.transform.position, control.transform.forward, out hit, 8f))
                 {
-                    Debug.Log("hbjbhjbjh");
+
                     Debug.DrawRay(o.transform.position, control.transform.forward * 8f, Color.red);
 
                     if (!preso)

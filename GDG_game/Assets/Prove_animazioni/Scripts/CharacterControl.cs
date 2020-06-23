@@ -115,6 +115,7 @@ namespace roundbeargames_tutorial
         public GameObject triggerSx;
         public GameObject muoviSinistra;
         public GameObject triggerSalto;
+        public GameObject triggerDx;
         public GameObject salto;
         public GameObject triggerSpostamento;
         public GameObject spingi;
@@ -132,7 +133,11 @@ namespace roundbeargames_tutorial
         public GameObject suggChiamataAscensore;
         public GameObject suggGermogli;
         public GameObject audioManager;
-        private static CharacterControl instance;
+        public List<GameObject> OggettiInter = new List<GameObject>();
+        public Flagghiamo checkpoint;
+        public GameObject zainoPianta;
+        public bool Die;
+       
 
         public Rigidbody RIGID_BODY
         {
@@ -149,12 +154,15 @@ namespace roundbeargames_tutorial
 
         private void Start()
         {
+            piantina = this.transform.GetChild(2).gameObject;
+            zainetto = this.transform.GetChild(3).gameObject;
             posx = this.transform.position.x;
             scale = this.transform.localScale;
             mainCamera = Camera.main;
             Cursor.SetCursor(mouseStandard, hotspot, cursorMode);
             soundCorazza = GetComponent<AudioSource>();
             pianoAscensoreOggetto = 2;
+            checkpoint = GameObject.FindGameObjectWithTag("CheckPoint").GetComponent<Flagghiamo>();
            // TurnOFFRagdoll();
         }
 
@@ -264,10 +272,32 @@ namespace roundbeargames_tutorial
             {
                 TurnOnRagdoll();
             }
-          /*  if (Ragdoll == false)
+            if (controllaCorazza)
             {
-               TurnOFFRagdoll();
-            }*/
+                checkpoint.corazza = true;
+            }
+            if (controllaLiana)
+            {
+                checkpoint.liana = true;
+            }
+            if(controllaSparo)
+            {
+                checkpoint.spara = true;
+            }
+            if (plant)
+            {
+                
+                checkpoint.pianta = true;
+            }
+            if (controllaPosaPianta)
+            {
+
+                checkpoint.posaPiantina = true;
+            }
+            /*  if (Ragdoll == false)
+              {
+                 TurnOFFRagdoll();
+              }*/
 
 
 
@@ -411,12 +441,15 @@ namespace roundbeargames_tutorial
                 piantinaMaterials[1].SetFloat("Vector1_ACBAB4A6", add);
                 piantinaMaterials[2].SetFloat("Vector1_ACBAB4A6", add);
                 piantinaMaterials[3].SetFloat("Vector1_ACBAB4A6", add);
+                StartCoroutine(DieAcquaLago());
+               
                 //zainettoMaterial[0].SetFloat("Vector1_9ACB71BD", add);
                 if (add >= 1) //temporaneo
                 {
                     OnExit();
                 }
             }
+           
 
             if(col.gameObject.name == "TriggerMuoviaDestra")
             {
@@ -543,6 +576,12 @@ namespace roundbeargames_tutorial
                  c.attachedRigidbody.velocity = Vector3.zero;
              }
          }
+        private IEnumerator DieAcquaLago()
+        {
+            Debug.Log("muoripiantina");
+            yield return new WaitForSeconds(1f);
+            Die = true;
+        }
         public void TurnOFFRagdoll()
         {
            /* foreach(Transform child in transform)

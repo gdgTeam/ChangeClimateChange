@@ -18,7 +18,7 @@ public class Zaino : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        Debug.Log("Collider");
+
 
         if (col.gameObject.tag == "PushableTree")
         {

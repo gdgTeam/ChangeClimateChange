@@ -46,11 +46,27 @@ namespace roundbeargames_tutorial
             piantinaMaterials[2].SetFloat("Vector1_ACBAB4A6", add);
             piantinaMaterials[3].SetFloat("Vector1_ACBAB4A6", add);
             zainettoMaterial[0].SetFloat("Vector1_9ACB71BD", add);
+            
         }
 
         public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
+            CharacterControl control = characterState.GetCharacterControl(animator);
             add = 0;
+            skin = -0.2f;
+            myMaterials[0].SetFloat("Vector1_541598BE", skin); //pelle
+            myMaterials[1].SetFloat("Vector1_10EF681C", add); //internoFelpa
+            myMaterials[2].SetFloat("Vector1_4E318E1E", add); //scarpe
+            myMaterials[3].SetFloat("Vector1_1EA8BE87", add); //capelli
+            myMaterials[4].SetFloat("Vector1_1EA8BE87", add); //occhi
+            myMaterials[5].SetFloat("Vector1_460BF25", add); //felpa
+            myMaterials[6].SetFloat("Vector1_1EA8BE87", add); //pantaloni
+            piantinaMaterials[0].SetFloat("Vector1_ACBAB4A6", add);
+            piantinaMaterials[1].SetFloat("Vector1_ACBAB4A6", add);
+            piantinaMaterials[2].SetFloat("Vector1_ACBAB4A6", add);
+            piantinaMaterials[3].SetFloat("Vector1_ACBAB4A6", add);
+            zainettoMaterial[0].SetFloat("Vector1_9ACB71BD", add);
+            control.Die = true;
         }
 
     }

@@ -89,7 +89,7 @@ namespace roundbeargames_tutorial
 
             if (Input.GetKey(KeyCode.Q))
             {
-                Debug.Log("Qui");
+
                 if (control.PickPlant == true || control.PickMetal == true)
                 {
                     control.prendendo = true;

@@ -2,29 +2,57 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
-public class PlayerPose : MonoBehaviour
+namespace roundbeargames_tutorial
 {
-    private GameMaster gm;
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerPose : MonoBehaviour
     {
-        gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
-        transform.position = gm.lastCheckPointPose;
-    }
+        private GameMaster gm;
+        private Flagghiamo flag;
+        private GameObject player;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        // Start is called before the first frame update
+        void Start()
         {
-            
-            SceneManager.LoadScene("Animazioni", LoadSceneMode.Single);
-            SceneManager.LoadScene("Scena_foresta", LoadSceneMode.Additive);
-            SceneManager.LoadScene("SampleScene", LoadSceneMode.Additive);
-
-            /* Scene scene = SceneManager.GetActiveScene(); 
-             SceneManager.LoadScene(scene.name);*/
+            player = GameObject.FindGameObjectWithTag("Player");
+            flag = GameObject.FindGameObjectWithTag("CheckPoint").GetComponent<Flagghiamo>();
+            gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+            transform.position = gm.lastCheckPointPose;
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
+       
+
+        void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            Debug.Log("OnSceneLoaded: " + scene.name);
+            Debug.Log(mode);
+ 
+
+
+        }
+
+
+        // Update is called once per frame
+        void Update()
+        {
+            if(player.GetComponent<CharacterControl>().Die==true)
+            {
+                transform.position = gm.lastCheckPointPose;
+                // SceneManager.LoadScene("Animazioni", LoadSceneMode.Single);
+                Debug.Log("jb");
+                SceneManager.UnloadSceneAsync("Scena_foresta");
+                SceneManager.LoadScene("Scena_foresta", LoadSceneMode.Single);
+               
+                player.GetComponent<CharacterControl>().Die = false;
+                
+
+                //SceneManager.LoadScene("SampleScene", LoadSceneMode.Additive);
+
+
+                /* Scene scene = SceneManager.GetActiveScene(); 
+                 SceneManager.LoadScene(scene.name);*/
+            }
+
+        }
+      
     }
 }

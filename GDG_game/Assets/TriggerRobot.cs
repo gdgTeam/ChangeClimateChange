@@ -16,7 +16,7 @@ namespace roundbeargames_tutorial
                 Animator animator = other.gameObject.GetComponent<Animator>();
                 if (animator.GetBool("Walk") && !animator.GetBool("CharacterDetected"))
                 {
-                    Debug.Log("non cammino");
+
                     animator.SetBool("Walk", false);
                 }
             }

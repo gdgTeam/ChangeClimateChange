@@ -20,6 +20,7 @@ namespace roundbeargames_tutorial
             //PushDistance = 0.5f;
             CharacterControl control = characterState.GetCharacterControl(animator);
             rotation = control.transform.rotation.eulerAngles;
+            
             //tree = CheckObjectFront(control, animator);
         }
 
