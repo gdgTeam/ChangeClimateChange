@@ -24,6 +24,8 @@ using UnityEngine;
     public float offset;
     public bool fatto;
     public bool fatto2;
+    public bool fatto3;
+    public bool fatto4;
     public bool colliding;
    // public LineRenderer lr;
     void Start()
@@ -147,7 +149,7 @@ using UnityEngine;
         float verSec = (bottomFront.transform.position - topFront.transform.position).magnitude / 10f;
         CreateMiddleSpheres(bottomFront, this.transform.up, verSec, 9, FrontSpheres);
         fatto = true;
-
+        fatto3 = true;
     }
     public void SetCollidersSpheresLeft()
     {
@@ -179,6 +181,7 @@ using UnityEngine;
         float verSec = (bottomFront.transform.position - topFront.transform.position).magnitude / 10f;
         CreateMiddleSpheres(bottomFront, this.transform.up, verSec, 9, FrontSpheres);
         fatto2 = true;
+        fatto4 = true;
        
 
     }

@@ -22,7 +22,11 @@ TagManager:
   - Pavimento
   - CuboProva
   - Bullet
+<<<<<<< HEAD
+  - GM
+=======
   - ChiamataAscensore
+>>>>>>> AvanzamentoForesta
   layers:
   - Default
   - TransparentFX

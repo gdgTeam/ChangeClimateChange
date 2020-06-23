@@ -132,8 +132,8 @@ namespace roundbeargames_tutorial
         public GameObject suggChiamataAscensore;
         public GameObject suggGermogli;
         public GameObject audioManager;
+        private static CharacterControl instance;
 
-        
         public Rigidbody RIGID_BODY
         {
             get
@@ -145,6 +145,7 @@ namespace roundbeargames_tutorial
                 return rigid;
             }
         }
+       
 
         private void Start()
         {
@@ -322,8 +323,17 @@ namespace roundbeargames_tutorial
         private void Awake()
         {
             SetRagdollParts();
-            SetCollidersSpheres();   
-        
+            SetCollidersSpheres();
+            /*if (instance == null)
+            {
+                instance = this;
+                DontDestroyOnLoad(instance);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }*/
+
         }
 
         private void SetRagdollParts()
