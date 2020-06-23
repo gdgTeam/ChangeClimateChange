@@ -80,10 +80,10 @@ namespace roundbeargames_tutorial
             
             
            
-             Debug.DrawRay(control.transform.position, control.transform.forward * 8f, Color.red);
+            
             foreach (GameObject o in control.FrontSpheres)
             {
-                
+                Debug.DrawRay(o.transform.position, control.transform.forward * 8f, Color.red);
                 RaycastHit hit;
                 if (Physics.Raycast(o.transform.position, control.transform.forward, out hit, 8f))
                 {

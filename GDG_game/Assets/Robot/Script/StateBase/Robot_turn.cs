@@ -45,10 +45,22 @@ namespace roundbeargames_tutorial
 
         public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
-            if(control.MoveRight)
+            if (control.MoveRight)
+            {
                 control.transform.rotation = Quaternion.Euler(0, 180f, 0);
+                control.dir = +1;
+                if (control.fatto4 == false)
+                control.SetCollidersSpheresLeft();
+            }
+               
             else
+            {
                 control.transform.rotation = Quaternion.Euler(0, 0, 0);
+                control.dir = +1;
+               if (control.fatto3 == false)
+                    control.SetCollidersSpheresRight();
+            }
+                
 
             audio.Stop();
             animator.SetBool("Turn", false);
