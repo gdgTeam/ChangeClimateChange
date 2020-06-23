@@ -8,6 +8,7 @@ namespace roundbeargames_tutorial
 
     public class OnTriggerFire : MonoBehaviour
     {
+        public bool fatto = false;
         // Start is called before the first frame update
         void Start()
         {
@@ -28,10 +29,18 @@ namespace roundbeargames_tutorial
         }
         private void OnTriggerStay(Collider other)
         {
-            if (other.gameObject.tag == "Player")
+            if (other.gameObject.tag == "Player" && !fatto)
             {
                 other.GetComponent<CharacterControl>().CheckCorazza();
+                StartCoroutine("Fatto");
             }
         }
+
+        private IEnumerator Fatto()
+        {
+            yield return new WaitForSeconds(.1f);
+            fatto = true;
+        }
     }
+
 }

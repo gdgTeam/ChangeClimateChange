@@ -19,4 +19,5 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   Speed: 0
-  PushDistance: 0
+  PushDistance: 0.5
+  obj: {fileID: 0}

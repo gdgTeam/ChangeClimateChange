@@ -13,6 +13,7 @@ namespace roundbeargames_tutorial
         public bool plant = false;
         public GameObject hand;
         private Vector3 posIdle;
+        public GameObject obj;
 
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
@@ -118,6 +119,13 @@ namespace roundbeargames_tutorial
                 if (Physics.Raycast(o.transform.position, control.transform.forward, out hit, BlockDistance) && (hit.collider.gameObject.tag == "Pushable" || hit.collider.gameObject.tag == "PushableCassa"))
                 {
                     hit.collider.gameObject.transform.SetParent(animator.gameObject.transform);
+                    if (hit.collider != null)
+                    {
+                        Debug.Log("DENTRO");
+                        obj = hit.collider.gameObject;
+                        if (!control.OggettiInter.Contains(obj))
+                            control.OggettiInter.Add(obj);
+                    }
                     return true;
                 }
             }

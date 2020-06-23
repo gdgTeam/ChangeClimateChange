@@ -12,15 +12,17 @@ namespace roundbeargames_tutorial
         public float Speed;
         public float PushDistance;
         private bool tree = false;
+        private bool trovato;
         private GameObject pushableTree;
         private Vector3 rotation;
+        public GameObject obj;
 
         public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
         {
-            //PushDistance = 0.5f;
+            PushDistance = 0.5f;
             CharacterControl control = characterState.GetCharacterControl(animator);
             rotation = control.transform.rotation.eulerAngles;
-            
+
             //tree = CheckObjectFront(control, animator);
         }
 
@@ -60,7 +62,7 @@ namespace roundbeargames_tutorial
                 animator.SetBool(TransitionParameter.Interact.ToString(), false);
                 return;
             }
-
+            CheckObjectFront(control, animator);
         }
 
         public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
@@ -74,10 +76,16 @@ namespace roundbeargames_tutorial
             {
                 Debug.DrawRay(o.transform.position, control.transform.forward * 0.3f, Color.yellow);
                 RaycastHit hit;
-                if (Physics.Raycast(o.transform.position, control.transform.forward, out hit, PushDistance) && hit.collider.gameObject.tag == "PushableTree")
+                if (Physics.Raycast(o.transform.position, control.transform.forward, out hit, PushDistance))
                 {
-
-                    pushableTree = hit.collider.gameObject;
+                    Debug.Log("DENTROooo");
+                    /*if (hit.collider != null)
+                    {
+                        Debug.Log("DENTRO");
+                        obj = hit.collider.gameObject;
+                        if(!control.OggettiInter.Contains(obj))
+                            control.OggettiInter.Add(obj);
+                    }*/
                     Debug.Log(hit.collider.gameObject);
                     return true;
                 }
@@ -87,4 +95,5 @@ namespace roundbeargames_tutorial
         }
 
     }
-}
+}
+
