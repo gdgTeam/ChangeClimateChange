@@ -137,6 +137,15 @@ namespace roundbeargames_tutorial
             {
                 characterControl.LookLeft = false;
             }
+
+            if (VirtualInputManager.Instance.Fire)
+            {
+                characterControl.LayerIK = true;
+            }
+            else
+            {
+                characterControl.LayerIK = false;
+            }
         }
     }
 }

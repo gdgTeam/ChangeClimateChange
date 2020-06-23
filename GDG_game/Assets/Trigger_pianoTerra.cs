@@ -26,6 +26,7 @@ namespace roundbeargames_tutorial
             control = player.GetComponent<CharacterControl>();
             if(triggerEnter && control.Interact)
             {
+
                 ac = colliderAscensore.GetComponent<AscensoreCharacter>();
                 if (ac.pianoCorrente != 0)
                 {
