@@ -31,13 +31,11 @@ namespace roundbeargames_tutorial
 
             if (control.MoveRight && !control.girato)
             {
-                Debug.Log("IF");
                 animator.SetBool(TransitionParameter.Push.ToString(), true);
                 animator.SetBool(TransitionParameter.Pull.ToString(), false);
             }
             else if(control.MoveLeft && control.girato)
             {
-                
                 animator.SetBool(TransitionParameter.Push.ToString(), true);
                 animator.SetBool(TransitionParameter.Pull.ToString(), false);
             }
@@ -52,8 +50,7 @@ namespace roundbeargames_tutorial
                 animator.SetBool(TransitionParameter.Push.ToString(), false);
             }
             else if(!control.MoveRight && !control.MoveLeft)
-            {
-                Debug.Log("ELSEIF");
+            {
                 animator.SetBool(TransitionParameter.Push.ToString(), false);
                 animator.SetBool(TransitionParameter.Pull.ToString(), false);
             }

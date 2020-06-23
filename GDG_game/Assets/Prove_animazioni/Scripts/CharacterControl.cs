@@ -417,12 +417,14 @@ namespace roundbeargames_tutorial
              if (col.gameObject.name == "TriggerPioggia")
              {
                 Debug.Log("Pioggia");
+                FindObjectOfType<AudioManager>().Play("audio_pioggia");
                 pioggia.active = true;
                 triggerPioggiaAcida.active = true;
              }
 
             if (col.gameObject.name == "TriggerFinePioggia" && sparaOk && pickedMetal)
             {
+                FindObjectOfType<AudioManager>().sounds[2].loop = false;
                 pioggia.active = false;
                 triggerPioggiaAcida.active = false;
             }
