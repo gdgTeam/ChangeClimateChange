@@ -10,6 +10,8 @@ using UnityEngine;
     {
         public float velocity = 20f;
         public float life = 1f;
+        public AudioClip impatto;
+        public AudioClip distrutto;
 
         private int firedByLayer;
         private float lifeTimer;
@@ -136,12 +138,16 @@ using UnityEngine;
             {
                 hips.GetChild(3).gameObject.active = true;
                 robotControl.hit = robotControl.hit + 1;
+                GetComponent<AudioSource>().clip = impatto;
+                GetComponent<AudioSource>().Play();
             }
 
             else if (robotControl.hit == 1)
             {
                 hips.GetChild(4).gameObject.active = true;
                 robotControl.hit = robotControl.hit + 1;
+                GetComponent<AudioSource>().clip = impatto;
+                GetComponent<AudioSource>().Play();
             }
 
             else if (robotControl.hit == 2)
@@ -149,6 +155,10 @@ using UnityEngine;
                 hips.GetChild(5).gameObject.active = true;
                 robotControl.hit = robotControl.hit + 1;
                 robotControl.GetComponent<Animator>().SetBool("Die", true);
+                GetComponent<AudioSource>().clip = distrutto;
+                GetComponent<AudioSource>().volume = 0.7f;
+                GetComponent<AudioSource>().Play();
+
             }
         }
 

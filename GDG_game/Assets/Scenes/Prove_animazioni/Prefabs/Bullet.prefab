@@ -49,6 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 20
   life: 1
+  impatto: {fileID: 8300000, guid: 9130b80a0bee34406b671dcf6f13559e, type: 3}
+  distrutto: {fileID: 8300000, guid: 7b69beceabbd8f24e8bc62d77ac7ca1c, type: 3}
 --- !u!96 &7889767693359584311
 TrailRenderer:
   serializedVersion: 2
