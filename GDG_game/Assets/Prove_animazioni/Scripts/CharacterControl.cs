@@ -284,6 +284,10 @@ namespace roundbeargames_tutorial
                 else if(girato && hit.point.z < this.transform.position.z ){
                     targetTransform.position = new Vector3(this.transform.position.x - 0.5f, hit.point.y, hit.point.z);
                 }
+                else
+                {
+                    targetTransform.position = new Vector3(this.transform.position.x - 0.5f, hit.point.y, this.transform.position.z);
+                }
 
                 if (hit.collider.gameObject.tag == "Grappable" && isSwinging == false)
                 {
@@ -623,13 +627,13 @@ namespace roundbeargames_tutorial
 
         private void OnAnimatorIK()
         {
-            //mira al target con IK
-            SkinnedMeshAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
-            SkinnedMeshAnimator.SetIKPosition(AvatarIKGoal.RightHand, targetTransform.position);
+                //mira al target con IK
+                SkinnedMeshAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
+                SkinnedMeshAnimator.SetIKPosition(AvatarIKGoal.RightHand, targetTransform.position);
 
-            //look at target
-            SkinnedMeshAnimator.SetLookAtWeight(1);
-            SkinnedMeshAnimator.SetLookAtPosition(targetTransform.position);
+                //look at target
+                SkinnedMeshAnimator.SetLookAtWeight(1);
+                SkinnedMeshAnimator.SetLookAtPosition(targetTransform.position);
             
         }
 
