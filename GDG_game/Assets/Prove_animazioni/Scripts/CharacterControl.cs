@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Permissions;
 using UnityEngine;
 
 namespace roundbeargames_tutorial
@@ -56,7 +57,7 @@ namespace roundbeargames_tutorial
         public bool protectPlant = false;
         public Vector3 right = new Vector3(0f, 0f, 0f);
         public Vector3 left = new Vector3(0f, 180f, 0f);
-        private bool protectShield;
+        public bool protectShield;
         public GameObject ColliderEdgePrefab;
         public List<GameObject> BottomSpheres = new List<GameObject>();
         public List<GameObject> FrontSpheres = new List<GameObject>();
@@ -136,6 +137,8 @@ namespace roundbeargames_tutorial
         public List<GameObject> OggettiInter = new List<GameObject>();
         public Flagghiamo checkpoint;
         public GameObject zainoPianta;
+        public GameObject CheckPoint10;
+        public GameObject CheckPoint11;
         public bool Die;
        
 
@@ -425,6 +428,8 @@ namespace roundbeargames_tutorial
             {
                 pioggia.active = false;
                 triggerPioggiaAcida.active = false;
+                CheckPoint10.SetActive(true);
+                CheckPoint11.SetActive(true);
             }
 
         }
@@ -644,6 +649,7 @@ namespace roundbeargames_tutorial
             if (protectShield)
             {
                 SkinnedMeshAnimator.SetBool(TransitionParameter.Die.ToString(), true);
+                protectShield = false;
             }
         }
 
