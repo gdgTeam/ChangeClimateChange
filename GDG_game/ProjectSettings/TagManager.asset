@@ -3,7 +3,43 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+<<<<<<< HEAD
+  - Bullet
+  - Fog
+  - GoAhead
+  - Pushable
+  - Grappable
+  - trigger
+  - Pavimento
+  - PushableTree
+  - Pickable
+  - Fire
+  - Robot
+  - Scimmia
+  - Pioggia
+  - ChiamataAscensore
+  - Stairs
+  - GM
+  - PickCopertura
+  - CheckPoint
+=======
+  - Pioggia
+  - trigger
+  - Pushable
+  - GoAhead
+  - ChiamataAscensore
+  - Stairs
+  - Grappable
+  - GM
+  - Bullet
+  - Robot
+  - Pickable
+  - PickCopertura
+  - Fog
+  - Fire
+  - PushableCassa
+>>>>>>> AvanzamentoForesta
   layers:
   - Default
   - TransparentFX
