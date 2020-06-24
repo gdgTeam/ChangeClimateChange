@@ -63,6 +63,7 @@ public class Pausa : MonoBehaviour
 
     public void Quit()
     {
+        Debug.Log("Esco");
         Application.Quit();
     }
 

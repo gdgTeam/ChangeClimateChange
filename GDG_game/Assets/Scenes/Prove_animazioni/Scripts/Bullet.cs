@@ -140,6 +140,8 @@ using UnityEngine;
                 robotControl.hit = robotControl.hit + 1;
                 GetComponent<AudioSource>().clip = impatto;
                 GetComponent<AudioSource>().Play();
+                UnityEngine.Debug.Log(GetComponent<AudioSource>().clip);
+                UnityEngine.Debug.Log(GetComponent<AudioSource>().isPlaying);
             }
 
             else if (robotControl.hit == 1)
@@ -148,6 +150,8 @@ using UnityEngine;
                 robotControl.hit = robotControl.hit + 1;
                 GetComponent<AudioSource>().clip = impatto;
                 GetComponent<AudioSource>().Play();
+                UnityEngine.Debug.Log(GetComponent<AudioSource>().clip);
+                UnityEngine.Debug.Log(GetComponent<AudioSource>().isPlaying);
             }
 
             else if (robotControl.hit == 2)
@@ -158,6 +162,10 @@ using UnityEngine;
                 GetComponent<AudioSource>().clip = distrutto;
                 GetComponent<AudioSource>().volume = 0.7f;
                 GetComponent<AudioSource>().Play();
+                UnityEngine.Debug.Log(GetComponent<AudioSource>().clip);
+                UnityEngine.Debug.Log(GetComponent<AudioSource>().isPlaying);
+                robotControl.gameObject.GetComponent<AudioSource>().clip = distrutto;
+                robotControl.gameObject.GetComponent<AudioSource>().Play();
 
             }
         }
