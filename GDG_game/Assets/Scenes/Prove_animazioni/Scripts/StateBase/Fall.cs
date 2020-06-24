@@ -19,6 +19,7 @@ namespace roundbeargames_tutorial
             timeLeft -= Time.deltaTime;
             if (timeLeft < 0)
             {
+                Debug.Log("altezza");
                 animator.SetBool("FallToDie", true);
             }
         }

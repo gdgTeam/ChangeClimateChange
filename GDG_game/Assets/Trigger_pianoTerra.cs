@@ -17,6 +17,7 @@ namespace roundbeargames_tutorial
 
         private void Start()
         {
+            player = GameObject.FindGameObjectWithTag("Player");
             triggerEnter = false;
             startTranslation = false;
         }

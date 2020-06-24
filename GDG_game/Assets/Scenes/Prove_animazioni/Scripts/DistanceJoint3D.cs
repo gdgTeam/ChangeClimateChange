@@ -42,7 +42,7 @@ public class DistanceJoint3D : MonoBehaviour
     {
         if (ConnectedRigidbody != null)
         {
-            Debug.Log(Vector3.Distance(Rigidbody.position, ConnectedRigidbody.position));
+
             if (Vector3.Distance(Rigidbody.position, ConnectedRigidbody.position) > 5f)
             {
                 Debug.Log("maggiore");
@@ -58,7 +58,8 @@ public class DistanceJoint3D : MonoBehaviour
     }
     void FixedUpdate()
     {
-     
+
+        Debug.Log(ConnectedRigidbody);
 
         var connection = Rigidbody.position - ConnectedRigidbody.position;
         var distanceDiscrepancy = Distance - connection.magnitude;

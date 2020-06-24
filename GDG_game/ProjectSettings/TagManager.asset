@@ -24,6 +24,7 @@ TagManager:
   - CheckPoint
   - PushableCassa
   - Sfondo
+  - Ascensore
   layers:
   - Default
   - TransparentFX

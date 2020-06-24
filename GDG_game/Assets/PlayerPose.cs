@@ -46,9 +46,29 @@ namespace roundbeargames_tutorial
                 }
                 // SceneManager.MoveGameObjectToScene(player, SceneManager.GetSceneByName("Animazioni"));
                 DontDestroyOnLoad(player);
+                
                 SceneManager.UnloadSceneAsync("Scena_foresta");
                 SceneManager.LoadScene("Scena_foresta", LoadSceneMode.Single);
+                SceneManager.LoadScene("SampleScene", LoadSceneMode.Additive);
+                CharacterControl control = player.GetComponent<CharacterControl>();
+                player.GetComponent<CharacterControl>().plant = true;
+                player.GetComponent<CharacterControl>().sparaOk = true;
+                control.transform.GetChild(3).gameObject.transform.GetComponent<SkinnedMeshRenderer>().enabled = true;
+                control.transform.GetChild(2).gameObject.transform.GetComponent<SkinnedMeshRenderer>().enabled = true;
+                control.zainoPianta.SetActive(false);
+                control.zainoPianta.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+                control.RIGID_BODY.isKinematic = false;
+                control.checkPickFalse = true;
+               // control.plant = true;
+                control.protectPlant = true;
+                control.zainoPianta.transform.parent = GameObject.Find("mixamorig: RightHand").transform;
+                control.zainoPianta.transform.position = new Vector3(0.631783f, 1.027834f, 0.3071281f);
+                
+                control.zainoPianta.transform.rotation = Quaternion.Euler(-142.972f, -67.46899f, 43.646f);
                
+                control.zainoPianta.transform.localScale = new Vector3(77.20261f, 77.20261f, 77.20261f);
+
+
                 player.GetComponent<CharacterControl>().Die = false;
                 
 

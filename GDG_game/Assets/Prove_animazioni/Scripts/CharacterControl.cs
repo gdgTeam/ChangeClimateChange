@@ -143,7 +143,9 @@ namespace roundbeargames_tutorial
         public GameObject CheckPoint11;
         public bool Die;
         private bool fattoAcqua;
-       
+        public GameObject ascensore;
+        public GameObject[] Pioggia;
+
 
         public Rigidbody RIGID_BODY
         {
@@ -161,6 +163,7 @@ namespace roundbeargames_tutorial
         private void Start()
         {
             
+            ascensore = GameObject.FindGameObjectWithTag("Ascensore");
             piantina = this.transform.GetChild(2).gameObject;
             zainetto = this.transform.GetChild(3).gameObject;
             posx = this.transform.position.x;
@@ -171,6 +174,7 @@ namespace roundbeargames_tutorial
             pianoAscensoreOggetto = 2;
             checkpoint = GameObject.FindGameObjectWithTag("CheckPoint").GetComponent<Flagghiamo>();
             FindObjectOfType<AudioManager>().Play("audio_foresta");
+
             // TurnOFFRagdoll();
             /*if (OggettiInter.Contains(GameObject.Find("NUOVOAlbero")) == false)
             {
@@ -181,7 +185,16 @@ namespace roundbeargames_tutorial
 
         private void Update()
         {
-
+            zainoPianta = GameObject.Find("zaino+pianta");
+            ascensore = GameObject.FindGameObjectWithTag("Ascensore");
+            if (ascensore.GetComponent<AscensoreCharacter>().characterOn)
+            {
+                suggAscensore.active = true;
+            }
+            else
+            {
+                suggAscensore.active = false;
+            }
             if (lianando == true && suggLiana.active)
             {
                 Destroy(triggerLiana);
@@ -454,19 +467,45 @@ namespace roundbeargames_tutorial
              
              if (col.gameObject.name == "TriggerPioggia")
              {
+                
                 Debug.Log("Pioggia");
+               // pioggia = GameObject.FindGameObjectWithTag("PioggiaTot");
+                Pioggia = GameObject.FindGameObjectsWithTag("Pioggia");
+
+                for (int i = 0; i < Pioggia.Length; i++)
+                {
+
+                    var main = Pioggia[i].GetComponent<ParticleSystemRenderer>();
+                    main.enabled = true;
+                }
                 FindObjectOfType<AudioManager>().Play("audio_pioggia");
-                pioggia.active = true;
-                triggerPioggiaAcida.active = true;
+                // pioggia.active = true;
+                // triggerPioggiaAcida.active = true;
+                BoxCollider[] triggerPA;
+                triggerPA = triggerPioggiaAcida.GetComponents<BoxCollider>();
+                triggerPA[0].enabled = true;
+                triggerPA[1].enabled = true;
+
+
              }
 
             if (col.gameObject.name == "TriggerFinePioggia" && sparaOk && pickedMetal)
             {
                 FindObjectOfType<AudioManager>().sounds[2].loop = false;
-                pioggia.active = false;
+               // pioggia.active = false;
                 triggerPioggiaAcida.active = false;
                 CheckPoint10.SetActive(true);
                 CheckPoint11.SetActive(true);
+                Pioggia = GameObject.FindGameObjectsWithTag("Pioggia");
+
+                for (int i = 0; i < Pioggia.Length; i++)
+                {
+
+                    var main = Pioggia[i].GetComponent<ParticleSystemRenderer>();
+                    main.enabled = false;
+                }
+                FindObjectOfType<AudioManager>().StopPlaying("audio_pioggia");
+
             }
             if (col.gameObject.name == "TriggerAcqua" && sparaOk)
             {
@@ -505,19 +544,13 @@ namespace roundbeargames_tutorial
 
             if (col.gameObject.name == "TriggerPioggiaAcida" && sparaOk && !pickedMetal)
             {
+               
                 Debug.Log("StayPioggia");
-                add = add + 0.01f;
-                piantinaMaterials = piantina.gameObject.GetComponent<SkinnedMeshRenderer>().materials;
-                zainettoMaterial = zainetto.gameObject.GetComponent<SkinnedMeshRenderer>().materials;
-                piantinaMaterials[0].SetFloat("Vector1_ACBAB4A6", add);
-                piantinaMaterials[1].SetFloat("Vector1_ACBAB4A6", add);
-                piantinaMaterials[2].SetFloat("Vector1_ACBAB4A6", add);
-                piantinaMaterials[3].SetFloat("Vector1_ACBAB4A6", add);
-                zainettoMaterial[0].SetFloat("Vector1_9ACB71BD", add);
-                if (add >= 1) //temporaneo
-                {
-                    OnExit();
-                }
+                
+
+               
+                liana.GetComponent<Animator>().enabled = true;
+                liana.GetComponent<Animator>().SetBool("Morte", true);
             }
 
             
@@ -612,14 +645,7 @@ namespace roundbeargames_tutorial
                 }
             }
 
-            if(col.gameObject == triggerAscensore)
-            {
-                suggAscensore.active = true;
-            }
-            else
-            {
-                suggAscensore.active = false;
-            }
+            
 
             if(col.gameObject.tag == "ChiamataAscensore")
             {
@@ -641,14 +667,7 @@ namespace roundbeargames_tutorial
                 }
             }
 
-            if (col.gameObject == triggerNascondi)
-            {
-                suggNascondi.active = true;
-            }
-            else
-            {
-                suggNascondi.active = false;
-            }
+          
 
         }
 

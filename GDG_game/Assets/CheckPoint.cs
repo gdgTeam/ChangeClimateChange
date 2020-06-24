@@ -32,6 +32,7 @@ public class CheckPoint : MonoBehaviour
           
             gm.lastCheckPointPose = new Vector3(other.transform.position.x,transform.position.y,transform.position.z);
 
+
         }
     }
    

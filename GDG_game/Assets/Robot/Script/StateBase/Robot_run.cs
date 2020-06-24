@@ -54,7 +54,7 @@ namespace roundbeargames_tutorial
                 targetDirection.Normalize();
                 control.transform.Translate(targetDirection * 6.5f * Time.deltaTime);
                 
-                if (diff.z < 1f || control.colliding)
+                if (diff.z < 1.5f || control.colliding)
                 {
 
                    animator.SetBool("CharacterDetected", false);
