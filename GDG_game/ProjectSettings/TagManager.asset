@@ -22,6 +22,8 @@ TagManager:
   - GM
   - PickCopertura
   - CheckPoint
+  - PushableCassa
+  - Sfondo
   layers:
   - Default
   - TransparentFX

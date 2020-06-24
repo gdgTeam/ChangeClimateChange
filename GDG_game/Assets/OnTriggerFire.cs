@@ -38,7 +38,7 @@ namespace roundbeargames_tutorial
 
         private IEnumerator Fatto()
         {
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(1f);
             fatto = true;
         }
     }
