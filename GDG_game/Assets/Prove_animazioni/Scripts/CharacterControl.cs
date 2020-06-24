@@ -145,7 +145,7 @@ namespace roundbeargames_tutorial
         private bool fattoAcqua;
         public GameObject ascensore;
         public GameObject[] Pioggia;
-
+        public bool passato;
 
         public Rigidbody RIGID_BODY
         {
