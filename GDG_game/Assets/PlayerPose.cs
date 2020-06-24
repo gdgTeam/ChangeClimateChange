@@ -44,6 +44,8 @@ namespace roundbeargames_tutorial
                 {
                     Destroy(o);
                 }
+                // SceneManager.MoveGameObjectToScene(player, SceneManager.GetSceneByName("Animazioni"));
+                DontDestroyOnLoad(player);
                 SceneManager.UnloadSceneAsync("Scena_foresta");
                 SceneManager.LoadScene("Scena_foresta", LoadSceneMode.Single);
                

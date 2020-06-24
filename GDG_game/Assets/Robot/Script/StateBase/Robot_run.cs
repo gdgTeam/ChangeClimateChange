@@ -59,7 +59,9 @@ namespace roundbeargames_tutorial
 
                    animator.SetBool("CharacterDetected", false);
                    animator.SetBool("Walk", false);
-                    player.GetComponent<Animator>().SetBool("FallToDie", true);
+                    if(player.GetComponent<CharacterControl>().Die==false)
+                   player.GetComponent<Animator>().SetBool("FallToDie", true);
+
                 }
             }
 

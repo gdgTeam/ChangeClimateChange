@@ -24,6 +24,15 @@ namespace roundbeargames_tutorial
         {
             CharacterControl control = characterState.GetCharacterControl(animator);
             control.Die = true;
+            
+            if (animator.GetBool("FallToDie"))
+            {
+                animator.SetBool("FallToDie", false);
+            }
+            if (animator.GetBool("Morte"))
+            {
+                animator.SetBool("Morte", false);
+            }
         }
     }
 }

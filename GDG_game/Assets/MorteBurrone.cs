@@ -22,6 +22,7 @@ namespace roundbeargames_tutorial
         {
             if (other.gameObject.tag == "Player")
             {
+                Debug.Log("morteBurrone");
                 other.GetComponent<Animator>().SetBool("FallToDie",true);
             }
         }

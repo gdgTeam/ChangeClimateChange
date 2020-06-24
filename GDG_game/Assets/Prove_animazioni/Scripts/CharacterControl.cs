@@ -142,6 +142,7 @@ namespace roundbeargames_tutorial
         public GameObject CheckPoint10;
         public GameObject CheckPoint11;
         public bool Die;
+        private bool fattoAcqua;
        
 
         public Rigidbody RIGID_BODY
@@ -159,6 +160,7 @@ namespace roundbeargames_tutorial
 
         private void Start()
         {
+            
             piantina = this.transform.GetChild(2).gameObject;
             zainetto = this.transform.GetChild(3).gameObject;
             posx = this.transform.position.x;
@@ -169,7 +171,12 @@ namespace roundbeargames_tutorial
             pianoAscensoreOggetto = 2;
             checkpoint = GameObject.FindGameObjectWithTag("CheckPoint").GetComponent<Flagghiamo>();
             FindObjectOfType<AudioManager>().Play("audio_foresta");
-           // TurnOFFRagdoll();
+            // TurnOFFRagdoll();
+            /*if (OggettiInter.Contains(GameObject.Find("NUOVOAlbero")) == false)
+            {
+                OggettiInter.Add(GameObject.Find("NUOVOAlbero"));
+            }*/
+           
         }
 
         private void Update()
@@ -461,6 +468,26 @@ namespace roundbeargames_tutorial
                 CheckPoint10.SetActive(true);
                 CheckPoint11.SetActive(true);
             }
+            if (col.gameObject.name == "TriggerAcqua" && sparaOk)
+            {
+                add = add + 0.005f;
+                piantinaMaterials = piantina.gameObject.GetComponent<SkinnedMeshRenderer>().materials;
+                zainettoMaterial = zainetto.gameObject.GetComponent<SkinnedMeshRenderer>().materials;
+                piantinaMaterials[0].SetFloat("Vector1_ACBAB4A6", add);
+                piantinaMaterials[1].SetFloat("Vector1_ACBAB4A6", add);
+                piantinaMaterials[2].SetFloat("Vector1_ACBAB4A6", add);
+                piantinaMaterials[3].SetFloat("Vector1_ACBAB4A6", add);
+                liana.GetComponent<MeshRenderer>().enabled = true;
+                liana.GetComponent<Animator>().enabled = true;
+                liana.GetComponent<Animator>().SetBool("Morte", true);
+
+
+                //zainettoMaterial[0].SetFloat("Vector1_9ACB71BD", add);
+                if (add >= 1) //temporaneo
+                {
+                    OnExit();
+                }
+            }
 
         }
 
@@ -493,23 +520,7 @@ namespace roundbeargames_tutorial
                 }
             }
 
-            if(col.gameObject.name == "TriggerAcqua" && sparaOk)
-            {
-                add = add + 0.005f;
-                piantinaMaterials = piantina.gameObject.GetComponent<SkinnedMeshRenderer>().materials;
-                zainettoMaterial = zainetto.gameObject.GetComponent<SkinnedMeshRenderer>().materials;
-                piantinaMaterials[0].SetFloat("Vector1_ACBAB4A6", add);
-                piantinaMaterials[1].SetFloat("Vector1_ACBAB4A6", add);
-                piantinaMaterials[2].SetFloat("Vector1_ACBAB4A6", add);
-                piantinaMaterials[3].SetFloat("Vector1_ACBAB4A6", add);
-                StartCoroutine(DieAcquaLago());
-               
-                //zainettoMaterial[0].SetFloat("Vector1_9ACB71BD", add);
-                if (add >= 1) //temporaneo
-                {
-                    OnExit();
-                }
-            }
+            
            
 
             if(col.gameObject.name == "TriggerMuoviaDestra")
@@ -656,12 +667,7 @@ namespace roundbeargames_tutorial
                  c.attachedRigidbody.velocity = Vector3.zero;
              }
          }
-        private IEnumerator DieAcquaLago()
-        {
-            Debug.Log("muoripiantina");
-            yield return new WaitForSeconds(1f);
-            Die = true;
-        }
+   
         public void TurnOFFRagdoll()
         {
            /* foreach(Transform child in transform)

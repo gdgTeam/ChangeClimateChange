@@ -22,8 +22,10 @@ namespace roundbeargames_tutorial
             animator.SetBool(TransitionParameter.Die.ToString(), false);
             animator.SetBool(TransitionParameter.Jump.ToString(), false);//per evitare di saltare due volte se premo spazio mentre sono nello stato di landing
             posIdle = control.transform.position;
-            
-        
+            control.liana.GetComponent<MeshRenderer>().enabled = false;
+            control.liana.GetComponent<Animator>().enabled = false;
+
+
         }
 
         public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)

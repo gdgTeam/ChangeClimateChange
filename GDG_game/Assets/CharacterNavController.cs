@@ -92,7 +92,7 @@ public class CharacterNavController : MonoBehaviour
             
             this.GetComponent<Animator>().SetBool("LanciaOggetto", false);
             this.GetComponent<Animator>().SetBool("LanciaSuRobot", true);
-            target.transform.Translate(Vector3.right * 1f * Time.deltaTime);
+            target.transform.Translate(Vector3.right * 2f * Time.deltaTime);
         
             // target.GetComponent<Rigidbody>().AddForce(new Vector3(7f, 0f, 0f), ForceMode.Force);
             yield return new WaitForSeconds(1f);
