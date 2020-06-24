@@ -21,7 +21,6 @@ namespace roundbeargames_tutorial
         {
             if (other.gameObject.tag == "Pushable")
             {
-                
                 scimmia.GetComponent<NavMesh2>().enabled = true;
                 scimmia.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
             }
