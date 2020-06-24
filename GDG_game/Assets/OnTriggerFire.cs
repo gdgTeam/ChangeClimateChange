@@ -32,7 +32,7 @@ namespace roundbeargames_tutorial
             if (other.gameObject.tag == "Player" && !fatto)
             {
                 other.GetComponent<CharacterControl>().CheckCorazza();
-              //  StartCoroutine("Fatto");
+                //StartCoroutine("Fatto");
             }
         }
 

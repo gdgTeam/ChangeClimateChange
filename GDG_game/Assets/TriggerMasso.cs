@@ -21,6 +21,7 @@ namespace roundbeargames_tutorial
             if (other.gameObject.tag == "Robot")
             {
                 // other.GetComponent<RobotControl>().TurnOnRagdoll();
+                GetComponent<AudioSource>().Play();
                 other.GetComponent<Animator>().SetBool("Die", true);
                // StartCoroutine(ToggleRagDoll(other));
             }
