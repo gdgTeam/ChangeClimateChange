@@ -63,6 +63,7 @@ namespace roundbeargames_tutorial
             yield return new WaitForSeconds(2f);
            // Destroy(this.GetComponent<Rigidbody>());
             Destroy(this.GetComponent<Ledge>());
+            Destroy(this.GetComponent<Rigidbody>());
             //this.transform.position = new Vector3(this.transform.position.x, 0f, this.transform.position.z);
         }
 

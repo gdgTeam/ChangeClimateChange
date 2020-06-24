@@ -173,6 +173,32 @@ namespace roundbeargames_tutorial
         private void Update()
         {
 
+            if (lianando == true && suggLiana.active)
+            {
+                Destroy(triggerLiana);
+                suggLiana.active = false;
+            }
+
+            if (posando == true && suggPosaPianta.active)
+            {
+                Destroy(triggerPosaPianta);
+                suggPosaPianta.active = false;
+            }
+
+            if (saltando == true && salto.active)
+            {
+                Destroy(triggerSalto);
+                salto.active = false;
+                triggerPianta.active = true;
+            }
+
+            if (MoveLeft == true && muoviSinistra.active)
+            {
+                Destroy(triggerSx);
+                muoviSinistra.active = false;
+                triggerSalto.active = true;
+            }
+
             if (corazzando == true && suggCorazza.active)
             {
                 Destroy(triggerCorazza);
