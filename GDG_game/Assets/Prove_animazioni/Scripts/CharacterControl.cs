@@ -126,6 +126,7 @@ namespace roundbeargames_tutorial
         public GameObject triggerLiana;
         public GameObject triggerAscensore;
         public GameObject triggerGermogli;
+        public GameObject triggerNascondi;
         public GameObject prendiPianta;
         public GameObject suggCorazza;
         public GameObject suggPosaPianta;
@@ -133,6 +134,7 @@ namespace roundbeargames_tutorial
         public GameObject suggAscensore;
         public GameObject suggChiamataAscensore;
         public GameObject suggGermogli;
+        public GameObject suggNascondi;
         public GameObject audioManager;
         public List<GameObject> OggettiInter = new List<GameObject>();
         public Flagghiamo checkpoint;
@@ -626,6 +628,15 @@ namespace roundbeargames_tutorial
                     suggGermogli.active = false;
                     Destroy(triggerGermogli);
                 }
+            }
+
+            if (col.gameObject == triggerNascondi)
+            {
+                suggNascondi.active = true;
+            }
+            else
+            {
+                suggNascondi.active = false;
             }
 
         }
