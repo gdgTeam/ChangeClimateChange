@@ -15,7 +15,7 @@ namespace roundbeargames_tutorial
             if(other.tag == "Player")
             {
                 audio = GetComponent<AudioSource>();
-                audio.volume = 0.5f;
+                audio.volume = 1;
                 audio.clip = nuotata;
                 GetComponent<AudioSource>().Play();
             }
@@ -27,7 +27,7 @@ namespace roundbeargames_tutorial
             {
                 audio = GetComponent<AudioSource>();
                 audio.clip = uscita;
-                audio.volume = 0.8f;
+                audio.volume = 0.9f;
                 audio.Play();
             }
         }
